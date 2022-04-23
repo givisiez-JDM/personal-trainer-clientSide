@@ -1,7 +1,9 @@
-import React from 'react'
+import { MainCnt } from "../assets/styles/MainStyle";
 
-export default function Main() {
+export default function Main({children}) {
   return (
-    <div>Main</div>
+    <MainCnt>
+      {children}
+    </MainCnt>
   )
 }
