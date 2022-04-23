@@ -1,10 +1,9 @@
-import Login from "./pages/Login";
-
-export default function App() {
-
+function App() {
   return (
     <div className="App">
-      <Login />
+      
     </div>
   );
 }
+
+export default App;

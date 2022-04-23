@@ -1,6 +1,6 @@
 export default function ClientDetails() {
     return (
-        <section className="container max-w-2xl mx-auto">
+        <section>
             <h1>Detalhes do cliente</h1>
             <p>Nome completo: Gilmere Araújo Gimenes </p>
             <p>Data de nascimento: 11/07/1991 (30 anos)</p>
@@ -8,7 +8,7 @@ export default function ClientDetails() {
             <p>Telefone: (31) 93458-7516</p>
             <p>E-mail: ggimenes@hotmail.com</p>
             <p>Profissão: mecânica de automóveis</p>
-            <p className="mb-5">Objetivo: melhorar condicionamento físico</p>
+            <p>Objetivo: melhorar condicionamento físico</p>
             <table>
                 <thead>
                     <tr>
