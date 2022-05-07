@@ -1,6 +1,6 @@
 import { ThemeProvider } from "styled-components";
-import { HeaderCnt, HeaderLink, HeaderNav } from "../assets/styles/HeaderStyle";
-import { mainThemeColor } from "../assets/styles/Shared";
+import { HeaderCnt, HeaderLink, HeaderNav } from "./HeaderStyle";
+import { mainThemeColor } from "../../assets/styles/Shared";
 
 export default function Header() {
   return (

@@ -1,5 +1,5 @@
-import Header from '../layouts/Header'
-import Main from '../layouts/Main'
+import Header from '../../layouts/header/Header'
+import Main from '../../layouts/main/Main'
 
 export default function HomePage() {
     return (

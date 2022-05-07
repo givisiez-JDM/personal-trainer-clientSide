@@ -1,4 +1,4 @@
-import { MainCnt } from "../assets/styles/MainStyle";
+import { MainCnt } from "./MainStyle";
 
 export default function Main({children}) {
   return (

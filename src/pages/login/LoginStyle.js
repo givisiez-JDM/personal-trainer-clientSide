@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import bgLogin from "../images/images/homem-fazendo-flexao.jpg"
+import bgLogin from "../../assets/images/images/homem-fazendo-flexao.jpg"
 
 export const LoginCnt = styled.main`
     width: 100vw;
@@ -34,6 +34,19 @@ export const LoginLogo = styled.img`
     height: auto;
 `
 
+export const LoginLabel = styled.label``
+
 export const LoginInput = styled.input`
     border-radius: 5px;
+`
+
+export const LoginSubmit = styled.input`
+    background-color: ${props => props.theme.darkGreen};
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    font-weight: 700;
 `
