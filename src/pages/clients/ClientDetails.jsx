@@ -1,14 +1,16 @@
-export default function ClientDetails() {
+export default function ClientDetails({ name, dateBirth, gender, phone, email, profession, objective }) {
     return (
-        <section>
+        <>
+        <Header />
+        <Main>
             <h1>Detalhes do cliente</h1>
-            <p>Nome completo: Gilmere Araújo Gimenes </p>
-            <p>Data de nascimento: 11/07/1991 (30 anos)</p>
-            <p>Sexo: Feminino</p>
-            <p>Telefone: (31) 93458-7516</p>
-            <p>E-mail: ggimenes@hotmail.com</p>
-            <p>Profissão: mecânica de automóveis</p>
-            <p>Objetivo: melhorar condicionamento físico</p>
+            <p>Nome completo: {name} </p>
+            <p>Data de nascimento: {dateBirth} (30 anos)</p>
+            <p>Sexo: {gender}</p>
+            <p>Telefone: {phone}</p>
+            <p>E-mail: {email}</p>
+            <p>Profissão: {profession}</p>
+            <p>Objetivo: {objective}</p>
             <table>
                 <thead>
                     <tr>
@@ -39,7 +41,8 @@ export default function ClientDetails() {
                         <td>Próximo agendamento.</td>
                     </tr>
                 </tbody>
-            </table>
-        </section>
+            </table>  
+        </Main>
+      </>
     )
 }
