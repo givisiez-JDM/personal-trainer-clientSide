@@ -1,16 +1,40 @@
-export default function ClientDetails({ name, dateBirth, gender, phone, email, profession, objective }) {
+import Header from "../../layouts/header/Header";
+import Main from "../../layouts/main/Main";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { api } from "../../services/api";
+
+export default function ClientDetails() {
+    let { clientId } = useParams(); 
+
+    const [client, setclient] = useState({
+        name: "", 
+        dateBirth: null, 
+        gender: "", 
+        phone: "", 
+        email: "", 
+        profession: "", 
+        objective: "" 
+    })
+
+    useEffect(() => {
+        api.get(`/clientes/${clientId}`).then((response) => {
+            setclient(response.data)
+        })
+    }, [])
+
     return (
         <>
         <Header />
         <Main>
             <h1>Detalhes do cliente</h1>
-            <p>Nome completo: {name} </p>
-            <p>Data de nascimento: {dateBirth} (30 anos)</p>
-            <p>Sexo: {gender}</p>
-            <p>Telefone: {phone}</p>
-            <p>E-mail: {email}</p>
-            <p>Profissão: {profession}</p>
-            <p>Objetivo: {objective}</p>
+            <p>Nome completo: {client.name} </p>
+            <p>Data de nascimento: {client.dateBirth} (30 anos)</p>
+            <p>Sexo: {client.gender}</p>
+            <p>Telefone: {client.phone}</p>
+            <p>E-mail: {client.email}</p>
+            <p>Profissão: {client.profession}</p>
+            <p>Objetivo: {client.objective}</p>
             <table>
                 <thead>
                     <tr>
@@ -24,21 +48,6 @@ export default function ClientDetails({ name, dateBirth, gender, phone, email, p
                         <td>Avaliação 1</td>
                         <td>19/09/2021</td>
                         <td>Baixo desempenho no agachamento. <br />Encurtamento no músculo posterior de coxa. <br />Facilidade em exercícios de ombro e costas. <br />Pressão alterada durante a avaliação (alta), focar em exercícios aeróbicos.</td>
-                    </tr>
-                    <tr>
-                        <td>Avaliação 2</td>
-                        <td>19/12/2021</td>
-                        <td>Melhora nos exercícios de agachamento. <br />Maior elasticidade no posterior de coxa. <br />Pressão estável durante a avaliação. <br />Dificuldade em exercícios com utilização do punho esquerdo devido a fratura. </td>
-                    </tr>
-                    <tr>
-                        <td>Avaliação 3</td>
-                        <td>19/03/2022</td>
-                        <td>Próximo agendamento.</td>
-                    </tr>
-                    <tr>
-                        <td>Avaliação 4</td>
-                        <td>19/06/2022</td>
-                        <td>Próximo agendamento.</td>
                     </tr>
                 </tbody>
             </table>  

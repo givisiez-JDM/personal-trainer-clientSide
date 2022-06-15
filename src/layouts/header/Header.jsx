@@ -9,6 +9,7 @@ export default function Header() {
         <HeaderNav>
           <ul>
             <HeaderLink to="/"><li>Home</li></HeaderLink>
+            <HeaderLink to="/usuarios"><li>Usuários</li></HeaderLink>
             <HeaderLink to="/clientes"><li>Clientes</li></HeaderLink>
             <HeaderLink to="/treinos"><li>Treinos</li></HeaderLink>
           </ul>
