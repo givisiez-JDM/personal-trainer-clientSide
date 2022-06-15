@@ -19,11 +19,11 @@ export default function UserList() {
         <Main>
         <h1>Lista de usuários</h1>
         <Link to="/usuarios/novo-usuario">Adicionar novo usuário</Link>
-        {users ? 
+        {users ?
           <ul>
             {users.map((user) => {
               return(
-                  <li key={user.id}>{user.name}</li>
+                  <li key={user._id}><Link to={`/usuarios/${user._id}`}>{user.name}</Link></li>
                 )})
               }
           </ul>

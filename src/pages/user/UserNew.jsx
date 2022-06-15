@@ -15,15 +15,15 @@ export default function UserNew() {
     const { signed } = useContext(LoginContext)
 
     async function createUser() {
-    await api.post("/usuarios/novo-usuario", {
-        name: user.name,
-        isAdmin: user.isAdmin,
-        password: user.password,
-        email: user.email,
-    }).then(() => {
-        alert(`Usuário ${user.name} adicionado com sucesso!`)
-    })
-}
+        await api.post("/usuarios/novo-usuario", {
+            name: user.name,
+            isAdmin: user.isAdmin,
+            password: user.password,
+            email: user.email,
+        }).then(() => {
+            alert(`Usuário ${user.name} adicionado com sucesso!`)
+        })
+    }
 
 const updateField = e => {
     setUser({
