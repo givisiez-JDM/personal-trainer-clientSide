@@ -1,20 +1,29 @@
 import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../contexts/LoginContext";
 import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";
 import { api } from "../../services/api";
+import VisibilityOnIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 export default function UserNew() {
   const [user, setUser] = useState({
         name: "",
-        isAdmin: false, 
+        isAdmin: false,
         password: null,
         email: "",
     })
 
+    const [passwordShown, setPasswordShown] = useState(false)
+
+    let navigate = useNavigate();
+
     const { signed } = useContext(LoginContext)
 
-    async function createUser() {
+    async function createUser(e) {
+        e.preventDefault()
+
         await api.post("/usuarios/novo-usuario", {
             name: user.name,
             isAdmin: user.isAdmin,
@@ -22,6 +31,7 @@ export default function UserNew() {
             email: user.email,
         }).then(() => {
             alert(`Usuário ${user.name} adicionado com sucesso!`)
+            navigate(`/usuarios/`)
         })
     }
 
@@ -52,14 +62,17 @@ return (
                 </div>
                 <div>
                     <label htmlFor="password">Senha</label>
-                    <input type="password" name="password" id="password" onChange={updateField}  />
+                    <input type={passwordShown ? 'text' : 'password'} name="password" id="password" onChange={updateField}  value={user.password} />
+                    {passwordShown
+                        ? <VisibilityOnIcon onClick={() => setPasswordShown(!passwordShown)} />
+                        : <VisibilityOffIcon onClick={() => setPasswordShown(!passwordShown)} />
+                    }
                 </div>
                 <div>
                     <label htmlFor="admin">Usuário admin?</label>
                     <select name="admin" id="admin" onChange={updateField} >
-                        <option value="select"></option>
-                        <option value="male">Sim</option>
-                        <option value="female">Não</option>
+                        <option value={true}>Sim</option>
+                        <option value={false}>Não</option>
                     </select>
                 </div>
                 <div>

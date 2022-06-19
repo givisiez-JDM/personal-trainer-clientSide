@@ -11,15 +11,14 @@ export default function UserList() {
       api.get("/usuarios").then((response) => {
         setusers(response.data)
       })
-  
-    }, [])  
+    }, [])
   return (
     <>
         <Header />
         <Main>
         <h1>Lista de usuários</h1>
         <Link to="/usuarios/novo-usuario">Adicionar novo usuário</Link>
-        {users ?
+        {users !== [] ?
           <ul>
             {users.map((user) => {
               return(
@@ -27,7 +26,7 @@ export default function UserList() {
                 )})
               }
           </ul>
-        : <p>Não existe usuários cadastrados.</p>
+        : <p>Não existem usuários cadastrados.</p>
       }
       </Main>
     </>
