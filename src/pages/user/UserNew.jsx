@@ -1,6 +1,5 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LoginContext } from "../../contexts/LoginContext";
 import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";
 import { api } from "../../services/api";
@@ -18,8 +17,6 @@ export default function UserNew() {
     const [passwordShown, setPasswordShown] = useState(false)
 
     let navigate = useNavigate();
-
-    const { signed } = useContext(LoginContext)
 
     async function createUser(e) {
         e.preventDefault()
@@ -62,7 +59,7 @@ return (
                 </div>
                 <div>
                     <label htmlFor="password">Senha</label>
-                    <input type={passwordShown ? 'text' : 'password'} name="password" id="password" onChange={updateField}  value={user.password} />
+                    <input type={passwordShown ? 'text' : 'password'} name="password" id="password" onChange={updateField} />
                     {passwordShown
                         ? <VisibilityOnIcon onClick={() => setPasswordShown(!passwordShown)} />
                         : <VisibilityOffIcon onClick={() => setPasswordShown(!passwordShown)} />

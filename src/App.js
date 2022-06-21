@@ -21,13 +21,13 @@ function App() {
     <div className="App">
       <LoginProvider>
         <Router>
-          {/* {!signed ?
+          {!signed ?
             <Routes>
-            </Routes>
-          : */}
-            <Routes>
-              <Route path="/login" element={<Login />} />
+              <Route path="/" element={<Login />} />
               <Route path="/registrar" element={<Register />} />
+            </Routes>
+          :
+            <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/clientes" element={<ClientsList />} />
               <Route path="/clientes/:clientId" element={<ClientDetails />} />
@@ -38,7 +38,7 @@ function App() {
               <Route path="/usuarios/editar-usuario/:userId" element={<UserUpdate />} />
               <Route path="/treinos" element={<TrainingList />} />
             </Routes>
-            {/* } */}
+            }
         </Router>
       </LoginProvider>
     </div>
