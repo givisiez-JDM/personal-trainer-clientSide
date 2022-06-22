@@ -2,8 +2,14 @@ import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";
 import { api } from '../../services/api'
 import { useState } from "react";
+import { useContext } from "react";
+import { LoginContext } from "../../contexts/LoginContext";
+import { useNavigate } from "react-router-dom";
 
 export default function NewClient() {
+
+    const { loggedUser } = useContext(LoginContext);
+    let navigate = useNavigate();
 
     const [client, setclient] = useState({
         name: "",
@@ -12,7 +18,8 @@ export default function NewClient() {
         phone: "",
         email: "",
         profession: "",
-        objective: ""
+        objective: "",
+        personalTrainerId: loggedUser._id
     })
 
     function createClient(e) {
@@ -26,9 +33,10 @@ export default function NewClient() {
             email: client.email,
             profession: client.profession,
             objective: client.objective,
-            // personalTrainerId: 
+            personalTrainerId: client.personalTrainerId
         }).then(() => {
             alert(`Cliente ${client.name} adicionado com sucesso!`)
+            navigate(`/clientes/`)
         })
     }
 

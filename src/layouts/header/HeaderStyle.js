@@ -11,6 +11,7 @@ export const HeaderNav = styled.nav`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0 10px;
 
     ul {
         list-style: none;

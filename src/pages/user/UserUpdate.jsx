@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";
 import { api } from "../../services/api";
 import VisibilityOnIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { LoginContext } from "../../contexts/LoginContext";
 
 export default function UserNew() {
     let { userId } = useParams();
@@ -17,6 +18,8 @@ export default function UserNew() {
         password: "",
         email: "",
     })
+
+    const { loggedUser } = useContext(LoginContext);
 
     async function fetchUserData() {
         const data = await api.get(`/usuarios/${userId}`)
@@ -74,20 +77,22 @@ return (
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="password">Senha</label>
-                            <input type={passwordShown ? 'text' : 'password'} name="password" id="password" onChange={updateField}  value={user.password} />
+                            <label htmlFor="password">Nova senha</label>
+                            <input type={passwordShown ? 'text' : 'password'} name="password" id="password" onChange={updateField} />
                             {passwordShown ?
                             <VisibilityOnIcon onClick={() => setPasswordShown(!passwordShown)} />
                             : <VisibilityOffIcon onClick={() => setPasswordShown(!passwordShown)} />
                             }
                         </div>
-                        <div>
-                            <label htmlFor="admin">Usuário admin?</label>
-                            <select name="admin" id="admin" onChange={updateField} >
-                                <option value={false} selected={!user.isAdmin ? true : false}>Não</option>
-                                <option value={true} selected={user.isAdmin ? true : false}>Sim</option>
-                            </select>
-                        </div>
+                        {loggedUser.isAdmin && 
+                            <div>
+                                <label htmlFor="admin">Usuário admin?</label>
+                                <select name="admin" id="admin" onChange={updateField} >
+                                    <option value={false} selected={!user.isAdmin ? true : false}>Não</option>
+                                    <option value={true} selected={user.isAdmin ? true : false}>Sim</option>
+                                </select>
+                            </div>
+                        }
                         <div>
                             <input type="submit" value="Editar usuário" />
                         </div>

@@ -14,13 +14,18 @@ export default function ClientsList() {
 
   }, [])  
 
+  console.log(clients.length)
+
   return (
     <>
       <Header />
       <Main>
         <h1>Lista de clientes</h1>
+        {clients.length <= 0  
+          && <p>Você ainda não tem clientes.</p>
+        }
         <Link to="/clientes/novo-cliente">Adicionar novo cliente</Link>
-        {clients ? 
+        {clients.length > 0 &&
           <ul>
             {clients.map((client) => {
               return(
@@ -28,8 +33,7 @@ export default function ClientsList() {
                 )})
               }
           </ul>
-        : <p>Você ainda não tem clientes.</p>
-      }
+        }
       </Main>
     </>
   )

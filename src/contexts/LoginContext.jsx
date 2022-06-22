@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 export const LoginContext = createContext()
 
 export const LoginProvider = ({ children }) => {
-    const [user, setuser] = useState(null)
+    const [loggedUser, setLoggedUser] = useState(null)
     const [loadingLocalStorage, setLoadingLocalStorage] = useState(true)  
     
     const navigate = useNavigate();
@@ -16,7 +16,7 @@ export const LoginProvider = ({ children }) => {
         console.log(getLocalUser)
 
         if (getLocalUser) {
-            setuser(JSON.parse(getLocalUser))
+            setLoggedUser(JSON.parse(getLocalUser))
         }
 
         setLoadingLocalStorage(false)
@@ -29,7 +29,7 @@ export const LoginProvider = ({ children }) => {
         })
 
         try {
-            setuser(response.data)
+            setLoggedUser(response.data)
             localStorage.setItem("user", JSON.stringify(response.data))
 
             navigate('/')
@@ -39,14 +39,15 @@ export const LoginProvider = ({ children }) => {
     }
 
     const signOut = () => {
-        setuser(null)
+        setLoggedUser(null)
         navigate('/login')
+        localStorage.removeItem('user')
     }
 
     return (
         <LoginContext.Provider value={{
-            user,
-            signed: !!user,
+            loggedUser,
+            signed: !!loggedUser,
             loadingLocalStorage,
             signIn,
             signOut

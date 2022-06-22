@@ -43,7 +43,6 @@ export default function Login() {
       <LoginCnt>
         <FormCnt onSubmit={login}>
           <LoginLogo src={Logo} alt="" />
-          <p>{signed ? "logado" : "não logado"}</p>
           <LoginForm action="/">
             <LoginLabel htmlFor="email">E-mail</LoginLabel>
             <LoginInput type="email" name="email" id="email" onChange={updateField} />
