@@ -17,6 +17,7 @@ export default function UserNew() {
         isAdmin: null,
         password: "",
         email: "",
+        _id: ""
     })
 
     const { loggedUser } = useContext(LoginContext);
@@ -45,6 +46,7 @@ export default function UserNew() {
             isAdmin: user.isAdmin,
             password: user.password,
             email: user.email,
+            _id: user._id
         }).then(() => {
             alert(`Usuário ${user.name} editado com sucesso!`)
             navigate(`/usuarios/${user._id}`)

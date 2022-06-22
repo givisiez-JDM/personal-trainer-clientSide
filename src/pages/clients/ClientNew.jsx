@@ -14,13 +14,14 @@ export default function NewClient() {
     const [client, setclient] = useState({
         name: "",
         birthDate: null,
-        gender: "",
+        gender: "female",
         phone: "",
         email: "",
         profession: "",
-        objective: "",
+        objective: "condicionamento",
         personalTrainerId: loggedUser._id
     })
+
 
     function createClient(e) {
         e.preventDefault();
@@ -57,39 +58,42 @@ export default function NewClient() {
                 <form onSubmit={createClient}>
                     <div>
                         <label htmlFor="name">Nome completo</label>
-                        <input type="text" name="name" id="name" onChange={updateField} />
+                        <input type="text" name="name" id="name" onChange={updateField} required />
                     </div>
                     <div>
                         <div>
                             <label htmlFor="birthDate">Data de nascimento</label>
-                            <input type="date" name="birthDate" id="birthDate" onChange={updateField} />
+                            <input type="date" name="birthDate" id="birthDate" onChange={updateField} required />
                         </div>
                         <div>
                             <label htmlFor="gender">Sexo</label>
-                            <select name="gender" id="gender" onChange={updateField} >
-                                <option value="select"></option>
-                                <option value="male">Masculino</option>
-                                <option value="female">Feminino</option>
+                            <select name="gender" id="gender" onChange={updateField} required defaultValue="female" >
+                                <option value={"Feminino"}>Feminino</option>
+                                <option value={"Masculino"}>Masculino</option>
                             </select>
                         </div>
                     </div>
                     <div>
                         <div>
                             <label htmlFor="phone">Telefone</label>
-                            <input type="tel" name="phone" id="phone" onChange={updateField} />
+                            <input type="tel" name="phone" id="phone" onChange={updateField} required />
                         </div>
                         <div>
                             <label htmlFor="email">E-mail</label>
-                            <input type="email" name="email" id="email" onChange={updateField} />
+                            <input type="email" name="email" id="email" onChange={updateField} required />
                         </div>
                     </div>
                     <div>
                         <label htmlFor="profession">Profissão</label>
-                        <input type="text" name="profession" id="profession" onChange={updateField} />
+                        <input type="text" name="profession" id="profession" onChange={updateField} required />
                     </div>
                     <div>
                         <label htmlFor="objective">Objetivo</label>
-                        <input type="text" name="objective" id="objective" onChange={updateField}  />
+                        <select name="objective" id="objective" onChange={updateField} required defaultValue="condicionamento" >
+                            <option value={"Condicionamento físico"}>Condicionamento físico</option>
+                            <option value={"Perder peso"}>Perder peso</option>
+                            <option value={"Ganhar massa muscular"}>Ganhar massa muscular</option>
+                        </select>
                     </div>
                     <div>
                         <input type="submit" value="Cadastrar Cliente" />

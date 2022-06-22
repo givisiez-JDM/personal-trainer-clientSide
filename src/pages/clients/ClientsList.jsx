@@ -1,20 +1,22 @@
+import { useContext } from 'react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { LoginContext } from '../../contexts/LoginContext'
 import Header from '../../layouts/header/Header'
 import Main from '../../layouts/main/Main'
 import { api } from '../../services/api'
 
 export default function ClientsList() {
   const [clients, setclients] = useState([])
+  const { loggedUser } = useContext(LoginContext);
 
   useEffect(() => {
-    api.get("/clientes").then((response) => {
+    api.get("/clientes", loggedUser._id)
+    .then((response) => {
       setclients(response.data)
     })
 
   }, [])  
-
-  console.log(clients.length)
 
   return (
     <>
@@ -29,7 +31,7 @@ export default function ClientsList() {
           <ul>
             {clients.map((client) => {
               return(
-                  <li key={client.id}>{client.name}</li>
+                  <li key={client._id}><Link to={`/clientes/${client._id}`}>{client.name}</Link></li>
                 )})
               }
           </ul>

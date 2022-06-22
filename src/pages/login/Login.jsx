@@ -45,10 +45,10 @@ export default function Login() {
           <LoginLogo src={Logo} alt="" />
           <LoginForm action="/">
             <LoginLabel htmlFor="email">E-mail</LoginLabel>
-            <LoginInput type="email" name="email" id="email" onChange={updateField} />
+            <LoginInput type="email" name="email" id="email" onChange={updateField} required />
             <LoginLabel htmlFor="password">Senha</LoginLabel>
             <div>
-              <LoginInput type={passwordShown ? 'text' : 'password'} name="password" id="password" onChange={updateField} />
+              <LoginInput type={passwordShown ? 'text' : 'password'} name="password" id="password" onChange={updateField} required />
               {passwordShown
                 ? <VisibilityOnIcon onClick={() => setPasswordShown(!passwordShown)} />
                 : <VisibilityOffIcon onClick={() => setPasswordShown(!passwordShown)} />

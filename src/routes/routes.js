@@ -12,6 +12,7 @@ import UserNew from '../pages/user/UserNew'
 import UserUpdate from '../pages/user/UserUpdate'
 import TrainingList from '../pages/training/TrainingList'
 import { LoginContext } from "../contexts/LoginContext"
+import ClientUpdate from "../pages/clients/ClientUpdate"
 
 const RoutesApp = () => {
     const Private = ({ Item }) => {
@@ -32,6 +33,7 @@ const RoutesApp = () => {
             <Route path="/clientes" element={<Private Item={ClientsList} />} />
             <Route path="/clientes/:clientId" element={<Private Item={ClientDetails} />} />
             <Route path="/clientes/novo-cliente" element={<Private Item={ClientNew} />} />
+            <Route path="/clientes/editar-cliente/:clientId" element={<Private Item={ClientUpdate} />} />
             <Route path="/usuarios" element={<Private Item={UserList} />} />
             <Route path="/usuarios/:userId" element={<Private Item={UserDetails} />} />
             <Route path="/usuarios/novo-usuario" element={<Private Item={UserNew} />} />

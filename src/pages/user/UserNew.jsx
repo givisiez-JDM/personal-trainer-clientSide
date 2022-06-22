@@ -49,17 +49,17 @@ return (
             <form onSubmit={createUser}>
                 <div>
                     <label htmlFor="name">Nome completo</label>
-                    <input type="text" name="name" id="name" onChange={updateField} />
+                    <input type="text" name="name" id="name" onChange={updateField} required />
                 </div>
                 <div>
                     <div>
                         <label htmlFor="email">E-mail</label>
-                        <input type="email" name="email" id="email" onChange={updateField} />
+                        <input type="email" name="email" id="email" onChange={updateField} required />
                     </div>
                 </div>
                 <div>
                     <label htmlFor="password">Senha</label>
-                    <input type={passwordShown ? 'text' : 'password'} name="password" id="password" onChange={updateField} />
+                    <input type={passwordShown ? 'text' : 'password'} name="password" id="password" onChange={updateField} required />
                     {passwordShown
                         ? <VisibilityOnIcon onClick={() => setPasswordShown(!passwordShown)} />
                         : <VisibilityOffIcon onClick={() => setPasswordShown(!passwordShown)} />
@@ -67,7 +67,7 @@ return (
                 </div>
                 <div>
                     <label htmlFor="admin">Usuário admin?</label>
-                    <select name="admin" id="admin" onChange={updateField} >
+                    <select name="admin" id="admin" onChange={updateField} required >
                         <option value={true}>Sim</option>
                         <option value={false}>Não</option>
                     </select>
