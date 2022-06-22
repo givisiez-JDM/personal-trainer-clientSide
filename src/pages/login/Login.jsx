@@ -2,7 +2,7 @@ import { FormCnt, GFButtonsDiv, GoogleButton, LoginCnt, LoginForm, LoginInput, L
 import Logo from "../../assets/images/logo/logo-horizontal.png"
 import { ThemeProvider } from "styled-components";
 import { mainThemeColor } from "../../assets/styles/Shared";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import GoogleIcon from '@mui/icons-material/Google';
 import VisibilityOnIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -16,9 +16,7 @@ export default function Login() {
     password: ""
   })
 
-  let navigate = useNavigate();
-
-  const { signIn } = useContext(LoginContext)
+  const { signIn, signed } = useContext(LoginContext)
 
   const [passwordShown, setPasswordShown] = useState(false)
 
@@ -27,9 +25,6 @@ export default function Login() {
 
     try {
       await signIn(userLogin.email, userLogin.password)
-      .then(() => {
-        navigate(`/`)
-      });
     } catch (error) {
       alert(error.response.data)
     }
@@ -48,6 +43,7 @@ export default function Login() {
       <LoginCnt>
         <FormCnt onSubmit={login}>
           <LoginLogo src={Logo} alt="" />
+          <p>{signed ? "logado" : "não logado"}</p>
           <LoginForm action="/">
             <LoginLabel htmlFor="email">E-mail</LoginLabel>
             <LoginInput type="email" name="email" id="email" onChange={updateField} />

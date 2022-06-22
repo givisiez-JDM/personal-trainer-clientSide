@@ -24,7 +24,6 @@ export default function Register() {
   let navigate = useNavigate();
 
   async function createUser(e) {
-    console.log(user)
     e.preventDefault()
 
     try {
@@ -35,7 +34,6 @@ export default function Register() {
         email: user.email,
       }).then(async () => {
         await signIn(user.email, user.password)
-      }).then(() => {
         navigate(`/`)
       })
     } catch (error) {
