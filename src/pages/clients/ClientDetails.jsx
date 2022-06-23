@@ -1,37 +1,27 @@
 import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";
-import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { dateTransform, getAgeFrom } from "../../helpers/dateHelpers";
+import { LoginContext } from "../../contexts/LoginContext";
 
 export default function ClientDetails() {
+    const { loggedUser } = useContext(LoginContext);
     let { clientId } = useParams();
     let navigate = useNavigate(); 
 
-    const [client, setclient] = useState({
-        name: "", 
-        birthDate: null, 
-        gender: "", 
-        phone: "", 
-        email: "", 
-        profession: "", 
-        objective: "", 
-        _id: ""
-    })
+    const [client, setclient] = useState([])
+
+    const [evaluations, setEvaluations] = useState([])
 
     useEffect(() => {
         api.get(`/clientes/${clientId}`).then((response) => {
-            setclient({
-                name: response.data.name, 
-                birthDate: response.data.birthDate, 
-                gender: response.data.gender, 
-                phone: response.data.phone, 
-                email: response.data.email, 
-                profession: response.data.profession, 
-                objective: response.data.objective,
-                _id: response.data._id
-            })
+            setclient(response.data)
+        })
+
+        api.get(`/avaliacao/lista/${clientId}`).then((response) => {
+            setEvaluations(response.data)
         })
 
     }, [])
@@ -53,6 +43,14 @@ export default function ClientDetails() {
         <Header />
         <Main>
             <h1>Detalhes do cliente</h1>
+            <div>
+                <Link to={`/avaliacao/nova-avaliacao/${client._id}`}>Adicionar Avaliação física</Link>
+                <button onClick={updateClient}>Alterar dados do usuário</button>
+                <button onClick={deleteClient}>Deletar usuário</button>
+            </div>
+            {loggedUser.isAdmin && 
+                <p>Personal trainer ID: {client.personalTrainerName} </p>
+            }
             <p>Nome completo: {client.name} </p>
             <p>Data de nascimento: {dateTransform(client.birthDate)}, {getAgeFrom(client.birthDate)} anos</p>
             <p>Sexo: {client.gender}</p>
@@ -60,8 +58,28 @@ export default function ClientDetails() {
             <p>E-mail: {client.email}</p>
             <p>Profissão: {client.profession}</p>
             <p>Objetivo: {client.objective}</p>
-            <button onClick={updateClient}>Alterar dados do usuário</button>
-            <button onClick={deleteClient}>Deletar usuário</button>
+            <h1>Avaliações físicas</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Comentários</th>
+                        <th>Avaliação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {evaluations.map((evaluation) => {
+                        return(
+                            <tr key={evaluation._id}>
+                                <td>{dateTransform(evaluation.createdAt)}</td>
+                                <td>{evaluation.notes}</td>
+                                <td><Link to={`/avaliacao/${evaluation._id}`}>Ver avaliação completa</Link></td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
+            <h1>Últimos treinos</h1>  
             <table>
                 <thead>
                     <tr>
@@ -77,7 +95,7 @@ export default function ClientDetails() {
                         <td>Baixo desempenho no agachamento. <br />Encurtamento no músculo posterior de coxa. <br />Facilidade em exercícios de ombro e costas. <br />Pressão alterada durante a avaliação (alta), focar em exercícios aeróbicos.</td>
                     </tr>
                 </tbody>
-            </table>  
+            </table>
         </Main>
       </>
     )

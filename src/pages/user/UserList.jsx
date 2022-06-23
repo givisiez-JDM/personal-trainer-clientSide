@@ -12,6 +12,7 @@ export default function UserList() {
         setusers(response.data)
       })
     }, [])
+
   return (
     <>
         <Header />

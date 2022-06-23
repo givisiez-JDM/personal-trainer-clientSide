@@ -11,10 +11,17 @@ export default function ClientsList() {
   const { loggedUser } = useContext(LoginContext);
 
   useEffect(() => {
-    api.get("/clientes", loggedUser._id)
-    .then((response) => {
-      setclients(response.data)
-    })
+    if (loggedUser.isAdmin) {
+      api.get(`/clientes/lista`)
+      .then((response) => {
+        setclients(response.data)
+      })
+    } else {
+      api.get(`/clientes/lista/${loggedUser._id}`)
+      .then((response) => {
+        setclients(response.data)
+      })
+    }
 
   }, [])  
 

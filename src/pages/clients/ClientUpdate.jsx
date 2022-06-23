@@ -23,6 +23,7 @@ export default function ClientUpdate() {
         profession: "",
         objective: "condicionamento",
         personalTrainerId: loggedUser._id,
+        personalTrainerName: loggedUser.name,
         _id: ""
     })
 
@@ -38,7 +39,9 @@ export default function ClientUpdate() {
             profession,
             objective,
             personalTrainerId, 
-            _id } = data.data
+            _id,
+            personalTrainerName
+         } = data.data
         setclient({
             name,
             birthDate,
@@ -48,7 +51,8 @@ export default function ClientUpdate() {
             profession,
             objective,
             personalTrainerId,
-            _id
+            _id,
+            personalTrainerName
         })
     }
 
@@ -58,8 +62,6 @@ export default function ClientUpdate() {
 
     async function updateClient(e) {
         e.preventDefault()
-
-        console.log(client)
         await api.put(`/clientes/editar-cliente/${client._id}`, {
             name: client.name,
             birthDate: client.birthDate,
@@ -69,7 +71,8 @@ export default function ClientUpdate() {
             profession: client.profession,
             objective: client.objective,
             personalTrainerId: client.personalTrainerId,
-            _id: client._id
+            _id: client._id,
+            personalTrainerName: client.personalTrainerName
         }).then(() => {
             alert(`Cliente ${client.name} editado com sucesso!`)
             navigate(`/clientes/${client._id}`)
@@ -96,7 +99,7 @@ export default function ClientUpdate() {
                     <form onSubmit={updateClient}>
                         <div>
                             <label htmlFor="name">Nome completo</label>
-                            <input type="text" name="name" id="name" onChange={updateField} required  value={client.name} />
+                            <input type="text" name="name" id="name" onChange={updateField} required value={client.name} />
                         </div>
                         <div>
                             <div>

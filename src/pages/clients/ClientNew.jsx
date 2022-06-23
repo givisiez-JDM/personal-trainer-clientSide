@@ -1,15 +1,15 @@
 import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";
 import { api } from '../../services/api'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { LoginContext } from "../../contexts/LoginContext";
 import { useNavigate } from "react-router-dom";
 
 export default function NewClient() {
-
     const { loggedUser } = useContext(LoginContext);
     let navigate = useNavigate();
+    // const [users, setusers] = useState([])
 
     const [client, setclient] = useState({
         name: "",
@@ -19,12 +19,27 @@ export default function NewClient() {
         email: "",
         profession: "",
         objective: "condicionamento",
-        personalTrainerId: loggedUser._id
+        personalTrainerId: loggedUser._id,
+        personalTrainerName: loggedUser.name
     })
 
+    // useEffect(() => {
+    //     api.get("/usuarios").then((response) => {
+    //       setusers(response.data)
+    //     })
+
+    //   }, [])
 
     function createClient(e) {
         e.preventDefault();
+
+        // if (!loggedUser.isAdmin) {
+        //     setclient({
+        //         ...client,
+        //         personalTrainerId: loggedUser._id,
+        //         personalTrainerName: loggedUser.name
+        //     });
+        // }
 
         api.post("/clientes/novo-cliente", {
             name: client.name,
@@ -34,7 +49,8 @@ export default function NewClient() {
             email: client.email,
             profession: client.profession,
             objective: client.objective,
-            personalTrainerId: client.personalTrainerId
+            personalTrainerId: client.personalTrainerId,
+            personalTrainerName: client.personalTrainerName
         }).then(() => {
             alert(`Cliente ${client.name} adicionado com sucesso!`)
             navigate(`/clientes/`)
@@ -46,7 +62,24 @@ export default function NewClient() {
           ...client,
           [e.target.name]: e.target.value
         });
-      };
+
+        // console.log(client)
+
+        // if (e.target.name === 'personalTrainerName') {
+        //     const personalId = getPersonalId(users.personalTrainerName)
+        //     setclient({
+        //         ...client,
+        //         personalTrainerId: personalId
+        //     });
+        // }
+    };
+
+    // const getPersonalId = (name) => {
+    //     const personalId = users.find(user => user.name === name)
+
+    //     console.log("personalId: ", personalId)
+    //     return personalId
+    // }
 
     return (
         <>
@@ -56,6 +89,21 @@ export default function NewClient() {
                     <h1>Cadastro de Cliente</h1>
                 </header>
                 <form onSubmit={createClient}>
+                    {/* {loggedUser.isAdmin &&
+                        <div>
+                            <label htmlFor="personalTrainerName">Personal Trainer: </label>
+                            <select name="personalTrainerName" id="personalTrainerName" onChange={updateField} required defaultValue="Admin">
+                            {users.map((user) => {
+                                console.log("user: ", user)
+                                return(
+                                    <option key={user._id} value={user.name}>{user.name}</option>
+                                )})
+                            }
+                            </select>
+                            <label htmlFor="personalTrainerId"> - Personal Trainer ID: </label>
+                            <input type="text" name="personalTrainerId" id="personalTrainerId" onChange={updateField} disabled />
+                        </div>
+                    } */}
                     <div>
                         <label htmlFor="name">Nome completo</label>
                         <input type="text" name="name" id="name" onChange={updateField} required />

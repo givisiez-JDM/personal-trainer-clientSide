@@ -8,25 +8,11 @@ export default function UserDetails() {
   let { userId } = useParams();
   let navigate = useNavigate();
 
-  const [user, setUser] = useState({
-    email: "",
-    isAdmin: null,
-    name: "",
-    password: "",
-    _id: ""
-  })
+  const [user, setUser] = useState([])
 
   async function fetchUserData() {
     const data = await api.get(`/usuarios/${userId}`)
-
-    const { email, isAdmin, name, password, _id } = data.data
-    setUser({
-      email,
-      isAdmin,
-      name,
-      password,
-      _id
-    })
+    setUser(data.data)
   }
 
   function updateUser() {
