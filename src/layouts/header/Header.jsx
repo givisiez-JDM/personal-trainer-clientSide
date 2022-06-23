@@ -17,6 +17,7 @@ export default function Header() {
             {loggedUser.isAdmin && <HeaderLink to="/usuarios"><li>Usuários</li></HeaderLink>}
             {loggedUser.isAdmin && <HeaderLink to="/avaliacao/lista"><li>Avaliações físicas</li></HeaderLink>}
             <HeaderLink to="/clientes"><li>Clientes</li></HeaderLink>
+            <HeaderLink to="/exercicios"><li>Exercícios</li></HeaderLink>
             <HeaderLink to="/treinos"><li>Treinos</li></HeaderLink>
           </ul>
         </HeaderNav>

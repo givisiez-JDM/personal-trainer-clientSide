@@ -14,11 +14,11 @@ export default function NewClient() {
     const [client, setclient] = useState({
         name: "",
         birthDate: null,
-        gender: "female",
+        gender: "Feminino",
         phone: "",
         email: "",
         profession: "",
-        objective: "condicionamento",
+        objective: "Condicionamento físico",
         personalTrainerId: loggedUser._id,
         personalTrainerName: loggedUser.name
     })

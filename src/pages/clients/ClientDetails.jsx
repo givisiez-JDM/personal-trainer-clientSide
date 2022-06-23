@@ -59,26 +59,31 @@ export default function ClientDetails() {
             <p>Profissão: {client.profession}</p>
             <p>Objetivo: {client.objective}</p>
             <h1>Avaliações físicas</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Comentários</th>
-                        <th>Avaliação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {evaluations.map((evaluation) => {
-                        return(
-                            <tr key={evaluation._id}>
-                                <td>{dateTransform(evaluation.createdAt)}</td>
-                                <td>{evaluation.notes}</td>
-                                <td><Link to={`/avaliacao/${evaluation._id}`}>Ver avaliação completa</Link></td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
+            {evaluations.length > 0 
+            ?
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Comentários</th>
+                            <th>Avaliação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {evaluations.map((evaluation) => {
+                            return(
+                                <tr key={evaluation._id}>
+                                    <td>{dateTransform(evaluation.createdAt)}</td>
+                                    <td>{evaluation.notes}</td>
+                                    <td><Link to={`/avaliacao/${evaluation._id}`}>Ver avaliação completa</Link></td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            :
+                <p>Esse cliente ainda não possui avaliações físicas cadastradas.</p>
+            }
             <h1>Últimos treinos</h1>  
             <table>
                 <thead>

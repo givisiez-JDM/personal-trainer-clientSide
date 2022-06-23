@@ -18,6 +18,10 @@ import PhysicalEvaluationUpdate from "../pages/physicalEvaluation/PhysicalEvalua
 import TrainingList from '../pages/training/TrainingList'
 import { LoginContext } from "../contexts/LoginContext"
 import ErrorPage from "../pages/ErrorPage"
+import ExerciseNew from "../pages/exercise/ExerciseNew"
+import ExerciseDetails from "../pages/exercise/ExerciseDetails"
+import ExerciseList from "../pages/exercise/ExerciseList"
+import ExerciseUpdate from "../pages/exercise/ExerciseUpdate"
 
 const RoutesApp = () => {
     const Private = ({ Item }) => {
@@ -47,10 +51,10 @@ const RoutesApp = () => {
             <Route path="/avaliacao/:evaluationId" element={<Private Item={PhysicalEvaluationDetails} />} />
             <Route path="/avaliacao/nova-avaliacao/:clientId" element={<Private Item={PhysicalEvaluationNew} />} />
             <Route path="/avaliacao/editar-avaliacao/:evaluationId" element={<Private Item={PhysicalEvaluationUpdate} />} />
-            <Route path="/exercicio/" element={<Private Item={TrainingList} />} />
-            <Route path="/exercicio/:exerciseId" element={<Private Item={TrainingList} />} />
-            <Route path="/exercicio/novo-exercicio" element={<Private Item={TrainingList} />} />
-            <Route path="/exercicio/editar-exercicio/:exerciseId" element={<Private Item={TrainingList} />} />
+            <Route path="/exercicios/" element={<Private Item={ExerciseList} />} />
+            <Route path="/exercicios/:exerciseId" element={<Private Item={ExerciseDetails} />} />
+            <Route path="/exercicios/novo-exercicio" element={<Private Item={ExerciseNew} />} />
+            <Route path="/exercicios/editar-exercicio/:exerciseId" element={<Private Item={ExerciseUpdate} />} />
             <Route path="/treinos" element={<Private Item={TrainingList} />} />
             <Route path="/treinos/:trainingId" element={<Private Item={TrainingList} />} />
             <Route path="/treinos/novo-treino" element={<Private Item={TrainingList} />} />

@@ -1,18 +1,30 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";
 import { api } from "../../services/api";
 
-export default function ExerciseNew() {
+export default function ExerciseUpdate() {
     let navigate = useNavigate();
     const [exercise, setExercise] = useState([])
+    let { exerciseId } = useParams();
 
-    function createExercise(e) {
+    
+    useEffect(() => {
+        async function fetchExerciseData() {
+            const data = await api.get(`/exercicios/${exerciseId}`)
+    
+            setExercise(data.data)
+        }
+
+        fetchExerciseData()
+    }, [])
+
+    function updateExercise(e) {
         e.preventDefault();
 
-        api.post("/exercicios/novo-exercicio", exercise).then(() => {
-            alert(`Exercício ${exercise.name} adicionado com sucesso!`)
+        api.put(`/exercicios/editar-exercicio/${exercise._id}`, exercise).then(() => {
+            alert(`Exercício ${exercise.name} atualizado com sucesso!`)
             navigate(`/exercicios`)
         })
     }
@@ -32,14 +44,14 @@ export default function ExerciseNew() {
                 <header>
                     <h1>Cadastro de Exercício</h1>
                 </header>
-                <form onSubmit={createExercise}>
+                <form onSubmit={updateExercise}>
                     <div>
                         <label htmlFor="name">Nome do exercício: </label>
-                        <input type="text" name="name" id="name" onChange={updateField} required />
+                        <input type="text" name="name" id="name" onChange={updateField} required value={exercise.name} />
                     </div>
                     <div>
                         <label htmlFor="muscleGroup">Grupo muscular: </label>
-                        <select name="muscleGroup" id="muscleGroup" onChange={updateField} required defaultValue="Abdominal" >
+                        <select name="muscleGroup" id="muscleGroup" onChange={updateField} required value={exercise.muscleGroup} >
                             <option value={"Abdominal"}>Abdominal</option>
                             <option value={"Biceps"}>Biceps</option>
                             <option value={"Costas"}>Costas</option>
@@ -53,7 +65,7 @@ export default function ExerciseNew() {
                     </div>
                     <div>
                         <label htmlFor="valence">Valência: </label>
-                        <select name="valence" id="valence" onChange={updateField} required defaultValue="Abdominal" >
+                        <select name="valence" id="valence" onChange={updateField} required value={exercise.valence} >
                             <option value={"Equilíbrio"}>Equilíbrio</option>
                             <option value={"Flexibilidade"}>Flexibilidade</option>
                             <option value={"Força"}>Força</option>
@@ -64,10 +76,10 @@ export default function ExerciseNew() {
                     </div>
                     <div>
                         <label htmlFor="equipment">Aparelho: </label>
-                        <input type="text" name="equipment" id="equipment" onChange={updateField} />
+                        <input type="text" name="equipment" id="equipment" onChange={updateField} value={exercise.equipment} />
                     </div>
                     <div>
-                        <input type="submit" value="Cadastrar Exercício" />
+                        <input type="submit" value="Atualizar Exercício" />
                     </div>
                 </form>
             </Main>
