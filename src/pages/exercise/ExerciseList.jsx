@@ -15,18 +15,35 @@ export default function ExerciseList() {
 
   return (
     <>
-        <Header />
-        <Main>
-        <h1>Lista de usuários</h1>
-        <Link to="/exercicios/novo-exercicio">Adicionar novo exercício</Link>
-        {exercises.length > 0 ?
-          <ul>
+      <Header />
+      <Main>
+      <h1>Lista de exercícios</h1>
+      <Link to="/exercicios/novo-exercicio">Adicionar novo exercício</Link>
+      {exercises.length > 0 ?
+        <table>
+          <thead>
+              <tr>
+                  <th>Nome</th>
+                  <th>Grupo muscular</th>
+                  <th>Valência</th>
+                  <th>Equipamento</th>
+                  <th>Exercício</th>
+              </tr>
+          </thead>
+          <tbody>
             {exercises.map((exercise) => {
               return(
-                  <li key={exercise._id}><Link to={`/exercicios/${exercise._id}`}>{exercise.name}</Link></li>
+                <tr key={exercise._id}>
+                  <td>{exercise.name}</td>
+                  <td>{exercise.muscleGroup}</td>
+                  <td>{exercise.valence}</td>
+                  <td>{exercise.equipment}</td>
+                  <td><Link to={`/exercicios/${exercise._id}`}>Ver dados do exercício</Link></td>
+                </tr>
                 )})
               }
-          </ul>
+          </tbody>
+        </table>
         : <p>Não existem exercícios cadastrados.</p>
       }
       </Main>

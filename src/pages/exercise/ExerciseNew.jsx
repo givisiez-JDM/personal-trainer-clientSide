@@ -40,7 +40,7 @@ export default function ExerciseNew() {
                     <div>
                         <label htmlFor="muscleGroup">Grupo muscular: </label>
                         <select name="muscleGroup" id="muscleGroup" onChange={updateField} required defaultValue="Abdominal" >
-                            <option value={"Abdominal"}>Abdominal</option>
+                            <option value={"Abdominal"} selected>Abdominal</option>
                             <option value={"Biceps"}>Biceps</option>
                             <option value={"Costas"}>Costas</option>
                             <option value={"Dorsal"}>Dorsal</option>

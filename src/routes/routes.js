@@ -22,6 +22,9 @@ import ExerciseNew from "../pages/exercise/ExerciseNew"
 import ExerciseDetails from "../pages/exercise/ExerciseDetails"
 import ExerciseList from "../pages/exercise/ExerciseList"
 import ExerciseUpdate from "../pages/exercise/ExerciseUpdate"
+import TrainingDetails from "../pages/training/TrainingDetails"
+import TrainingNew from "../pages/training/TrainingNew"
+import TrainingUpdate from "../pages/training/TrainingUpdate"
 
 const RoutesApp = () => {
     const Private = ({ Item }) => {
@@ -56,9 +59,9 @@ const RoutesApp = () => {
             <Route path="/exercicios/novo-exercicio" element={<Private Item={ExerciseNew} />} />
             <Route path="/exercicios/editar-exercicio/:exerciseId" element={<Private Item={ExerciseUpdate} />} />
             <Route path="/treinos" element={<Private Item={TrainingList} />} />
-            <Route path="/treinos/:trainingId" element={<Private Item={TrainingList} />} />
-            <Route path="/treinos/novo-treino" element={<Private Item={TrainingList} />} />
-            <Route path="/treinos/editar-treino/:trainingId" element={<Private Item={TrainingList} />} />
+            <Route path="/treinos/:trainingId" element={<Private Item={TrainingDetails} />} />
+            <Route path="/treinos/novo-treino" element={<Private Item={TrainingNew} />} />
+            <Route path="/treinos/editar-treino/:trainingId" element={<Private Item={TrainingUpdate} />} />
             <Route path="*" element={<ErrorPage />} />
         </Routes>
     )

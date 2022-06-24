@@ -69,7 +69,6 @@ export default function ExerciseUpdate() {
                             <option value={"Equilíbrio"}>Equilíbrio</option>
                             <option value={"Flexibilidade"}>Flexibilidade</option>
                             <option value={"Força"}>Força</option>
-                            <option value={"Dorsal"}>Dorsal</option>
                             <option value={"Mobilidade"}>Mobilidade</option>
                             <option value={"Potência"}>Potência</option>
                         </select>
