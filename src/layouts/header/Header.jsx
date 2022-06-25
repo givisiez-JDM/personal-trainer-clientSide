@@ -14,7 +14,6 @@ export default function Header() {
       <HeaderCnt>
         <HeaderNav>
           <UserNameButton onClick={() => setToggleUserOptions(!toggleUserOptions)}>Olá, {loggedUser.name} </UserNameButton>
-          {/* <HeaderLink to={`/usuarios/${loggedUser._id}`}>Olá, {loggedUser.name} </HeaderLink> */}
           <ul>
             <HeaderLink to="/"><li>Home</li></HeaderLink>
             {loggedUser.isAdmin && <HeaderLink to="/usuarios"><li>Usuários</li></HeaderLink>}
@@ -22,6 +21,7 @@ export default function Header() {
             <HeaderLink to="/clientes"><li>Clientes</li></HeaderLink>
             <HeaderLink to="/exercicios"><li>Exercícios</li></HeaderLink>
             <HeaderLink to="/treinos"><li>Treinos</li></HeaderLink>
+            <HeaderLink to="/relatorio"><li>Relatório</li></HeaderLink>
           </ul>
         </HeaderNav>
       </HeaderCnt>

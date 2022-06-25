@@ -102,7 +102,6 @@ export default function TrainingUpdate() {
       })
       
       setNewExercises(oldArray => [...oldArray, newExercise])
-      console.log("exercícios adicionados", newExercises)
     }
 
   const updateFieldExercise = e => {

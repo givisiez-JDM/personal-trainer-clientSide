@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const HeaderCnt = styled.header`
     width: 100%;
-    background-color: ${props => props.theme.darkGreen};
+    background-color: ${props => props.theme.secondaryGreen};
 `
 
 export const HeaderNav = styled.nav`
@@ -32,7 +32,7 @@ export const UserNameButton = styled.button`
     margin: 0 10px;
     font-size: 16px;
     border: none;
-    background-color: ${props => props.theme.darkGreen};
+    background-color: ${props => props.theme.secondaryGreen};
     cursor: pointer;
 `
 
