@@ -47,6 +47,7 @@ export default function TrainingNew() {
       setExercisesDB(response.data)
     })
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function createTraining(e) {
