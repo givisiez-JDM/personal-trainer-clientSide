@@ -37,7 +37,7 @@ export default function TrainingDetails() {
   
   function updateTraining() {
     navigate(`/treinos/editar-treino/${trainingId}`)
-}
+  }
 
   async function deleteTraining() {
     await api.delete(`/treinos/deletar-treino/${trainingId}`)

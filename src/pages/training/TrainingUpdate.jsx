@@ -1,18 +1,20 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { LoginContext } from "../../contexts/LoginContext";
+import { dateInverted } from "../../helpers/dateHelpers";
 import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";
 import { api } from "../../services/api";
 
 
-export default function TrainingNew() {
+export default function TrainingUpdate() {
   let navigate = useNavigate();
   const { loggedUser } = useContext(LoginContext);
+  let { trainingId } = useParams();
 
   const [clientsDB, setclientsDB] = useState([])
   const [exercisesDB, setExercisesDB] = useState([])
-  const [exercises, setexercises] = useState([])
+  const [newExercises, setNewExercises] = useState([])
   const [toggleAddExercise, settoggleAddExercise] = useState(false)
   
   const [selectedExercise, setSelectedExercise] = useState([{
@@ -47,22 +49,27 @@ export default function TrainingNew() {
       setExercisesDB(response.data)
     })
 
+    api.get(`/treinos/${trainingId}`).then((response) => {
+      setTraining(response.data)
+      setNewExercises(response.data.exercises)
+    })
+
   }, [])
 
   function createTraining(e) {
     e.preventDefault();
 
-    api.post("/treinos/novo-treino", {
+    api.put(`/treinos/editar-treino/${trainingId}`, {
       date: training.date,
       personalTrainerId: training.personalTrainerId,
       personalTrainerName: training.personalTrainerName,
       clientId: training.clientId,
       clientName: training.clientName,
-      exercises: exercises,
+      exercises: newExercises,
       notes: training.notes
     }).then(() => {
-        alert(`Treino adicionado com sucesso!`)
-        navigate(`/treinos`)
+        alert(`Treino atualizado com sucesso!`)
+        navigate(`/treinos/${trainingId}`)
     })
   }
 
@@ -94,7 +101,8 @@ export default function TrainingNew() {
         load: exerciseSession.load
       })
       
-      setexercises(oldArray => [...oldArray, newExercise])
+      setNewExercises(oldArray => [...oldArray, newExercise])
+      console.log("exercícios adicionados", newExercises)
     }
 
   const updateFieldExercise = e => {
@@ -120,7 +128,7 @@ export default function TrainingNew() {
   }
 
   const handleRemoveExercise = ()=> {
-    setexercises([])
+    setNewExercises([])
   }
 
   return (
@@ -128,17 +136,16 @@ export default function TrainingNew() {
       <Header />
       <Main>
         <header>
-            <h1>Cadastro de Treino</h1>
+            <h1>Atualizar Treino</h1>
         </header>
         <div>
           <div>
               <label htmlFor="date">Data do treino: </label>
-              <input type="date" name="date" id="date" onChange={updateFieldTraining} required />
+              <input type="date" name="date" id="date" onChange={updateFieldTraining} required value={dateInverted(training.date)} />
           </div>
           <div>
               <label htmlFor="clientId">Cliente: </label>
-              <select name="clientId" id="clientId" onChange={updateFieldClient} required defaultValue="default">
-                <option key="default" value="default" disabled selected>Escolha seu cliente</option>
+              <select name="clientId" id="clientId" onChange={updateFieldClient} required value={training.clientName}>
                 {clientsDB.map(client => 
                   <option key={client._id} value={client._id}>{client.name}</option>
                 )}
@@ -146,7 +153,7 @@ export default function TrainingNew() {
           </div>
           <div>
               <label htmlFor="notes">Observações: </label>
-              <textarea name="notes" id="notes" onChange={updateFieldTraining} />
+              <textarea name="notes" id="notes" onChange={updateFieldTraining} value={training.notes} />
           </div>
           <div>
             <h2>Lista de exercícios</h2>
@@ -181,7 +188,7 @@ export default function TrainingNew() {
                 </div>
               </div>
             }
-            {exercises.length > 0
+            {newExercises.length > 0
             ? <table>
               <thead>
                 <tr>
@@ -195,7 +202,7 @@ export default function TrainingNew() {
                 </tr>
               </thead>
               <tbody>
-                {exercises.map((exercise) => {
+                {newExercises.map((exercise) => {
                   return(
                     <tr key={exercise.name}>
                       <td>{exercise.name}</td>
@@ -213,7 +220,7 @@ export default function TrainingNew() {
             : <p>Você ainda não adicionou exercícios</p> 
             }
           </div>
-          <button onClick={createTraining}>Cadastrar treino</button>
+          <button onClick={createTraining}>Atualizar treino</button>
         </div>
       </Main>
     </>
