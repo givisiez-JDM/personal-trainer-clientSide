@@ -16,7 +16,7 @@ export default function Login() {
     password: ""
   })
 
-  const { signIn, signed } = useContext(LoginContext)
+  const { signIn } = useContext(LoginContext)
 
   const [passwordShown, setPasswordShown] = useState(false)
 

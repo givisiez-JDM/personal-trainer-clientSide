@@ -1,17 +1,20 @@
 import { ThemeProvider } from "styled-components";
-import { HeaderCnt, HeaderLink, HeaderNav } from "./HeaderStyle";
+import { HeaderCnt, HeaderLink, HeaderNav, UserNameButton, UserOptionDiv } from "./HeaderStyle";
 import { mainThemeColor } from "../../assets/styles/Shared";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { LoginContext } from "../../contexts/LoginContext";
+import { Link } from "react-router-dom";
 
 export default function Header() {
-  const { loggedUser } = useContext(LoginContext);
+  const { loggedUser, signOut } = useContext(LoginContext);
+  const [toggleUserOptions, setToggleUserOptions] = useState(false)
 
   return (
     <ThemeProvider theme={mainThemeColor}>
       <HeaderCnt>
         <HeaderNav>
-          <HeaderLink to={`/usuarios/${loggedUser._id}`}>Olá, {loggedUser.name} </HeaderLink>
+          <UserNameButton onClick={() => setToggleUserOptions(!toggleUserOptions)}>Olá, {loggedUser.name} </UserNameButton>
+          {/* <HeaderLink to={`/usuarios/${loggedUser._id}`}>Olá, {loggedUser.name} </HeaderLink> */}
           <ul>
             <HeaderLink to="/"><li>Home</li></HeaderLink>
             {loggedUser.isAdmin && <HeaderLink to="/usuarios"><li>Usuários</li></HeaderLink>}
@@ -22,6 +25,12 @@ export default function Header() {
           </ul>
         </HeaderNav>
       </HeaderCnt>
+      {toggleUserOptions &&
+        <UserOptionDiv>
+          <Link to={`/usuarios/${loggedUser._id}`}>Perfil</Link>
+          <button onClick={signOut}>Sair do app</button>
+        </UserOptionDiv>
+      }
     </ThemeProvider>
   )
 }
