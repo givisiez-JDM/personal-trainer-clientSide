@@ -5,6 +5,7 @@ import Main from "../../layouts/main/Main";
 import { api } from "../../services/api";
 import VisibilityOnIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { PageTitle, SubmitButton, InputStyle } from "../../assets/styles/Shared";
 
 export default function UserNew() {
   const [user, setUser] = useState({
@@ -44,22 +45,22 @@ return (
         <Header />
         <Main>
             <header>
-                <h1>Cadastro de usuário</h1>
+                <PageTitle>Cadastro de usuário</PageTitle>
             </header>
             <form onSubmit={createUser}>
                 <div>
                     <label htmlFor="name">Nome completo</label>
-                    <input type="text" name="name" id="name" onChange={updateField} required />
+                    <InputStyle type="text" name="name" id="name" onChange={updateField} required />
                 </div>
                 <div>
                     <div>
                         <label htmlFor="email">E-mail</label>
-                        <input type="email" name="email" id="email" onChange={updateField} required />
+                        <InputStyle type="email" name="email" id="email" onChange={updateField} required />
                     </div>
                 </div>
                 <div>
                     <label htmlFor="password">Senha</label>
-                    <input type={passwordShown ? 'text' : 'password'} name="password" id="password" onChange={updateField} required />
+                    <InputStyle type={passwordShown ? 'text' : 'password'} name="password" id="password" onChange={updateField} required />
                     {passwordShown
                         ? <VisibilityOnIcon onClick={() => setPasswordShown(!passwordShown)} />
                         : <VisibilityOffIcon onClick={() => setPasswordShown(!passwordShown)} />
@@ -73,7 +74,7 @@ return (
                     </select>
                 </div>
                 <div>
-                    <input type="submit" value="Cadastrar" />
+                    <SubmitButton type="submit" value="Cadastrar" />
                 </div>
             </form>
         </Main>

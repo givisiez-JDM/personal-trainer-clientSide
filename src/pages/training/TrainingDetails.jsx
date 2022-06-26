@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { LinkButton, PageSubtitle, PageTitle, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
 import { dateTransform } from "../../helpers/dateHelpers";
 import Header from "../../layouts/header/Header"
 import Main from "../../layouts/main/Main"
@@ -52,15 +53,15 @@ export default function TrainingDetails() {
       <Header />
       <Main>
         <header>
-          <h1>Detalhes do Treino</h1>
-          <button onClick={updateTraining}>Alterar dados do treino</button>
-          <button onClick={deleteTraining}>Deletar treino</button>
-          <Link to="/treinos">Voltar para lista de treinos</Link>
+          <PageTitle>Detalhes do Treino</PageTitle>
+          <PrimaryButton onClick={updateTraining}>Alterar dados do treino</PrimaryButton>
+          <SecondaryButton onClick={deleteTraining}>Deletar treino</SecondaryButton>
+          <LinkButton to="/treinos">Voltar para lista de treinos</LinkButton>
         </header>
         <p>Data do treino: {dateTransform(training.date)} </p>
         <p>Cliente: {training.clientName} </p>
         <p>Observações: {training.notes} </p>
-        <h2>Lista de exercícios</h2>
+        <PageSubtitle>Lista de exercícios</PageSubtitle>
         <table>
           <thead>
             <tr>

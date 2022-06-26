@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { LinkButton, PageTitle } from '../../assets/styles/Shared'
 import Header from '../../layouts/header/Header'
 import Main from '../../layouts/main/Main'
 import { api } from '../../services/api'
@@ -17,8 +18,8 @@ export default function UserList() {
     <>
         <Header />
         <Main>
-        <h1>Lista de usuários</h1>
-        <Link to="/usuarios/novo-usuario">Adicionar novo usuário</Link>
+        <PageTitle>Lista de usuários</PageTitle>
+        <LinkButton to="/usuarios/novo-usuario">Adicionar novo usuário</LinkButton>
         {users !== [] ?
           <ul>
             {users.map((user) => {

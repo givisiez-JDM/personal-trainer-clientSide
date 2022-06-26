@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { InputStyle, PageSubtitle, PageSubtitle3, PageTitle, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
 import { LoginContext } from "../../contexts/LoginContext";
 import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";
@@ -129,12 +130,12 @@ export default function TrainingNew() {
       <Header />
       <Main>
         <header>
-            <h1>Cadastro de Treino</h1>
+            <PageTitle>Cadastro de Treino</PageTitle>
         </header>
         <div>
           <div>
               <label htmlFor="date">Data do treino: </label>
-              <input type="date" name="date" id="date" onChange={updateFieldTraining} required />
+              <InputStyle type="date" name="date" id="date" onChange={updateFieldTraining} required />
           </div>
           <div>
               <label htmlFor="clientId">Cliente: </label>
@@ -150,12 +151,12 @@ export default function TrainingNew() {
               <textarea name="notes" id="notes" onChange={updateFieldTraining} />
           </div>
           <div>
-            <h2>Lista de exercícios</h2>
-            <button onClick={handleAddExercise}>Adicionar exercício</button>
-            <button onClick={handleRemoveExercise}>Remover todos os exercício</button>
+            <PageSubtitle>Lista de exercícios</PageSubtitle>
+            <PrimaryButton onClick={handleAddExercise}>Adicionar exercício</PrimaryButton>
+            <SecondaryButton onClick={handleRemoveExercise}>Remover todos os exercício</SecondaryButton>
             {toggleAddExercise &&
               <div>
-                <h2>Adicionar exercício</h2>
+                <PageSubtitle3>Adicionar exercício</PageSubtitle3>
                 <div>
                   <div>
                     <label htmlFor="exercise.name">Exercício: </label>
@@ -168,17 +169,17 @@ export default function TrainingNew() {
                   </div>
                   <div>
                     <label htmlFor="serie">Série: </label>
-                    <input type="number" name="serie" id="serie" onChange={updateFieldExercise} required />
+                    <InputStyle type="number" name="serie" id="serie" onChange={updateFieldExercise} required />
                   </div>
                   <div>
                     <label htmlFor="repetition">Repetição: </label>
-                    <input type="number" name="repetition" id="repetition" onChange={updateFieldExercise} required />
+                    <InputStyle type="number" name="repetition" id="repetition" onChange={updateFieldExercise} required />
                   </div>
                   <div>
                     <label htmlFor="load">Carga: </label>
-                    <input type="number" name="load" id="load" onChange={updateFieldExercise} required />
+                    <InputStyle type="number" name="load" id="load" onChange={updateFieldExercise} required />
                   </div>
-                  <button onClick={addExercise}>Adicionar exercício</button>
+                  <SecondaryButton onClick={addExercise}>Adicionar exercício</SecondaryButton>
                 </div>
               </div>
             }
@@ -214,7 +215,7 @@ export default function TrainingNew() {
             : <p>Você ainda não adicionou exercícios</p> 
             }
           </div>
-          <button onClick={createTraining}>Cadastrar treino</button>
+          <PrimaryButton onClick={createTraining}>Cadastrar treino</PrimaryButton>
         </div>
       </Main>
     </>

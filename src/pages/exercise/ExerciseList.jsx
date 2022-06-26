@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { LinkButton, PageTitle } from '../../assets/styles/Shared'
 import Header from '../../layouts/header/Header'
 import Main from '../../layouts/main/Main'
 import { api } from '../../services/api'
@@ -17,8 +18,8 @@ export default function ExerciseList() {
     <>
       <Header />
       <Main>
-      <h1>Lista de exercícios</h1>
-      <Link to="/exercicios/novo-exercicio">Adicionar novo exercício</Link>
+      <PageTitle>Lista de exercícios</PageTitle>
+      <LinkButton to="/exercicios/novo-exercicio">Adicionar novo exercício</LinkButton>
       {exercises.length > 0 ?
         <table>
           <thead>

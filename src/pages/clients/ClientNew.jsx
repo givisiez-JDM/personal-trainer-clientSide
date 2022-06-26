@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { LoginContext } from "../../contexts/LoginContext";
 import { useNavigate } from "react-router-dom";
+import { InputStyle, PageTitle, SubmitButton } from "../../assets/styles/Shared";
 
 export default function NewClient() {
     const { loggedUser } = useContext(LoginContext);
@@ -86,7 +87,7 @@ export default function NewClient() {
             <Header />
             <Main>
                 <header>
-                    <h1>Cadastro de Cliente</h1>
+                    <PageTitle>Cadastro de Cliente</PageTitle>
                 </header>
                 <form onSubmit={createClient}>
                     {/* {loggedUser.isAdmin &&
@@ -101,20 +102,20 @@ export default function NewClient() {
                             }
                             </select>
                             <label htmlFor="personalTrainerId"> - Personal Trainer ID: </label>
-                            <input type="text" name="personalTrainerId" id="personalTrainerId" onChange={updateField} disabled />
+                            <InputStyle type="text" name="personalTrainerId" id="personalTrainerId" onChange={updateField} disabled />
                         </div>
                     } */}
                     <div>
-                        <label htmlFor="name">Nome completo</label>
-                        <input type="text" name="name" id="name" onChange={updateField} required />
+                        <label htmlFor="name">Nome completo: </label>
+                        <InputStyle type="text" name="name" id="name" onChange={updateField} required />
                     </div>
                     <div>
                         <div>
-                            <label htmlFor="birthDate">Data de nascimento</label>
-                            <input type="date" name="birthDate" id="birthDate" onChange={updateField} required />
+                            <label htmlFor="birthDate">Data de nascimento: </label>
+                            <InputStyle type="date" name="birthDate" id="birthDate" onChange={updateField} required />
                         </div>
                         <div>
-                            <label htmlFor="gender">Sexo</label>
+                            <label htmlFor="gender">Sexo: </label>
                             <select name="gender" id="gender" onChange={updateField} required defaultValue="female" >
                                 <option value={"Feminino"}>Feminino</option>
                                 <option value={"Masculino"}>Masculino</option>
@@ -123,20 +124,20 @@ export default function NewClient() {
                     </div>
                     <div>
                         <div>
-                            <label htmlFor="phone">Telefone</label>
-                            <input type="tel" name="phone" id="phone" onChange={updateField} required />
+                            <label htmlFor="phone">Telefone: </label>
+                            <InputStyle type="tel" name="phone" id="phone" onChange={updateField} required />
                         </div>
                         <div>
-                            <label htmlFor="email">E-mail</label>
-                            <input type="email" name="email" id="email" onChange={updateField} required />
+                            <label htmlFor="email">E-mail: </label>
+                            <InputStyle type="email" name="email" id="email" onChange={updateField} required />
                         </div>
                     </div>
                     <div>
-                        <label htmlFor="profession">Profissão</label>
-                        <input type="text" name="profession" id="profession" onChange={updateField} required />
+                        <label htmlFor="profession">Profissão: </label>
+                        <InputStyle type="text" name="profession" id="profession" onChange={updateField} required />
                     </div>
                     <div>
-                        <label htmlFor="objective">Objetivo</label>
+                        <label htmlFor="objective">Objetivo: </label>
                         <select name="objective" id="objective" onChange={updateField} required defaultValue="condicionamento" >
                             <option value={"Condicionamento físico"}>Condicionamento físico</option>
                             <option value={"Perder peso"}>Perder peso</option>
@@ -144,7 +145,7 @@ export default function NewClient() {
                         </select>
                     </div>
                     <div>
-                        <input type="submit" value="Cadastrar Cliente" />
+                        <SubmitButton type="submit" value="Cadastrar Cliente" />
                     </div>
                 </form>
             </Main>

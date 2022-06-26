@@ -6,6 +6,7 @@ import { api } from "../../services/api";
 import VisibilityOnIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { LoginContext } from "../../contexts/LoginContext";
+import { PageTitle, SubmitButton, InputStyle } from "../../assets/styles/Shared";
 
 export default function UserNew() {
     let { userId } = useParams();
@@ -64,23 +65,23 @@ return (
     <>
         <Header />
         <Main>
-            <h1>Editar usuário</h1>
+            <PageTitle>Editar usuário</PageTitle>
                 {user.name === ''
                     ? <p>Carregando...</p>
                     : <form onSubmit={updateUser} method="post">
                         <div>
                             <label htmlFor="name">Nome completo</label>
-                            <input type="text" name="name" id="name" onChange={updateField} value={user.name} />
+                            <InputStyle type="text" name="name" id="name" onChange={updateField} value={user.name} />
                         </div>
                         <div>
                             <div>
                                 <label htmlFor="email">E-mail</label>
-                                <input type="email" name="email" id="email" onChange={updateField} value={user.email ? user.email : 'carregando...'} />
+                                <InputStyle type="email" name="email" id="email" onChange={updateField} value={user.email ? user.email : 'carregando...'} />
                             </div>
                         </div>
                         <div>
                             <label htmlFor="password">Nova senha</label>
-                            <input type={passwordShown ? 'text' : 'password'} name="password" id="password" onChange={updateField} />
+                            <InputStyle type={passwordShown ? 'text' : 'password'} name="password" id="password" onChange={updateField} />
                             {passwordShown ?
                             <VisibilityOnIcon onClick={() => setPasswordShown(!passwordShown)} />
                             : <VisibilityOffIcon onClick={() => setPasswordShown(!passwordShown)} />
@@ -96,7 +97,7 @@ return (
                             </div>
                         }
                         <div>
-                            <input type="submit" value="Editar usuário" />
+                            <SubmitButton type="submit" value="Editar usuário" />
                         </div>
                     </form>
                 }

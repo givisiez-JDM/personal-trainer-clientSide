@@ -7,6 +7,7 @@ import { LoginContext } from "../../contexts/LoginContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { dateInverted } from "../../helpers/dateHelpers";
+import { PageTitle, SubmitButton, InputStyle } from "../../assets/styles/Shared";
 
 export default function ClientUpdate() {
 
@@ -91,7 +92,7 @@ export default function ClientUpdate() {
             <Header />
             <Main>
                 <header>
-                    <h1>Atualizar dados do Cliente</h1>
+                    <PageTitle>Atualizar dados do Cliente</PageTitle>
                 </header>
                 {client.name === ''
                     ? <p>Carregando...</p>
@@ -99,12 +100,12 @@ export default function ClientUpdate() {
                     <form onSubmit={updateClient}>
                         <div>
                             <label htmlFor="name">Nome completo</label>
-                            <input type="text" name="name" id="name" onChange={updateField} required value={client.name} />
+                            <InputStyle type="text" name="name" id="name" onChange={updateField} required value={client.name} />
                         </div>
                         <div>
                             <div>
                                 <label htmlFor="birthDate">Data de nascimento</label>
-                                <input type="date" name="birthDate" id="birthDate" onChange={updateField} required value={dateInverted(client.birthDate)} />
+                                <InputStyle type="date" name="birthDate" id="birthDate" onChange={updateField} required value={dateInverted(client.birthDate)} />
                             </div>
                             <div>
                                 <label htmlFor="gender">Sexo</label>
@@ -117,16 +118,16 @@ export default function ClientUpdate() {
                         <div>
                             <div>
                                 <label htmlFor="phone">Telefone</label>
-                                <input type="tel" name="phone" id="phone" onChange={updateField} required  value={client.phone} />
+                                <InputStyle type="tel" name="phone" id="phone" onChange={updateField} required  value={client.phone} />
                             </div>
                             <div>
                                 <label htmlFor="email">E-mail</label>
-                                <input type="email" name="email" id="email" onChange={updateField} required  value={client.email} />
+                                <InputStyle type="email" name="email" id="email" onChange={updateField} required  value={client.email} />
                             </div>
                         </div>
                         <div>
                             <label htmlFor="profession">Profissão</label>
-                            <input type="text" name="profession" id="profession" onChange={updateField} required  value={client.profession} />
+                            <InputStyle type="text" name="profession" id="profession" onChange={updateField} required  value={client.profession} />
                         </div>
                         <div>
                             <label htmlFor="objective">Objetivo</label>
@@ -137,7 +138,7 @@ export default function ClientUpdate() {
                             </select>
                         </div>
                         <div>
-                            <input type="submit" value="Atualizar Cliente" />
+                            <SubmitButton type="submit" value="Atualizar Cliente" />
                         </div>
                     </form>
                 }

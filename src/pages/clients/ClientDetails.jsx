@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { dateTransform, getAgeFrom } from "../../helpers/dateHelpers";
 import { LoginContext } from "../../contexts/LoginContext";
+import { LinkButton, PageSubtitle, PageTitle, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
 
 export default function ClientDetails() {
     const { loggedUser } = useContext(LoginContext);
@@ -42,11 +43,11 @@ export default function ClientDetails() {
         <>
         <Header />
         <Main>
-            <h1>Detalhes do cliente</h1>
+            <PageTitle>Detalhes do cliente</PageTitle>
             <div>
-                <Link to={`/avaliacao/nova-avaliacao/${client._id}`}>Adicionar Avaliação física</Link>
-                <button onClick={updateClient}>Alterar dados do usuário</button>
-                <button onClick={deleteClient}>Deletar usuário</button>
+                <LinkButton to={`/avaliacao/nova-avaliacao/${client._id}`}>Adicionar Avaliação física</LinkButton>
+                <PrimaryButton onClick={updateClient}>Alterar dados do usuário</PrimaryButton>
+                <SecondaryButton onClick={deleteClient}>Deletar usuário</SecondaryButton>
             </div>
             {loggedUser.isAdmin && 
                 <p>Personal trainer ID: {client.personalTrainerName} </p>
@@ -58,7 +59,7 @@ export default function ClientDetails() {
             <p>E-mail: {client.email}</p>
             <p>Profissão: {client.profession}</p>
             <p>Objetivo: {client.objective}</p>
-            <h1>Avaliações físicas</h1>
+            <PageSubtitle>Avaliações físicas</PageSubtitle>
             {evaluations.length > 0 
             ?
                 <table>
@@ -84,7 +85,7 @@ export default function ClientDetails() {
             :
                 <p>Esse cliente ainda não possui avaliações físicas cadastradas.</p>
             }
-            <h1>Últimos treinos</h1>  
+            <PageSubtitle>Últimos treinos</PageSubtitle>  
             <table>
                 <thead>
                     <tr>

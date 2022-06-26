@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { LinkButton, PageTitle } from '../../assets/styles/Shared'
 import Header from '../../layouts/header/Header'
 import Main from '../../layouts/main/Main'
 import { api } from '../../services/api'
@@ -19,11 +20,11 @@ export default function PhysicalEvaluationList() {
     <>
       <Header />
       <Main>
-        <h1>Lista de avaliações físicas</h1>
+        <PageTitle>Lista de avaliações físicas</PageTitle>
         {evaluations.length <= 0  
           && <p>Você ainda não tem avaliações físicas.</p>
         }
-        <Link to="/avaliacao/novoa-avaliacao">Adicionar nova avaliação física</Link>
+        <LinkButton to="/avaliacao/novoa-avaliacao">Adicionar nova avaliação física</LinkButton>
         {evaluations.length > 0 &&
           <ul>
             {evaluations.map((evaluation) => {

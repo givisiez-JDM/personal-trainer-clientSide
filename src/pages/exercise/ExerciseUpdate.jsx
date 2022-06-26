@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { PageTitle, SubmitButton, InputStyle } from "../../assets/styles/Shared";
 import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";
 import { api } from "../../services/api";
@@ -42,12 +43,12 @@ export default function ExerciseUpdate() {
             <Header />
             <Main>
                 <header>
-                    <h1>Cadastro de Exercício</h1>
+                    <PageTitle>Cadastro de Exercício</PageTitle>
                 </header>
                 <form onSubmit={updateExercise}>
                     <div>
                         <label htmlFor="name">Nome do exercício: </label>
-                        <input type="text" name="name" id="name" onChange={updateField} required value={exercise.name} />
+                        <InputStyle type="text" name="name" id="name" onChange={updateField} required value={exercise.name} />
                     </div>
                     <div>
                         <label htmlFor="muscleGroup">Grupo muscular: </label>
@@ -75,10 +76,10 @@ export default function ExerciseUpdate() {
                     </div>
                     <div>
                         <label htmlFor="equipment">Aparelho: </label>
-                        <input type="text" name="equipment" id="equipment" onChange={updateField} value={exercise.equipment} />
+                        <InputStyle type="text" name="equipment" id="equipment" onChange={updateField} value={exercise.equipment} />
                     </div>
                     <div>
-                        <input type="submit" value="Atualizar Exercício" />
+                        <SubmitButton type="submit" value="Atualizar Exercício" />
                     </div>
                 </form>
             </Main>

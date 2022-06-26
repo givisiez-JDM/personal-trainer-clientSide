@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { PrimaryButton } from "../../assets/styles/Shared";
+import { PageTitle, PrimaryButton } from "../../assets/styles/Shared";
 import BarCharts from "../../components/BarCharts";
 import PieCharts from "../../components/PieCharts";
 import { LoginContext } from "../../contexts/LoginContext";
@@ -320,7 +320,7 @@ export default function HomePage() {
     <>
       <Header />
       <Main>
-        <h1>Relatório</h1>
+        <PageTitle>Relatório</PageTitle>
         <UpdateChartsBtnCnt>
           <PrimaryButton onClick={updateChartsData}>Mostrar dados atualizados dos relatórios</PrimaryButton>
         </UpdateChartsBtnCnt>

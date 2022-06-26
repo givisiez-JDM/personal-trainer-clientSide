@@ -1,11 +1,11 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { LinkButton, PageTitle } from "../assets/styles/Shared";
 
 export default function ErrorPage() {
   return (
     <>
-        <h1>Página não encontrada</h1>
-        <Link to="/">Retornar para a Home</Link>
+      <PageTitle>Página não encontrada</PageTitle>
+      <LinkButton to="/">Retornar para a Home</LinkButton>
     </>
-  )
+  );
 }

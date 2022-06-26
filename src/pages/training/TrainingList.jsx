@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { LinkButton, PageTitle } from '../../assets/styles/Shared'
 import { LoginContext } from '../../contexts/LoginContext'
 import { dateTransform } from '../../helpers/dateHelpers'
 import Header from '../../layouts/header/Header'
@@ -21,8 +22,8 @@ export default function TrainingList() {
     <>
       <Header />
       <Main>
-        <h1>Lista de Sessão de treino</h1>
-        <Link to="/treinos/novo-treino">Adicionar nova sessão de treino</Link>
+        <PageTitle>Lista de Sessão de treino</PageTitle>
+        <LinkButton to="/treinos/novo-treino">Adicionar nova sessão de treino</LinkButton>
         {trainings.length > 0 ?
           <table>
             <thead>

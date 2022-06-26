@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { PageTitle, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
 import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";
 import { api } from "../../services/api";
@@ -35,12 +36,12 @@ export default function UserDetails() {
     <>
       <Header />
       <Main>
-        <h1>Perfil do usuário</h1>
+        <PageTitle>Perfil do usuário</PageTitle>
         <p>Nome completo: {user.name !== "" ? user.name : 'Carregando...'} </p>
         <p>E-mail: {user.email !== "" ? user.email : 'Carregando...'} </p>
         <p>Usuário administrador: {user.isAdmin !== null ? user.isAdmin ? 'Sim' : 'Não' : 'Carregando...'}</p>
-        <button onClick={updateUser}>Alterar dados do usuário</button>
-        <button onClick={deleteUser}>Deletar usuário</button>
+        <PrimaryButton onClick={updateUser}>Alterar dados do usuário</PrimaryButton>
+        <SecondaryButton onClick={deleteUser}>Deletar usuário</SecondaryButton>
       </Main>
     </>
   )
