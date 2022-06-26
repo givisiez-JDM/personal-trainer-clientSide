@@ -1,7 +1,6 @@
 import { Hidden, Table, TableBody, TableHead, TableCell } from '@mui/material'
 import { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { ButtonCnt1, LinkButton, LinkTables, PageSubtitle, PageTitle, Paragraph } from '../../assets/styles/Shared'
+import { ButtonCnt1, LinkButton, PageSubtitle, PageTitle, Paragraph, WrittenLink } from '../../assets/styles/Shared'
 import { LoginContext } from '../../contexts/LoginContext'
 import { dateTransform } from '../../helpers/dateHelpers'
 import Header from '../../layouts/header/Header'
@@ -54,7 +53,7 @@ export default function TrainingList() {
                     <Hidden smDown>
                       <TableCell align='center'>{training.notes}</TableCell>
                     </Hidden>
-                    <TableCell align='center'><LinkTables to={`/treinos/${training._id}`}>Ver dados do treino</LinkTables></TableCell>
+                    <TableCell align='center'><WrittenLink to={`/treinos/${training._id}`}>Ver dados do treino</WrittenLink></TableCell>
                   </tr>
                   )})
                 }

@@ -1,8 +1,7 @@
-import { FormCnt, GFButtonsDiv, GoogleButton, LoginCnt, LoginForm, LoginInput, LoginLabel, LoginLogo, LoginSubmit } from "./LoginStyle";
+import { FormCnt, GFButtonsDiv, GoogleButton, LoginCnt, LoginForm, LoginInput, LoginLogo } from "./LoginStyle";
 import Logo from "../../assets/images/logo/logo-horizontal.png"
 import { ThemeProvider } from "styled-components";
-import { mainThemeColor, Paragraph } from "../../assets/styles/Shared";
-import { Link } from "react-router-dom";
+import { mainThemeColor, Paragraph, SubmitButton, WrittenLink, InputLabel } from "../../assets/styles/Shared";
 import GoogleIcon from '@mui/icons-material/Google';
 import VisibilityOnIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -44,9 +43,9 @@ export default function Login() {
         <FormCnt onSubmit={login}>
           <LoginLogo src={Logo} alt="" />
           <LoginForm action="/">
-            <LoginLabel htmlFor="email">E-mail</LoginLabel>
+            <InputLabel htmlFor="email">E-mail</InputLabel>
             <LoginInput type="email" name="email" id="email" onChange={updateField} required />
-            <LoginLabel htmlFor="password">Senha</LoginLabel>
+            <InputLabel htmlFor="password">Senha</InputLabel>
             <div>
               <LoginInput type={passwordShown ? 'text' : 'password'} name="password" id="password" onChange={updateField} required />
               {passwordShown
@@ -54,12 +53,12 @@ export default function Login() {
                 : <VisibilityOffIcon onClick={() => setPasswordShown(!passwordShown)} />
               }
             </div>
-            <LoginSubmit type="submit" value="Login" />
+            <SubmitButton type="submit" value="Login" />
             <Paragraph>Ou</Paragraph>
             <GFButtonsDiv>
               <GoogleButton>Faça login com <GoogleIcon />oogle</GoogleButton>
             </GFButtonsDiv>
-            <Link to="/registrar">Ainda não tem cadastro? Registre-se aqui</Link>
+            <WrittenLink to="/registrar">Ainda não tem cadastro? Registre-se aqui</WrittenLink>
           </LoginForm>
         </FormCnt>
       </LoginCnt>

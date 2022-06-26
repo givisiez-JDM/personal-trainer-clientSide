@@ -1,7 +1,7 @@
-import { FormCnt, LoginCnt, LoginForm, LoginInput, LoginLabel, LoginLogo, LoginSubmit } from "./LoginStyle";
+import { FormCnt, LoginCnt, LoginForm, LoginInput, LoginLogo } from "./LoginStyle";
 import { ThemeProvider } from "styled-components";
-import { mainThemeColor } from "../../assets/styles/Shared";
-import { Link, useNavigate } from "react-router-dom";
+import { InputLabel, mainThemeColor, SubmitButton, WrittenLink } from "../../assets/styles/Shared";
+import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { api } from "../../services/api";
 import Logo from "../../assets/images/logo/logo-horizontal.png"
@@ -56,11 +56,11 @@ export default function Register() {
         <FormCnt>
           <LoginLogo src={Logo} alt="" />
           <LoginForm onSubmit={createUser}>
-            <LoginLabel htmlFor="name">Nome completo</LoginLabel>
+            <InputLabel htmlFor="name">Nome completo</InputLabel>
             <LoginInput type="text" name="name" id="name" onChange={updateField} required />
-            <LoginLabel htmlFor="email">E-mail</LoginLabel>
+            <InputLabel htmlFor="email">E-mail</InputLabel>
             <LoginInput type="email" name="email" id="email" onChange={updateField} required />
-            <LoginLabel htmlFor="password">Senha</LoginLabel>
+            <InputLabel htmlFor="password">Senha</InputLabel>
             <div>
               <LoginInput type={passwordShown ? 'text' : 'password'} name="password" id="password" onChange={updateField} required />
               {passwordShown
@@ -68,9 +68,9 @@ export default function Register() {
                 : <VisibilityOffIcon onClick={() => setPasswordShown(!passwordShown)} />
                 }
             </div>
-            <LoginSubmit type="submit" value="Cadastrar" />
+            <SubmitButton type="submit" value="Cadastrar" />
           </LoginForm>
-          <Link to="/">Já tem cadastro? Clique aqui</Link>
+          <WrittenLink to="/">Já tem cadastro? Clique aqui</WrittenLink>
         </FormCnt>
       </LoginCnt>
     </ThemeProvider>

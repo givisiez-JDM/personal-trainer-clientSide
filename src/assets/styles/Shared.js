@@ -188,7 +188,7 @@ export const FormStyle = styled.form`
     }
 `
 
-export const LinkTables = styled(Link)`
+export const WrittenLink = styled(Link)`
     text-decoration: none;
     color: #01934a; 
     cursor: pointer;

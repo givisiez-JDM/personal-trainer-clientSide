@@ -23,6 +23,7 @@ export const FormCnt = styled.main`
 
     @media (max-width: 480px) {
         margin: 5vh auto;
+        max-width: 300px;
     }
 `
 
@@ -38,22 +39,8 @@ export const LoginLogo = styled.img`
     height: auto;
 `
 
-export const LoginLabel = styled.label``
-
 export const LoginInput = styled.input`
     border-radius: 5px;
-`
-
-export const LoginSubmit = styled.input`
-    background-color: ${props => props.theme.secondaryGreen};
-    border: none;
-    color: white;
-    border-radius: 5px;
-    padding: 15px;
-    margin: 10px 0;
-    width: 100%;
-    font-weight: 700;
-    cursor: pointer;
 `
 
 export const GFButtonsDiv = styled.div`
@@ -76,4 +63,5 @@ export const GoogleButton = styled.button`
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    font-size: 1.2em;
 `
