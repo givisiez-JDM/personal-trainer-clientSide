@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { dateTransform, getAgeFrom } from "../../helpers/dateHelpers";
 import { LoginContext } from "../../contexts/LoginContext";
-import { LinkButton, PageSubtitle, PageTitle, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
+import { ButtonCnt3, LinkButton, PageSubtitle, PageTitle, Paragraph, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
 
 export default function ClientDetails() {
     const { loggedUser } = useContext(LoginContext);
@@ -44,21 +44,21 @@ export default function ClientDetails() {
         <Header />
         <Main>
             <PageTitle>Detalhes do cliente</PageTitle>
-            <div>
+            <ButtonCnt3>
                 <LinkButton to={`/avaliacao/nova-avaliacao/${client._id}`}>Adicionar Avaliação física</LinkButton>
                 <PrimaryButton onClick={updateClient}>Alterar dados do usuário</PrimaryButton>
                 <SecondaryButton onClick={deleteClient}>Deletar usuário</SecondaryButton>
-            </div>
+            </ButtonCnt3>
             {loggedUser.isAdmin && 
-                <p>Personal trainer ID: {client.personalTrainerName} </p>
+                <Paragraph>Personal trainer: {client.personalTrainerName} </Paragraph>
             }
-            <p>Nome completo: {client.name} </p>
-            <p>Data de nascimento: {dateTransform(client.birthDate)}, {getAgeFrom(client.birthDate)} anos</p>
-            <p>Sexo: {client.gender}</p>
-            <p>Telefone: {client.phone}</p>
-            <p>E-mail: {client.email}</p>
-            <p>Profissão: {client.profession}</p>
-            <p>Objetivo: {client.objective}</p>
+            <Paragraph>Nome completo: {client.name} </Paragraph>
+            <Paragraph>Data de nascimento: {dateTransform(client.birthDate)}, {getAgeFrom(client.birthDate)} anos</Paragraph>
+            <Paragraph>Sexo: {client.gender}</Paragraph>
+            <Paragraph>Telefone: {client.phone}</Paragraph>
+            <Paragraph>E-mail: {client.email}</Paragraph>
+            <Paragraph>Profissão: {client.profession}</Paragraph>
+            <Paragraph>Objetivo: {client.objective}</Paragraph>
             <PageSubtitle>Avaliações físicas</PageSubtitle>
             {evaluations.length > 0 
             ?
@@ -83,7 +83,7 @@ export default function ClientDetails() {
                     </tbody>
                 </table>
             :
-                <p>Esse cliente ainda não possui avaliações físicas cadastradas.</p>
+                <Paragraph>Esse cliente ainda não possui avaliações físicas cadastradas.</Paragraph>
             }
             <PageSubtitle>Últimos treinos</PageSubtitle>  
             <table>

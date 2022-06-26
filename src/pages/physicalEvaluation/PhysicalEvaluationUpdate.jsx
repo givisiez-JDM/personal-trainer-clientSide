@@ -7,7 +7,7 @@ import { LoginContext } from "../../contexts/LoginContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { dateInverted } from "../../helpers/dateHelpers";
-import { InputStyle, PageSubtitle, PageTitle, SubmitButton } from "../../assets/styles/Shared";
+import { ButtonCnt1, FormStyle, InputLabel, InputLabelCnt, InputStyle, PageSubtitle, PageTitle, SubmitButton } from "../../assets/styles/Shared";
 
 export default function PhysicalEvaluationNew() {
   const { loggedUser } = useContext(LoginContext);
@@ -178,101 +178,101 @@ export default function PhysicalEvaluationNew() {
                 <header>
                     <PageTitle>Atualizar avaliação física</PageTitle>
                 </header>
-                <form onSubmit={updateEvaluation}>
-                    <div>
-                        <label htmlFor="createdAt">Data da avaliação:</label>
+                <FormStyle onSubmit={updateEvaluation}>
+                    <InputLabelCnt>
+                        <InputLabel htmlFor="createdAt">Data da avaliação:</InputLabel>
                         <InputStyle type="date" name="createdAt" id="createdAt" onChange={updateField} required value={dateInverted(evaluation.createdAt)} />
-                    </div>
-                    <div>
-                        <label htmlFor="weight">Peso (em kg)</label>
+                    </InputLabelCnt>
+                    <InputLabelCnt>
+                        <InputLabel htmlFor="weight">Peso (em kg)</InputLabel>
                         <InputStyle type="number" step=".01" name="weight" id="weight" onChange={updateField} required value={evaluation.weight} />
-                    </div>
-                    <div>
-                        <label htmlFor="height">Altura (em metros)</label>
+                    </InputLabelCnt>
+                    <InputLabelCnt>
+                        <InputLabel htmlFor="height">Altura (em metros)</InputLabel>
                         <InputStyle type="number" step=".01" name="height" id="height" onChange={updateField} required value={evaluation.height} />
-                    </div>
-                    <div>
-                        <label htmlFor="IMC">IMC:</label>
+                    </InputLabelCnt>
+                    <InputLabelCnt>
+                        <InputLabel htmlFor="IMC">IMC:</InputLabel>
                         <InputStyle type="number" step=".01" name="IMC" id="IMC" onChange={updateField} disabled value={evaluation.IMC} />
-                    </div>
+                    </InputLabelCnt>
                     <div>
                         <PageSubtitle>Medidas de circunferência</PageSubtitle>
-                        <div>
-                            <label htmlFor="abdomenMeasure">Abdômen (em cm)</label>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="abdomenMeasure">Abdômen (em cm)</InputLabel>
                             <InputStyle type="number" name="abdomenMeasure" id="abdomenMeasure" onChange={updateField} required value={evaluation.abdomenMeasure} />
-                        </div>
-                        <div>
-                            <label htmlFor="neckMeasure">Pescoço (em cm)</label>
+                        </InputLabelCnt>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="neckMeasure">Pescoço (em cm)</InputLabel>
                             <InputStyle type="number" name="neckMeasure" id="neckMeasure" onChange={updateField} required value={evaluation.neckMeasure} />
-                        </div>
-                        <div>
-                            <label htmlFor="chestMeasure">Tórax (em cm)</label>
+                        </InputLabelCnt>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="chestMeasure">Tórax (em cm)</InputLabel>
                             <InputStyle type="number" name="chestMeasure" id="chestMeasure" onChange={updateField} required value={evaluation.chestMeasure} />
-                        </div>
-                        <div>
-                            <label htmlFor="hipMeasure">Quadril (em cm)</label>
+                        </InputLabelCnt>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="hipMeasure">Quadril (em cm)</InputLabel>
                             <InputStyle type="number" name="hipMeasure" id="hipMeasure" onChange={updateField} required value={evaluation.hipMeasure} />
-                        </div>
-                        <div>
-                            <label htmlFor="armsMeasure">Braço (em cm)</label>
+                        </InputLabelCnt>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="armsMeasure">Braço (em cm)</InputLabel>
                             <InputStyle type="number" name="armsMeasure" id="armsMeasure" onChange={updateField} required value={evaluation.armsMeasure} />
-                        </div>
-                        <div>
-                            <label htmlFor="forearmsMeasure">Antebraço (em cm)</label>
+                        </InputLabelCnt>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="forearmsMeasure">Antebraço (em cm)</InputLabel>
                             <InputStyle type="number" name="forearmsMeasure" id="forearmsMeasure" onChange={updateField} required value={evaluation.forearmsMeasure} />
-                        </div>
-                        <div>
-                            <label htmlFor="wristsMeasure">Punho (em cm)</label>
+                        </InputLabelCnt>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="wristsMeasure">Punho (em cm)</InputLabel>
                             <InputStyle type="number" name="wristsMeasure" id="wristsMeasure" onChange={updateField} required value={evaluation.wristsMeasure} />
-                        </div>
-                        <div>
-                            <label htmlFor="thighMeasure">Coxa (em cm)</label>
+                        </InputLabelCnt>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="thighMeasure">Coxa (em cm)</InputLabel>
                             <InputStyle type="number" name="thighMeasure" id="thighMeasure" onChange={updateField} required value={evaluation.thighMeasure} />
-                        </div>
-                        <div>
-                            <label htmlFor="calfMeasure">Panturrilha (em cm)</label>
+                        </InputLabelCnt>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="calfMeasure">Panturrilha (em cm)</InputLabel>
                             <InputStyle type="number" name="calfMeasure" id="calfMeasure" onChange={updateField} required value={evaluation.calfMeasure} />
-                        </div>
+                        </InputLabelCnt>
                     </div>
                     <div>
                         <PageSubtitle>Dobras cutâneas (7 dobras)</PageSubtitle>
-                        <div>
-                            <label htmlFor="fatSubscapularis">Subescapular (em mm)</label>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="fatSubscapularis">Subescapular (em mm)</InputLabel>
                             <InputStyle type="number" name="fatSubscapularis" id="fatSubscapularis" onChange={updateField} required value={evaluation.fatSubscapularis} />
-                        </div>
-                        <div>
-                            <label htmlFor="fatTriceps">Tríceps (em mm)</label>
+                        </InputLabelCnt>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="fatTriceps">Tríceps (em mm)</InputLabel>
                             <InputStyle type="number" name="fatTriceps" id="fatTriceps" onChange={updateField} required value={evaluation.fatTriceps} />
-                        </div>
-                        <div>
-                            <label htmlFor="fatBreastplate">Peitoral (em mm)</label>
+                        </InputLabelCnt>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="fatBreastplate">Peitoral (em mm)</InputLabel>
                             <InputStyle type="number" name="fatBreastplate" id="fatBreastplate" onChange={updateField} required value={evaluation.fatBreastplate} />
-                        </div>
-                        <div>
-                            <label htmlFor="fatMidAxillary">Axilar média (em mm)</label>
+                        </InputLabelCnt>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="fatMidAxillary">Axilar média (em mm)</InputLabel>
                             <InputStyle type="number" name="fatMidAxillary" id="fatMidAxillary" onChange={updateField} required value={evaluation.fatMidAxillary} />
-                        </div>
-                        <div>
-                            <label htmlFor="fatSuprailiac">Supra-ilíaca (em mm)</label>
+                        </InputLabelCnt>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="fatSuprailiac">Supra-ilíaca (em mm)</InputLabel>
                             <InputStyle type="number" name="fatSuprailiac" id="fatSuprailiac" onChange={updateField} required value={evaluation.fatSuprailiac} />
-                        </div>
-                        <div>
-                            <label htmlFor="fatAbdominal">Abdôminal (em mm)</label>
+                        </InputLabelCnt>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="fatAbdominal">Abdôminal (em mm)</InputLabel>
                             <InputStyle type="number" name="fatAbdominal" id="fatAbdominal" onChange={updateField} required value={evaluation.fatAbdominal} />
-                        </div>
-                        <div>
-                            <label htmlFor="fatMidFemoral">Femural médio (em mm)</label>
+                        </InputLabelCnt>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="fatMidFemoral">Femural médio (em mm)</InputLabel>
                             <InputStyle type="number" name="fatMidFemoral" id="fatMidFemoral" onChange={updateField} required value={evaluation.fatMidFemoral} />
-                        </div>
+                        </InputLabelCnt>
                     </div>
-                    <div>
-                        <label htmlFor="notes">Observações</label>
+                    <InputLabelCnt>
+                        <InputLabel htmlFor="notes">Observações</InputLabel>
                         <textarea name="notes" id="notes" cols="30" rows="10" onChange={updateField} value={evaluation.notes} />
-                    </div>
-                    <div>
+                    </InputLabelCnt>
+                    <ButtonCnt1>
                         <SubmitButton type="submit" value="Atualizar avaliação" />
-                    </div>
-                </form>
+                    </ButtonCnt1>
+                </FormStyle>
             </Main>
         </>
     )

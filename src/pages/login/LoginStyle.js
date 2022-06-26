@@ -20,6 +20,10 @@ export const FormCnt = styled.main`
     justify-content: space-evenly;
     align-items: center;
     border-radius: 20px;
+
+    @media (max-width: 480px) {
+        margin: 5vh auto;
+    }
 `
 
 export const LoginForm = styled.form`

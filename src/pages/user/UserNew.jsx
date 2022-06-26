@@ -5,7 +5,7 @@ import Main from "../../layouts/main/Main";
 import { api } from "../../services/api";
 import VisibilityOnIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { PageTitle, SubmitButton, InputStyle } from "../../assets/styles/Shared";
+import { PageTitle, SubmitButton, InputStyle, InputLabel, SelectStyle, FormStyle, InputLabelCnt, ButtonCnt1 } from "../../assets/styles/Shared";
 
 export default function UserNew() {
   const [user, setUser] = useState({
@@ -47,36 +47,34 @@ return (
             <header>
                 <PageTitle>Cadastro de usuário</PageTitle>
             </header>
-            <form onSubmit={createUser}>
-                <div>
-                    <label htmlFor="name">Nome completo</label>
+            <FormStyle onSubmit={createUser}>
+                <InputLabelCnt>
+                    <InputLabel htmlFor="name">Nome completo</InputLabel>
                     <InputStyle type="text" name="name" id="name" onChange={updateField} required />
-                </div>
-                <div>
-                    <div>
-                        <label htmlFor="email">E-mail</label>
-                        <InputStyle type="email" name="email" id="email" onChange={updateField} required />
-                    </div>
-                </div>
-                <div>
-                    <label htmlFor="password">Senha</label>
+                </InputLabelCnt>
+                <InputLabelCnt>
+                    <InputLabel htmlFor="email">E-mail</InputLabel>
+                    <InputStyle type="email" name="email" id="email" onChange={updateField} required />
+                </InputLabelCnt>
+                <InputLabelCnt>
+                    <InputLabel htmlFor="password">Senha</InputLabel>
                     <InputStyle type={passwordShown ? 'text' : 'password'} name="password" id="password" onChange={updateField} required />
                     {passwordShown
                         ? <VisibilityOnIcon onClick={() => setPasswordShown(!passwordShown)} />
                         : <VisibilityOffIcon onClick={() => setPasswordShown(!passwordShown)} />
                     }
-                </div>
-                <div>
-                    <label htmlFor="admin">Usuário admin?</label>
-                    <select name="admin" id="admin" onChange={updateField} required >
+                </InputLabelCnt>
+                <InputLabelCnt>
+                    <InputLabel htmlFor="admin">Usuário admin?</InputLabel>
+                    <SelectStyle name="admin" id="admin" onChange={updateField} required >
                         <option value={true}>Sim</option>
                         <option value={false}>Não</option>
-                    </select>
-                </div>
-                <div>
+                    </SelectStyle>
+                </InputLabelCnt>
+                <ButtonCnt1>
                     <SubmitButton type="submit" value="Cadastrar" />
-                </div>
-            </form>
+                </ButtonCnt1>
+            </FormStyle>
         </Main>
     </>
   )

@@ -6,7 +6,7 @@ import { api } from "../../services/api";
 import VisibilityOnIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { LoginContext } from "../../contexts/LoginContext";
-import { PageTitle, SubmitButton, InputStyle } from "../../assets/styles/Shared";
+import { PageTitle, SubmitButton, InputStyle, InputLabel, SelectStyle, Paragraph, ButtonCnt1, FormStyle, InputLabelCnt } from "../../assets/styles/Shared";
 
 export default function UserNew() {
     let { userId } = useParams();
@@ -67,39 +67,37 @@ return (
         <Main>
             <PageTitle>Editar usuário</PageTitle>
                 {user.name === ''
-                    ? <p>Carregando...</p>
-                    : <form onSubmit={updateUser} method="post">
-                        <div>
-                            <label htmlFor="name">Nome completo</label>
+                    ? <Paragraph>Carregando...</Paragraph>
+                    : <FormStyle onSubmit={updateUser} method="post">
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="name">Nome completo</InputLabel>
                             <InputStyle type="text" name="name" id="name" onChange={updateField} value={user.name} />
-                        </div>
-                        <div>
-                            <div>
-                                <label htmlFor="email">E-mail</label>
-                                <InputStyle type="email" name="email" id="email" onChange={updateField} value={user.email ? user.email : 'carregando...'} />
-                            </div>
-                        </div>
-                        <div>
-                            <label htmlFor="password">Nova senha</label>
+                        </InputLabelCnt>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="email">E-mail</InputLabel>
+                            <InputStyle type="email" name="email" id="email" onChange={updateField} value={user.email ? user.email : 'carregando...'} />
+                        </InputLabelCnt>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="password">Nova senha</InputLabel>
                             <InputStyle type={passwordShown ? 'text' : 'password'} name="password" id="password" onChange={updateField} />
                             {passwordShown ?
                             <VisibilityOnIcon onClick={() => setPasswordShown(!passwordShown)} />
                             : <VisibilityOffIcon onClick={() => setPasswordShown(!passwordShown)} />
                             }
-                        </div>
+                        </InputLabelCnt>
                         {loggedUser.isAdmin && 
-                            <div>
-                                <label htmlFor="admin">Usuário admin?</label>
-                                <select name="admin" id="admin" onChange={updateField} >
+                            <InputLabelCnt>
+                                <InputLabel htmlFor="admin">Usuário admin?</InputLabel>
+                                <SelectStyle name="admin" id="admin" onChange={updateField} >
                                     <option value={false} selected={!user.isAdmin ? true : false}>Não</option>
                                     <option value={true} selected={user.isAdmin ? true : false}>Sim</option>
-                                </select>
-                            </div>
+                                </SelectStyle>
+                            </InputLabelCnt>
                         }
-                        <div>
+                        <ButtonCnt1>
                             <SubmitButton type="submit" value="Editar usuário" />
-                        </div>
-                    </form>
+                        </ButtonCnt1>
+                    </FormStyle>
                 }
         </Main>
     </>

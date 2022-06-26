@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { PageTitle, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
+import { ButtonCnt2, MarginCnt, PageTitle, Paragraph, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
 import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";
 import { api } from "../../services/api";
@@ -37,11 +37,15 @@ export default function UserDetails() {
       <Header />
       <Main>
         <PageTitle>Perfil do usuário</PageTitle>
-        <p>Nome completo: {user.name !== "" ? user.name : 'Carregando...'} </p>
-        <p>E-mail: {user.email !== "" ? user.email : 'Carregando...'} </p>
-        <p>Usuário administrador: {user.isAdmin !== null ? user.isAdmin ? 'Sim' : 'Não' : 'Carregando...'}</p>
-        <PrimaryButton onClick={updateUser}>Alterar dados do usuário</PrimaryButton>
-        <SecondaryButton onClick={deleteUser}>Deletar usuário</SecondaryButton>
+        <ButtonCnt2>
+          <PrimaryButton onClick={updateUser}>Alterar dados do usuário</PrimaryButton>
+          <SecondaryButton onClick={deleteUser}>Deletar usuário</SecondaryButton>
+        </ButtonCnt2>
+        <MarginCnt>
+          <Paragraph>Nome completo: {user.name !== "" ? user.name : 'Carregando...'} </Paragraph>
+          <Paragraph>E-mail: {user.email !== "" ? user.email : 'Carregando...'} </Paragraph>
+          <Paragraph>Usuário administrador: {user.isAdmin !== null ? user.isAdmin ? 'Sim' : 'Não' : 'Carregando...'}</Paragraph>
+        </MarginCnt>
       </Main>
     </>
   )

@@ -1,6 +1,7 @@
+import { Hidden, Table, TableBody, TableHead, TableCell } from '@mui/material'
 import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { LinkButton, PageTitle } from '../../assets/styles/Shared'
+import { ButtonCnt1, LinkButton, LinkTables, PageSubtitle, PageTitle, Paragraph } from '../../assets/styles/Shared'
 import { LoginContext } from '../../contexts/LoginContext'
 import { dateTransform } from '../../helpers/dateHelpers'
 import Header from '../../layouts/header/Header'
@@ -12,6 +13,11 @@ export default function TrainingList() {
   const { loggedUser } = useContext(LoginContext);
 
   useEffect(() => {
+    loggedUser.isAdmin ?
+    api.get(`/treinos/lista`).then((response) => {
+      setTrainings(response.data)
+    })
+    :
     api.get(`/treinos/lista/${loggedUser._id}`).then((response) => {
       setTrainings(response.data)
     })
@@ -22,32 +28,39 @@ export default function TrainingList() {
     <>
       <Header />
       <Main>
-        <PageTitle>Lista de Sessão de treino</PageTitle>
-        <LinkButton to="/treinos/novo-treino">Adicionar nova sessão de treino</LinkButton>
+        <PageTitle>Sessão de treino</PageTitle>
+        <ButtonCnt1>
+          <LinkButton to="/treinos/novo-treino">Adicionar nova sessão de treino</LinkButton>
+        </ButtonCnt1>
+        <PageSubtitle>Treinos agendados</PageSubtitle>
         {trainings.length > 0 ?
-          <table>
-            <thead>
+          <Table>
+            <TableHead>
               <tr>
                 <th>Data</th>
                 <th>Cliente</th>
-                <th>Observações</th>
+                <Hidden smDown>
+                  <th>Observações</th>
+                </Hidden>
                 <th>Treino</th>
               </tr>
-            </thead>
-            <tbody>
+            </TableHead>
+            <TableBody>
               {trainings.map((training) => {
                 return(
                   <tr key={training._id}>
-                    <td>{dateTransform(training.date)}</td>
-                    <td>{training.clientName}</td>
-                    <td>{training.notes}</td>
-                    <td><Link to={`/treinos/${training._id}`}>Ver dados do treino</Link></td>
+                    <TableCell align='center'>{dateTransform(training.date)}</TableCell>
+                    <TableCell align='center'>{training.clientName}</TableCell>
+                    <Hidden smDown>
+                      <TableCell align='center'>{training.notes}</TableCell>
+                    </Hidden>
+                    <TableCell align='center'><LinkTables to={`/treinos/${training._id}`}>Ver dados do treino</LinkTables></TableCell>
                   </tr>
                   )})
                 }
-            </tbody>
-          </table>
-        : <p>Não existem treinos cadastrados.</p>
+            </TableBody>
+          </Table>
+        : <Paragraph>Não existem treinos cadastrados.</Paragraph>
       }
       </Main>
     </>

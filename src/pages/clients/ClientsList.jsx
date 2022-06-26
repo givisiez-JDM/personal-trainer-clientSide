@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { LinkButton, PageTitle } from '../../assets/styles/Shared'
+import { ButtonCnt1, LinkButton, PageTitle, Paragraph } from '../../assets/styles/Shared'
 import { LoginContext } from '../../contexts/LoginContext'
 import Header from '../../layouts/header/Header'
 import Main from '../../layouts/main/Main'
@@ -32,9 +32,11 @@ export default function ClientsList() {
       <Main>
         <PageTitle>Lista de clientes</PageTitle>
         {clients.length <= 0  
-          && <p>Você ainda não tem clientes.</p>
+          && <Paragraph>Você ainda não tem clientes.</Paragraph>
         }
-        <LinkButton to="/clientes/novo-cliente">Adicionar novo cliente</LinkButton>
+        <ButtonCnt1>
+          <LinkButton to="/clientes/novo-cliente">Adicionar novo cliente</LinkButton>
+        </ButtonCnt1>
         {clients.length > 0 &&
           <ul>
             {clients.map((client) => {

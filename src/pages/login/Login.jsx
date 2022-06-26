@@ -1,7 +1,7 @@
 import { FormCnt, GFButtonsDiv, GoogleButton, LoginCnt, LoginForm, LoginInput, LoginLabel, LoginLogo, LoginSubmit } from "./LoginStyle";
 import Logo from "../../assets/images/logo/logo-horizontal.png"
 import { ThemeProvider } from "styled-components";
-import { mainThemeColor } from "../../assets/styles/Shared";
+import { mainThemeColor, Paragraph } from "../../assets/styles/Shared";
 import { Link } from "react-router-dom";
 import GoogleIcon from '@mui/icons-material/Google';
 import VisibilityOnIcon from '@mui/icons-material/Visibility';
@@ -55,7 +55,7 @@ export default function Login() {
               }
             </div>
             <LoginSubmit type="submit" value="Login" />
-            <p>Ou</p>
+            <Paragraph>Ou</Paragraph>
             <GFButtonsDiv>
               <GoogleButton>Faça login com <GoogleIcon />oogle</GoogleButton>
             </GFButtonsDiv>

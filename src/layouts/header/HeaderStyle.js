@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { SwipeableDrawer } from "@mui/material";
+import { PrimaryButton } from "../../assets/styles/Shared";
 
 export const HeaderCnt = styled.header`
     width: 100%;
@@ -26,6 +28,43 @@ export const HeaderLink = styled(Link)`
     color: white;
     font-weight: 600;
     margin: 0 10px;
+    font-size: 1.2em;
+`
+
+export const MobileLink = styled(Link)`
+    text-decoration: none;
+    color: ${props => props.theme.secondaryGreen};
+    font-weight: 600;
+    padding: 10px;
+    font-size: 1.2em;
+    border-bottom: 1px solid ${props => props.theme.secondaryGreen}; 
+`
+
+export const UserNameP = styled.p`
+    color: white;
+    font-size: 1.2em;
+`
+
+export const CloseMenuBtn = styled.button`
+    color: white;
+    background-color: #01934a;
+    border: none;
+    padding: 10px;
+    text-align: right;
+`
+
+export const ExitButton = styled.button`
+    width: 100%;
+    max-width: 150px;
+    margin: 10px auto;
+    height: auto;
+    background-color: #01934a;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
 `
 
 export const UserNameButton = styled.button`
@@ -36,11 +75,12 @@ export const UserNameButton = styled.button`
     border: none;
     background-color: ${props => props.theme.secondaryGreen};
     cursor: pointer;
+    font-size: 1.2em;
 `
 
 export const UserOptionDiv = styled.div`
     width: 180px;
-    height: 60px;
+    height: 80px;
     border: none;
     padding: 10px 20px;
     position: fixed;
@@ -57,6 +97,7 @@ export const UserOptionDiv = styled.div`
         font-weight: 600;
         margin: 5px;
         font-size: 16px;
+        font-size: 1.2em;
     }
 
     button {
@@ -70,5 +111,6 @@ export const UserOptionDiv = styled.div`
         text-align: left;
         padding: 0;
         cursor: pointer;
+        font-size: 1.2em;
     }
 `

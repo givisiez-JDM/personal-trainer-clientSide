@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { InputStyle, PageSubtitle, PageSubtitle3, PageTitle, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
+import { ButtonCnt1, ButtonCnt2, InputLabel, InputLabelCnt, InputStyle, PageSubtitle, PageSubtitle3, PageTitle, Paragraph, PrimaryButton, SecondaryButton, SelectStyle } from "../../assets/styles/Shared";
 import { LoginContext } from "../../contexts/LoginContext";
 import { dateInverted } from "../../helpers/dateHelpers";
 import Header from "../../layouts/header/Header";
@@ -138,55 +138,54 @@ export default function TrainingUpdate() {
         <header>
             <PageTitle>Atualizar Treino</PageTitle>
         </header>
-        <div>
-          <div>
-              <label htmlFor="date">Data do treino: </label>
+          <InputLabelCnt>
+              <InputLabel htmlFor="date">Data do treino: </InputLabel>
               <InputStyle type="date" name="date" id="date" onChange={updateFieldTraining} required value={dateInverted(training.date)} />
-          </div>
-          <div>
-              <label htmlFor="clientId">Cliente: </label>
-              <select name="clientId" id="clientId" onChange={updateFieldClient} required value={training.clientName}>
+          </InputLabelCnt>
+          <InputLabelCnt>
+              <InputLabel htmlFor="clientId">Cliente: </InputLabel>
+              <SelectStyle name="clientId" id="clientId" onChange={updateFieldClient} required value={training.clientName}>
                 {clientsDB.map(client => 
                   <option key={client._id} value={client._id}>{client.name}</option>
                 )}
-              </select>
-          </div>
-          <div>
-              <label htmlFor="notes">Observações: </label>
+              </SelectStyle>
+          </InputLabelCnt>
+          <InputLabelCnt>
+              <InputLabel htmlFor="notes">Observações: </InputLabel>
               <textarea name="notes" id="notes" onChange={updateFieldTraining} value={training.notes} />
-          </div>
-          <div>
+          </InputLabelCnt>
+          <>
             <PageSubtitle>Lista de exercícios</PageSubtitle>
-            <PrimaryButton onClick={handleAddExercise}>Adicionar exercício</PrimaryButton>
-            <SecondaryButton onClick={handleRemoveExercise}>Remover todos os exercício</SecondaryButton>
+            <ButtonCnt2>
+              <PrimaryButton onClick={handleAddExercise}>Adicionar exercício</PrimaryButton>
+              <SecondaryButton onClick={handleRemoveExercise}>Remover todos os exercício</SecondaryButton>
+            </ButtonCnt2>
             {toggleAddExercise &&
-              <div>
+              <>
                 <PageSubtitle3>Adicionar exercício</PageSubtitle3>
-                <div>
-                  <div>
-                    <label htmlFor="exercise.name">Exercício: </label>
-                    <select name="exercise.name" id="exercise.name" onChange={updateSelectedExercise} defaultValue="default" required>
+                  <InputLabelCnt>
+                    <InputLabel htmlFor="exercise.name">Exercício: </InputLabel>
+                    <SelectStyle name="exercise.name" id="exercise.name" onChange={updateSelectedExercise} defaultValue="default" required>
                       <option key="default" value="default" disabled selected>Escolha seu o exercício</option>
                       {exercisesDB.map(exercise => 
                         <option key={exercise._id}>{exercise.name}</option>
                       )}
-                    </select>
-                  </div>
-                  <div>
-                    <label htmlFor="serie">Série: </label>
+                    </SelectStyle>
+                  </InputLabelCnt>
+                  <InputLabelCnt>
+                    <InputLabel htmlFor="serie">Série: </InputLabel>
                     <InputStyle type="number" name="serie" id="serie" onChange={updateFieldExercise} required />
-                  </div>
-                  <div>
-                    <label htmlFor="repetition">Repetição: </label>
+                  </InputLabelCnt>
+                  <InputLabelCnt>
+                    <InputLabel htmlFor="repetition">Repetição: </InputLabel>
                     <InputStyle type="number" name="repetition" id="repetition" onChange={updateFieldExercise} required />
-                  </div>
-                  <div>
-                    <label htmlFor="load">Carga: </label>
+                  </InputLabelCnt>
+                  <InputLabelCnt>
+                    <InputLabel htmlFor="load">Carga: </InputLabel>
                     <InputStyle type="number" name="load" id="load" onChange={updateFieldExercise} required />
-                  </div>
+                  </InputLabelCnt>
                   <SecondaryButton onClick={addExercise}>Adicionar exercício</SecondaryButton>
-                </div>
-              </div>
+              </>
             }
             {newExercises.length > 0
             ? <table>
@@ -217,11 +216,12 @@ export default function TrainingUpdate() {
                   }
               </tbody>
             </table>
-            : <p>Você ainda não adicionou exercícios</p> 
+            : <Paragraph>Você ainda não adicionou exercícios</Paragraph> 
             }
-          </div>
-          <PrimaryButton onClick={createTraining}>Atualizar treino</PrimaryButton>
-        </div>
+          </>
+          <ButtonCnt1>
+            <PrimaryButton onClick={createTraining}>Atualizar treino</PrimaryButton>
+          </ButtonCnt1>
       </Main>
     </>
   )

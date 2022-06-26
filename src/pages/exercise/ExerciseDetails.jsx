@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { PageTitle, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
+import { ButtonCnt2, PageTitle, Paragraph, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
 import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";
 import { api } from "../../services/api";
@@ -34,14 +34,14 @@ export default function ExerciseDetails() {
       <Header />
       <Main>
         <PageTitle>Detalhes do exercício</PageTitle>
-        <div>
+        <ButtonCnt2>
             <PrimaryButton onClick={updateExercise}>Alterar exercício </PrimaryButton>
             <SecondaryButton onClick={deleteExercise}>Deletar exercício</SecondaryButton>
-        </div>
-        <p>Nome do exercício: {exercise.name} </p>
-        <p>Grupo muscular: {exercise.muscleGroup}</p>
-        <p>Valência: {exercise.valence}</p>
-        <p>Aparelho: {exercise.equipment}</p>
+        </ButtonCnt2>
+        <Paragraph>Nome do exercício: {exercise.name} </Paragraph>
+        <Paragraph>Grupo muscular: {exercise.muscleGroup}</Paragraph>
+        <Paragraph>Valência: {exercise.valence}</Paragraph>
+        <Paragraph>Aparelho: {exercise.equipment}</Paragraph>
       </Main>
     </>
   )

@@ -7,7 +7,7 @@ import { LoginContext } from "../../contexts/LoginContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { dateInverted } from "../../helpers/dateHelpers";
-import { PageTitle, SubmitButton, InputStyle } from "../../assets/styles/Shared";
+import { PageTitle, SubmitButton, InputStyle, InputLabel, SelectStyle, Paragraph, ButtonCnt1, FormStyle, InputLabelCnt } from "../../assets/styles/Shared";
 
 export default function ClientUpdate() {
 
@@ -95,52 +95,52 @@ export default function ClientUpdate() {
                     <PageTitle>Atualizar dados do Cliente</PageTitle>
                 </header>
                 {client.name === ''
-                    ? <p>Carregando...</p>
+                    ? <Paragraph>Carregando...</Paragraph>
                     : 
-                    <form onSubmit={updateClient}>
-                        <div>
-                            <label htmlFor="name">Nome completo</label>
+                    <FormStyle onSubmit={updateClient}>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="name">Nome completo</InputLabel>
                             <InputStyle type="text" name="name" id="name" onChange={updateField} required value={client.name} />
-                        </div>
+                        </InputLabelCnt>
                         <div>
-                            <div>
-                                <label htmlFor="birthDate">Data de nascimento</label>
+                            <InputLabelCnt>
+                                <InputLabel htmlFor="birthDate">Data de nascimento</InputLabel>
                                 <InputStyle type="date" name="birthDate" id="birthDate" onChange={updateField} required value={dateInverted(client.birthDate)} />
-                            </div>
-                            <div>
-                                <label htmlFor="gender">Sexo</label>
-                                <select name="gender" id="gender" onChange={updateField} required value={client.gender} >
+                            </InputLabelCnt>
+                            <InputLabelCnt>
+                                <InputLabel htmlFor="gender">Sexo</InputLabel>
+                                <SelectStyle name="gender" id="gender" onChange={updateField} required value={client.gender} >
                                     <option value={"Feminino"}>Feminino</option>
                                     <option value={"Masculino"}>Masculino</option>
-                                </select>
-                            </div>
+                                </SelectStyle>
+                            </InputLabelCnt>
                         </div>
                         <div>
-                            <div>
-                                <label htmlFor="phone">Telefone</label>
+                            <InputLabelCnt>
+                                <InputLabel htmlFor="phone">Telefone</InputLabel>
                                 <InputStyle type="tel" name="phone" id="phone" onChange={updateField} required  value={client.phone} />
-                            </div>
-                            <div>
-                                <label htmlFor="email">E-mail</label>
+                            </InputLabelCnt>
+                            <InputLabelCnt>
+                                <InputLabel htmlFor="email">E-mail</InputLabel>
                                 <InputStyle type="email" name="email" id="email" onChange={updateField} required  value={client.email} />
-                            </div>
+                            </InputLabelCnt>
                         </div>
-                        <div>
-                            <label htmlFor="profession">Profissão</label>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="profession">Profissão</InputLabel>
                             <InputStyle type="text" name="profession" id="profession" onChange={updateField} required  value={client.profession} />
-                        </div>
-                        <div>
-                            <label htmlFor="objective">Objetivo</label>
-                            <select name="objective" id="objective" onChange={updateField} required value={client.objective} >
+                        </InputLabelCnt>
+                        <InputLabelCnt>
+                            <InputLabel htmlFor="objective">Objetivo</InputLabel>
+                            <SelectStyle name="objective" id="objective" onChange={updateField} required value={client.objective} >
                                 <option value={"Condicionamento físico"}>Condicionamento físico</option>
                                 <option value={"Perder peso"}>Perder peso</option>
                                 <option value={"Ganhar massa muscular"}>Ganhar massa muscular</option>
-                            </select>
-                        </div>
-                        <div>
+                            </SelectStyle>
+                        </InputLabelCnt>
+                        <ButtonCnt1>
                             <SubmitButton type="submit" value="Atualizar Cliente" />
-                        </div>
-                    </form>
+                        </ButtonCnt1>
+                    </FormStyle>
                 }
             </Main>
         </>

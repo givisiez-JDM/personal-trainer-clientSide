@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
-import { LinkButton, PageSubtitle, PageTitle, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
+import { LinkButton, PageSubtitle, PageTitle, Paragraph, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
 import { dateTransform } from "../../helpers/dateHelpers";
 import Header from "../../layouts/header/Header"
 import Main from "../../layouts/main/Main"
@@ -58,9 +58,9 @@ export default function TrainingDetails() {
           <SecondaryButton onClick={deleteTraining}>Deletar treino</SecondaryButton>
           <LinkButton to="/treinos">Voltar para lista de treinos</LinkButton>
         </header>
-        <p>Data do treino: {dateTransform(training.date)} </p>
-        <p>Cliente: {training.clientName} </p>
-        <p>Observações: {training.notes} </p>
+        <Paragraph>Data do treino: {dateTransform(training.date)} </Paragraph>
+        <Paragraph>Cliente: {training.clientName} </Paragraph>
+        <Paragraph>Observações: {training.notes} </Paragraph>
         <PageSubtitle>Lista de exercícios</PageSubtitle>
         <table>
           <thead>

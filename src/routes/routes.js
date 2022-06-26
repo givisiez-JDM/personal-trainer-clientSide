@@ -25,13 +25,14 @@ import ExerciseUpdate from "../pages/exercise/ExerciseUpdate"
 import TrainingDetails from "../pages/training/TrainingDetails"
 import TrainingNew from "../pages/training/TrainingNew"
 import TrainingUpdate from "../pages/training/TrainingUpdate"
+import { Paragraph } from "../assets/styles/Shared"
 
 const RoutesApp = () => {
     const Private = ({ Item }) => {
         const { signed, loadingLocalStorage } = useContext(LoginContext);
         
         if (loadingLocalStorage) {
-            return <p>Carregando...</p>
+            return <Paragraph>Carregando...</Paragraph>
         } else {
             return signed ? <Item /> : <Login />
         }

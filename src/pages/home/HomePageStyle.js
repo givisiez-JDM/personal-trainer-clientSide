@@ -1,12 +1,16 @@
 import styled from "styled-components";
+import { FlexRowCnt } from "../../assets/styles/Shared";
 
 export const UpdateChartsBtnCnt = styled.div`
-    max-width: 300px;
+    max-width: 500px;
+
+    @media screen and (max-width: 480px) {
+        max-width: 300px;
+        margin: 10px auto;
+    }
 `
 
-export const ChartsCnt = styled.div`
-    display: flex;
-    flex-flow: row wrap;
+export const ChartsCnt = styled(FlexRowCnt)`
     justify-content: space-between;
 `
 
@@ -20,6 +24,7 @@ export const PieChartCnt = styled.div`
 
     @media screen and (max-width: 480px) {
         max-width: 300px;
+        margin: 10px auto;
     }
 `
 
@@ -33,6 +38,7 @@ export const BarChartCnt = styled.div`
 
     @media screen and (max-width: 480px) {
         max-width: 300px;
+        margin: 10px auto;
     }
 `
 

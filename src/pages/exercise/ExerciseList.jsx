@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { LinkButton, PageTitle } from '../../assets/styles/Shared'
+import { LinkButton, PageTitle, Paragraph } from '../../assets/styles/Shared'
 import Header from '../../layouts/header/Header'
 import Main from '../../layouts/main/Main'
 import { api } from '../../services/api'
@@ -45,7 +45,7 @@ export default function ExerciseList() {
               }
           </tbody>
         </table>
-        : <p>Não existem exercícios cadastrados.</p>
+        : <Paragraph>Não existem exercícios cadastrados.</Paragraph>
       }
       </Main>
     </>
