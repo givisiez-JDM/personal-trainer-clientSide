@@ -21,7 +21,6 @@ export default function Header() {
             <HeaderLink to="/clientes"><li>Clientes</li></HeaderLink>
             <HeaderLink to="/exercicios"><li>Exercícios</li></HeaderLink>
             <HeaderLink to="/treinos"><li>Treinos</li></HeaderLink>
-            <HeaderLink to="/relatorio"><li>Relatório</li></HeaderLink>
           </ul>
         </HeaderNav>
       </HeaderCnt>

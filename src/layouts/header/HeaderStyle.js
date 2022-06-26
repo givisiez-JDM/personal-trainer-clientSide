@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 export const HeaderCnt = styled.header`
     width: 100%;
     background-color: ${props => props.theme.secondaryGreen};
+    position: sticky;
+    top: 0;
 `
 
 export const HeaderNav = styled.nav`
@@ -46,7 +48,8 @@ export const UserOptionDiv = styled.div`
     left: 0;
     display: flex;
     flex-flow: column nowrap;
-    background-color: ${props => props.theme.darkGreen};
+    background-color: ${props => props.theme.secondaryGreen};
+    cursor: pointer;
 
     a {
         text-decoration: none;
@@ -62,7 +65,7 @@ export const UserOptionDiv = styled.div`
         font-weight: 600;
         margin: 5px;
         font-size: 16px;
-        background-color: ${props => props.theme.darkGreen};
+        background-color: ${props => props.theme.secondaryGreen};
         border: none;
         text-align: left;
         padding: 0;

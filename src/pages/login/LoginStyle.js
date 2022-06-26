@@ -41,7 +41,7 @@ export const LoginInput = styled.input`
 `
 
 export const LoginSubmit = styled.input`
-    background-color: ${props => props.theme.darkGreen};
+    background-color: ${props => props.theme.secondaryGreen};
     border: none;
     color: white;
     border-radius: 5px;
@@ -49,6 +49,7 @@ export const LoginSubmit = styled.input`
     margin: 10px 0;
     width: 100%;
     font-weight: 700;
+    cursor: pointer;
 `
 
 export const GFButtonsDiv = styled.div`
@@ -70,19 +71,5 @@ export const GoogleButton = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 `
-
-// export const FacebookButton = styled.button`
-//     background-color: #1976d2;
-//     border: none;
-//     color: white;
-//     border-radius: 5px;
-//     padding: 10px;
-//     margin: 10px 0;
-//     width: 100%;
-//     max-width: 140px;
-//     font-weight: 700;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-// `

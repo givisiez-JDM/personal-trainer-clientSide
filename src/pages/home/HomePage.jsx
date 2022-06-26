@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { PrimaryButton } from "../../assets/styles/Shared";
+import BarCharts from "../../components/BarCharts";
 import PieCharts from "../../components/PieCharts";
 import { LoginContext } from "../../contexts/LoginContext";
 import { getAgeFrom } from "../../helpers/dateHelpers";
 import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";
 import { api } from "../../services/api";
-import { ChartHeader, ChartsCnt, PieChartCnt, UpdateChartsBtnCnt } from "./HomePageStyle";
+import { BarChartCnt, ChartHeader, ChartsCnt, PieChartCnt, UpdateChartsBtnCnt } from "./HomePageStyle";
 
 export default function HomePage() {
   const { loggedUser } = useContext(LoginContext);
@@ -50,11 +51,40 @@ export default function HomePage() {
       },
     ],
   });
+  
+  const [valenceChartData, setValenceChartData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: '',
+        data: [],
+        backgroundColor: [],
+        borderColor: [],
+        borderWidth: 0,
+      },
+    ],
+  });
+  
+  const [muscleChartData, setMuscleChartData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: '',
+        data: [],
+        backgroundColor: [],
+        borderColor: [],
+        borderWidth: 0,
+      },
+    ],
+  });
 
+  const chartDarkColors = ['#4cde75', '#4cb2de', '#ded94c', '#de4e4c', '#8e4cde' ]
+  const chartLightColors = ['#01934a', '#013993', '#936c01', '#931201', '#540193' ]
+  
   function updateGenderData() {
     let women = 0;
     let men = 0;
-
+    
     if (clients) {
       for (let i = 0; i < clients.length; i++) {
         if (clients[i].gender === "Feminino") {
@@ -72,10 +102,11 @@ export default function HomePage() {
           label: "Quantidade de clientes por gênero",
           data: [women, men],
           backgroundColor: [
-            "rgba(255, 99, 132, 0.2)",
-            "rgba(54, 162, 235, 0.2)",
+            "#de4e4c", "#4cb2de"
+            
           ],
-          borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
+          borderColor: ["#931201",
+          "#013993",],
           borderWidth: 1,
         },
       ],
@@ -105,16 +136,8 @@ export default function HomePage() {
         {
           label: "Objetivo dos clientes",
           data: [peso, massa, condicionamento],
-          backgroundColor: [
-            "rgba(255, 206, 86, 0.2)",
-            "rgba(75, 192, 192, 0.2)",
-            "rgba(153, 102, 255, 0.2)",
-          ],
-          borderColor: [
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)",
-          ],
+          backgroundColor: chartDarkColors,
+          borderColor: chartLightColors,
           borderWidth: 1,
         },
       ],
@@ -155,35 +178,129 @@ export default function HomePage() {
         {
           label: "Objetivo dos clientes",
           data: [menos18.length, ate30.length, ate50.length, ate70.length, mais70.length],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)',
-          ],
+          backgroundColor: chartDarkColors,
+          borderColor: chartLightColors,
           borderWidth: 1,
         },
       ],
     });
   }
 
+
+  function updateValenceData() {
+    let equilibrio = 0;
+    let flexibilidade = 0;
+    let forca = 0;
+    let mobilidade = 0;
+    let potencia = 0;
+
+    exercises.forEach(exercise => {
+
+      if (exercise.valence === 'Equilíbrio') {
+        equilibrio++
+      } 
+      if (exercise.valence === 'Flexibilidade') {
+        flexibilidade++
+      } 
+      if (exercise.valence === 'Força') {
+        forca++
+      } 
+      if (exercise.valence === 'Mobilidade') {
+        mobilidade++
+      } 
+      if (exercise.valence === 'Potência') {
+        potencia++
+      } 
+      
+    })
+
+    setValenceChartData({
+      labels: ['Equilíbrio', 'Flexibilidade', 'Força', 'Mobilidade', 'Potência'],
+      datasets: [
+        {
+          label: 'Quantidade de exercícios por valência',
+          data: [equilibrio, flexibilidade, forca, mobilidade, potencia],
+          backgroundColor: chartDarkColors,
+          borderColor: chartLightColors,
+          borderWidth: 1
+        },
+      ],
+    })
+  }
+
+  function updateMuscleData() {
+    let abdominal = 0;
+    let biceps = 0;
+    let costas = 0;
+    let dorsal = 0;
+    let ombro = 0;
+    let peito = 0;
+    let perna = 0;
+    let quatriceps = 0;
+    let triceps = 0;
+
+    exercises.forEach(exercise => {
+
+      if (exercise.muscleGroup === 'Abdominal') {
+        abdominal++
+      } 
+      if (exercise.muscleGroup === 'Biceps') {
+        biceps++
+      } 
+      if (exercise.muscleGroup === 'Costas') {
+        costas++
+      } 
+      if (exercise.muscleGroup === 'Dorsal') {
+        dorsal++
+      } 
+      if (exercise.muscleGroup === 'Ombro') {
+        ombro++
+      } 
+      if (exercise.muscleGroup === 'Peito') {
+        peito++
+      } 
+      if (exercise.muscleGroup === 'Perna') {
+        perna++
+      } 
+      if (exercise.muscleGroup === 'Quatriceps') {
+        quatriceps++
+      } 
+      if (exercise.muscleGroup === 'Triceps') {
+        triceps++
+      } 
+      
+    })
+
+    setMuscleChartData({
+      labels: ['Abdominal', 'Biceps', 'Costas', 'Dorsal', 'Ombro', 'Peito', 'Perna', 'Quatriceps', 'Triceps' ],
+      datasets: [
+        {
+          label: 'Quantidade de exercícios por grupo muscular',
+          data: [abdominal, biceps, costas, dorsal, ombro, peito, perna, quatriceps, triceps],
+          backgroundColor: chartDarkColors,
+          borderColor: chartLightColors,
+          borderWidth: 1
+        },
+      ],
+    })
+
+    console.log(muscleChartData)
+  }
+
   function updateChartsData() {
     updateGenderData();
     updateObjectiveData();
     updateAgeData();
+    updateValenceData();
+    updateMuscleData();
   }
 
   async function fetchUserData() {
+    loggedUser.isAdmin ?
+    await api.get(`/clientes/lista`).then((response) => {
+      setClients(response.data);
+    })
+    :
     await api.get(`/clientes/lista/${loggedUser._id}`).then((response) => {
       setClients(response.data);
     });
@@ -221,7 +338,16 @@ export default function HomePage() {
             <PieCharts data={ageChartData} />
           </PieChartCnt>
         </ChartsCnt>
-
+        <ChartsCnt>
+          <BarChartCnt>
+            <ChartHeader>Exercícios por valência</ChartHeader>
+            <BarCharts data={valenceChartData} />
+          </BarChartCnt>
+          <BarChartCnt>
+            <ChartHeader>Exercícios por grupo muscular</ChartHeader>
+            <BarCharts data={muscleChartData} />
+          </BarChartCnt>
+        </ChartsCnt>
       </Main>
     </>
   );
