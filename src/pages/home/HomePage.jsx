@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { PageTitle, PrimaryButton } from "../../assets/styles/Shared";
+import { PageTitle, Paragraph, PrimaryButton } from "../../assets/styles/Shared";
 import BarCharts from "../../components/BarCharts";
 import PieCharts from "../../components/PieCharts";
 import { LoginContext } from "../../contexts/LoginContext";
@@ -11,7 +11,7 @@ import { BarChartCnt, ChartHeader, ChartsCnt, PieChartCnt, UpdateChartsBtnCnt } 
 
 export default function HomePage() {
   const { loggedUser } = useContext(LoginContext);
-  const [clients, setClients] = useState();
+  const [clients, setClients] = useState([]);
   const [exercises, setExercises] = useState();
   const [genderChartData, setgenderChartData] = useState({
     labels: [],
@@ -283,8 +283,6 @@ export default function HomePage() {
         },
       ],
     })
-
-    console.log(muscleChartData)
   }
 
   function updateChartsData() {
@@ -299,6 +297,7 @@ export default function HomePage() {
     loggedUser.isAdmin ?
     await api.get(`/clientes/lista`).then((response) => {
       setClients(response.data);
+      console.log("response.data", response.data)
     })
     :
     await api.get(`/clientes/lista/${loggedUser._id}`).then((response) => {
@@ -311,8 +310,12 @@ export default function HomePage() {
     updateChartsData();
   }
 
+
   useEffect(() => {
     fetchUserData();
+
+    console.log("clients", clients)
+    console.log("clients typeof", typeof clients)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -327,15 +330,24 @@ export default function HomePage() {
         <ChartsCnt>
           <PieChartCnt>
             <ChartHeader>Quantidade de clientes por gênero</ChartHeader>
-            <PieCharts data={genderChartData} />
+            {clients.length !== 0 ?
+              <PieCharts data={genderChartData} />
+              : <Paragraph>Você ainda não possui clientes</Paragraph>
+            }
           </PieChartCnt>
           <PieChartCnt>
             <ChartHeader>Objetivo dos clientes</ChartHeader>
-            <PieCharts data={objectiveChartData} />
+            {clients.length !== 0 ?
+              <PieCharts data={objectiveChartData} />
+              : <Paragraph>Você ainda não possui clientes</Paragraph>
+            }
           </PieChartCnt>
           <PieChartCnt>
             <ChartHeader>Idade dos clientes</ChartHeader>
-            <PieCharts data={ageChartData} />
+            {clients.length !== 0 ?
+              <PieCharts data={ageChartData} />
+            : <Paragraph>Você ainda não possui clientes</Paragraph>
+            }
           </PieChartCnt>
         </ChartsCnt>
         <ChartsCnt>

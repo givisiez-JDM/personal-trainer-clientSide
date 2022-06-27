@@ -25,12 +25,11 @@ export default function PhysicalEvaluationList() {
         {evaluations.length <= 0  
           && <Paragraph>Você ainda não tem avaliações físicas.</Paragraph>
         }
-        <LinkButton to="/avaliacao/nova-avaliacao">Adicionar nova avaliação física</LinkButton>
         {evaluations.length > 0 &&
           <ul>
             {evaluations.map((evaluation) => {
               return(
-                  <li key={evaluation._id}><Link to={`/avaliacao/${evaluation._id}`}>{dateTransform(evaluation.createdAt)} - {evaluation.personalTrainerId}, {evaluation.clientId}</Link></li>
+                  <li key={evaluation._id}><Link to={`/avaliacao/${evaluation._id}`}>{dateTransform(evaluation.createdAt)} - Personal: {evaluation.personalTrainerName}, Cliente: {evaluation.clientName}</Link></li>
                 )})
               }
           </ul>

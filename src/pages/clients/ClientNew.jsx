@@ -73,8 +73,6 @@ export default function NewClient() {
       ...client,
       [e.target.name]: e.target.value,
     });
-
-    console.log(client);
   };
 
   return (
@@ -98,7 +96,6 @@ export default function NewClient() {
                 defaultValue="Admin"
               >
                 {users.map((user) => {
-                  console.log("user: ", user);
                   return (
                     <option key={user._id} value={user.name}>
                       {user.name}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { LinkButton, PageTitle, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
+import { ButtonCnt2, LinkButton, PageTitle, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
 import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";
 import { api } from "../../services/api";
@@ -38,10 +38,12 @@ export default function PhysicEvaluationDetails() {
       <Header />
       <Main>
         <PageTitle>Avaliação física</PageTitle>
-        <PrimaryButton onClick={updateEvaluation}>Alterar dados da avaliação</PrimaryButton>
-        <SecondaryButton onClick={deleteEvaluation}>Deletar avaliação</SecondaryButton>
+        <ButtonCnt2>
+          <PrimaryButton onClick={updateEvaluation}>Alterar dados da avaliação</PrimaryButton>
+          <SecondaryButton onClick={deleteEvaluation}>Deletar avaliação</SecondaryButton>
+          <LinkButton to={`/clientes/${evaluation.clientId}`}>Voltar para cliente</LinkButton>
+        </ButtonCnt2>
         <ComponentToPrint evaluation={evaluation} />
-        <LinkButton to={`/clientes/${evaluation.clientId}`}>Voltar para cliente</LinkButton>
       </Main>
     </>
   )

@@ -7,7 +7,7 @@ import { LoginContext } from "../../contexts/LoginContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { dateInverted } from "../../helpers/dateHelpers";
-import { ButtonCnt1, FormStyle, InputLabel, InputLabelCnt, InputStyle, PageSubtitle, PageTitle, SubmitButton } from "../../assets/styles/Shared";
+import { ButtonCnt1, FormStyle, InputLabel, InputLabelCnt, InputStyle, PageSubtitle, PageTitle, SubmitButton, TextareaStyle } from "../../assets/styles/Shared";
 
 export default function PhysicalEvaluationNew() {
   const { loggedUser } = useContext(LoginContext);
@@ -16,8 +16,10 @@ export default function PhysicalEvaluationNew() {
 
     const [evaluation, setEvaluation] = useState({
         createdAt: null,
-        personalTrainerId: loggedUser._id,
+        personalTrainerId: "",
         clientId: "",
+        personalTrainerName: "",
+        clientName: "",
         weight: 0,
         height: 0,
         IMC: 0,
@@ -48,7 +50,9 @@ export default function PhysicalEvaluationNew() {
             const { 
                 createdAt,
                 personalTrainerId,
+                personalTrainerName,
                 clientId,
+                clientName,
                 weight,
                 height,
                 IMC,
@@ -75,7 +79,9 @@ export default function PhysicalEvaluationNew() {
             setEvaluation({
                 createdAt,
                 personalTrainerId,
+                personalTrainerName,
                 clientId,
+                clientName,
                 weight,
                 height,
                 IMC,
@@ -109,7 +115,9 @@ export default function PhysicalEvaluationNew() {
         const {
             createdAt,
             personalTrainerId,
+            personalTrainerName,
             clientId,
+            clientName,
             weight,
             height,
             IMC,
@@ -136,7 +144,9 @@ export default function PhysicalEvaluationNew() {
         api.put(`/avaliacao/editar-avaliacao/${evaluation._id}`, {
             createdAt,
             personalTrainerId,
+            personalTrainerName,
             clientId,
+            clientName,
             weight,
             height,
             IMC,
@@ -267,7 +277,7 @@ export default function PhysicalEvaluationNew() {
                     </div>
                     <InputLabelCnt>
                         <InputLabel htmlFor="notes">Observações</InputLabel>
-                        <textarea name="notes" id="notes" cols="30" rows="10" onChange={updateField} value={evaluation.notes} />
+                        <TextareaStyle name="notes" id="notes" cols="30" rows="10" onChange={updateField} value={evaluation.notes} />
                     </InputLabelCnt>
                     <ButtonCnt1>
                         <SubmitButton type="submit" value="Atualizar avaliação" />

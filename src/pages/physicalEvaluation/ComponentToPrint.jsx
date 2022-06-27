@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactToPrint from 'react-to-print'
-import { PageSubtitle, PageTitle, Paragraph, PrimaryButton } from '../../assets/styles/Shared';
+import { MarginCnt, PageSubtitle, PageTitle, Paragraph, PrimaryButton } from '../../assets/styles/Shared';
 import { dateTransform } from "../../helpers/dateHelpers";
 
 export class ComponentToPrint extends Component {
@@ -16,7 +16,7 @@ export class ComponentToPrint extends Component {
             documentTitle={`Avaliação física do dia ${dateTransform(this.props.evaluation.createdAt)}`}
             pageStyle='print'
           />
-          <div ref={el => (this.componentRef = el) }>
+          <MarginCnt ref={el => (this.componentRef = el) }>
             <PageTitle>Detalhes da Avaliação Física</PageTitle>
             <Paragraph>Data da avaliação: {this.props.evaluation.createdAt !== "" ? dateTransform(this.props.evaluation.createdAt) : 'Carregando...'} </Paragraph>
             <Paragraph>Peso (em kg): {this.props.evaluation.weight !== "" ? this.props.evaluation.weight : 'Carregando...'} </Paragraph>
@@ -41,7 +41,7 @@ export class ComponentToPrint extends Component {
             <Paragraph>Abdôminal (em mm): {this.props.evaluation.fatAbdominal !== 0 ? this.props.evaluation.fatAbdominal : 'Carregando...'}</Paragraph>
             <Paragraph>Femural médio (em mm): {this.props.evaluation.fatMidFemoral !== 0 ? this.props.evaluation.fatMidFemoral : 'Carregando...'}</Paragraph>
             <Paragraph>Observações: <br /> {this.props.evaluation.notes !== 0 ? this.props.evaluation.notes : 'Carregando...'}</Paragraph>
-          </div>
+          </MarginCnt>
         </>
       );
     }

@@ -110,6 +110,20 @@ export const InputStyle = styled.input`
     }
 `
 
+export const TextareaStyle = styled.input`
+    padding: 10px;
+    border-radius: 15px;
+    margin: 10px 0;
+    width: 100%;
+    height: 150px;
+    max-width: 778px;
+    white-space: pre-wrap;
+    
+    @media (max-width: 480px) {
+        width: 278px;
+    }
+`
+
 export const SelectStyle = styled.select`
     padding: 10px;
     border-radius: 15px;

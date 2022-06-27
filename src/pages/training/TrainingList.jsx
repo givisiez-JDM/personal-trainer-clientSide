@@ -1,4 +1,4 @@
-import { Hidden, Table, TableBody, TableHead, TableCell } from '@mui/material'
+import { Hidden, Table, TableBody, TableHead, TableCell, TableContainer } from '@mui/material'
 import { useContext, useEffect, useState } from 'react'
 import { ButtonCnt1, LinkButton, PageSubtitle, PageTitle, Paragraph, WrittenLink } from '../../assets/styles/Shared'
 import { LoginContext } from '../../contexts/LoginContext'
@@ -33,6 +33,7 @@ export default function TrainingList() {
         </ButtonCnt1>
         <PageSubtitle>Treinos agendados</PageSubtitle>
         {trainings.length > 0 ?
+        <TableContainer>
           <Table>
             <TableHead>
               <tr>
@@ -59,6 +60,7 @@ export default function TrainingList() {
                 }
             </TableBody>
           </Table>
+        </TableContainer>
         : <Paragraph>Não existem treinos cadastrados.</Paragraph>
       }
       </Main>

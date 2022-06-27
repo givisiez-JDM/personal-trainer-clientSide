@@ -1,6 +1,7 @@
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ButtonCnt1, ButtonCnt2, InputLabel, InputLabelCnt, InputStyle, PageSubtitle, PageSubtitle3, PageTitle, Paragraph, PrimaryButton, SecondaryButton, SelectStyle } from "../../assets/styles/Shared";
+import { ButtonCnt1, ButtonCnt2, InputLabel, InputLabelCnt, InputStyle, PageSubtitle, PageSubtitle3, PageTitle, Paragraph, PrimaryButton, SecondaryButton, SelectStyle, TextareaStyle } from "../../assets/styles/Shared";
 import { LoginContext } from "../../contexts/LoginContext";
 import { dateInverted } from "../../helpers/dateHelpers";
 import Header from "../../layouts/header/Header";
@@ -152,7 +153,7 @@ export default function TrainingUpdate() {
           </InputLabelCnt>
           <InputLabelCnt>
               <InputLabel htmlFor="notes">Observações: </InputLabel>
-              <textarea name="notes" id="notes" onChange={updateFieldTraining} value={training.notes} />
+              <TextareaStyle name="notes" id="notes" onChange={updateFieldTraining} value={training.notes} />
           </InputLabelCnt>
           <>
             <PageSubtitle>Lista de exercícios</PageSubtitle>
@@ -188,9 +189,9 @@ export default function TrainingUpdate() {
               </>
             }
             {newExercises.length > 0
-            ? <table>
-              <thead>
-                <tr>
+            ? <Table>
+              <TableHead>
+                <TableRow>
                     <th>Nome</th>
                     <th>Grupo muscular</th>
                     <th>Valência</th>
@@ -198,24 +199,24 @@ export default function TrainingUpdate() {
                     <th>Série</th>
                     <th>Repetição</th>
                     <th>Carga</th>
-                </tr>
-              </thead>
-              <tbody>
+                </TableRow>
+              </TableHead>
+              <TableBody>
                 {newExercises.map((exercise) => {
                   return(
-                    <tr key={exercise.name}>
-                      <td>{exercise.name}</td>
-                      <td>{exercise.muscleGroup}</td>
-                      <td>{exercise.valence}</td>
-                      <td>{exercise.equipment}</td>
-                      <td>{exercise.serie}</td>
-                      <td>{exercise.repetition}</td>
-                      <td>{exercise.load}</td>
-                    </tr>
+                    <TableRow key={exercise.name}>
+                      <TableCell align="center">{exercise.name}</TableCell>
+                      <TableCell align="center">{exercise.muscleGroup}</TableCell>
+                      <TableCell align="center">{exercise.valence}</TableCell>
+                      <TableCell align="center">{exercise.equipment}</TableCell>
+                      <TableCell align="center">{exercise.serie}</TableCell>
+                      <TableCell align="center">{exercise.repetition}</TableCell>
+                      <TableCell align="center">{exercise.load}</TableCell>
+                    </TableRow>
                     )})
                   }
-              </tbody>
-            </table>
+              </TableBody>
+            </Table>
             : <Paragraph>Você ainda não adicionou exercícios</Paragraph> 
             }
           </>

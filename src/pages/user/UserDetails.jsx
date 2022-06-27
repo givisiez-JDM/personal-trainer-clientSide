@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ButtonCnt2, MarginCnt, PageTitle, Paragraph, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
+import { LoginContext } from "../../contexts/LoginContext";
 import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";
 import { api } from "../../services/api";
@@ -8,6 +9,7 @@ import { api } from "../../services/api";
 export default function UserDetails() {
   let { userId } = useParams();
   let navigate = useNavigate();
+  const { signOut } = useContext(LoginContext);
 
   const [user, setUser] = useState([])
 
@@ -24,7 +26,7 @@ export default function UserDetails() {
     await api.delete(`/usuarios/deletar-usuario/${user._id}`)
     .then(() => {
       alert('Usuário deletado com sucesso')
-      navigate("/usuarios")
+      signOut()
     })
   }
 

@@ -1,6 +1,7 @@
+import { Table, TableBody, TableCell, TableHead, TableRow, TableContainer } from "@mui/material";
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
-import { LinkButton, PageSubtitle, PageTitle, Paragraph, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
+import { ButtonCnt3, LinkButton, MarginCnt, PageSubtitle, PageTitle, Paragraph, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
 import { dateTransform } from "../../helpers/dateHelpers";
 import Header from "../../layouts/header/Header"
 import Main from "../../layouts/main/Main"
@@ -54,42 +55,48 @@ export default function TrainingDetails() {
       <Main>
         <header>
           <PageTitle>Detalhes do Treino</PageTitle>
-          <PrimaryButton onClick={updateTraining}>Alterar dados do treino</PrimaryButton>
-          <SecondaryButton onClick={deleteTraining}>Deletar treino</SecondaryButton>
-          <LinkButton to="/treinos">Voltar para lista de treinos</LinkButton>
+          <ButtonCnt3>
+            <PrimaryButton onClick={updateTraining}>Alterar dados do treino</PrimaryButton>
+            <SecondaryButton onClick={deleteTraining}>Deletar treino</SecondaryButton>
+            <LinkButton to="/treinos">Voltar para lista de treinos</LinkButton>
+          </ButtonCnt3>
         </header>
-        <Paragraph>Data do treino: {dateTransform(training.date)} </Paragraph>
-        <Paragraph>Cliente: {training.clientName} </Paragraph>
-        <Paragraph>Observações: {training.notes} </Paragraph>
-        <PageSubtitle>Lista de exercícios</PageSubtitle>
-        <table>
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Grupo muscular</th>
-              <th>Valência</th>
-              <th>Equipamento</th>
-              <th>Série</th>
-              <th>Repetição</th>
-              <th>Carga</th>
-            </tr>
-          </thead>
-          <tbody>
-            {training.exercises.map((exercise) => {
-              return(
-                <tr key={exercise.name}>
-                  <td>{exercise.name}</td>
-                  <td>{exercise.muscleGroup}</td>
-                  <td>{exercise.valence}</td>
-                  <td>{exercise.equipment}</td>
-                  <td>{exercise.serie}</td>
-                  <td>{exercise.repetition}</td>
-                  <td>{exercise.load}</td>
-                </tr>
-                )})
-              }
-          </tbody>
-        </table>
+        <MarginCnt>
+          <Paragraph>Data do treino: {dateTransform(training.date)} </Paragraph>
+          <Paragraph>Cliente: {training.clientName} </Paragraph>
+          <Paragraph>Observações: {training.notes} </Paragraph>
+          <PageSubtitle>Lista de exercícios</PageSubtitle>
+        </MarginCnt>
+        <TableContainer>  
+          <Table>
+            <TableHead>
+              <TableRow>
+                <th>Nome</th>
+                <th>Grupo muscular</th>
+                <th>Valência</th>
+                <th>Equipamento</th>
+                <th>Série</th>
+                <th>Repetição</th>
+                <th>Carga</th>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {training.exercises.map((exercise) => {
+                return(
+                  <TableRow key={exercise.name}>
+                    <TableCell align="center">{exercise.name}</TableCell>
+                    <TableCell align="center">{exercise.muscleGroup}</TableCell>
+                    <TableCell align="center">{exercise.valence}</TableCell>
+                    <TableCell align="center">{exercise.equipment}</TableCell>
+                    <TableCell align="center">{exercise.serie}</TableCell>
+                    <TableCell align="center">{exercise.repetition}</TableCell>
+                    <TableCell align="center">{exercise.load}</TableCell>
+                  </TableRow>
+                  )})
+                }
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Main>
     </>
   )
