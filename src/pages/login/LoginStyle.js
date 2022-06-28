@@ -13,7 +13,7 @@ export const LoginCnt = styled.main`
 export const FormCnt = styled.main`
     background-color: white;
     max-width: 400px;
-    margin: 30vh auto;
+    margin: 10vh auto;
     padding: 20px;
     display: flex;
     flex-direction: column;

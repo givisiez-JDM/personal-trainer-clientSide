@@ -25,7 +25,7 @@ export default function PhysicalEvaluationNew() {
   const [client, setClient] = useState();
 
   const [evaluation, setevaluation] = useState({
-    createdAt: null,
+    date: null,
     personalTrainerId: "",
     clientId: "",
     personalTrainerName: "",
@@ -33,6 +33,12 @@ export default function PhysicalEvaluationNew() {
     weight: 0,
     height: 0,
     IMC: 0,
+    measurements: {},
+    fatData: {},
+    notes: ""
+  });
+
+  const [measurements, setmeasurements] = useState({
     abdomenMeasure: 0,
     neckMeasure: 0,
     chestMeasure: 0,
@@ -42,14 +48,16 @@ export default function PhysicalEvaluationNew() {
     wristsMeasure: 0,
     thighMeasure: 0,
     calfMeasure: 0,
+  });
+
+  const [fatData, setfatData] = useState({
     fatSubscapularis: 0,
     fatTriceps: 0,
     fatBreastplate: 0,
     fatMidAxillary: 0,
     fatSuprailiac: 0,
     fatAbdominal: 0,
-    fatMidFemoral: 0,
-    notes: "",
+    fatMidFemoral: 0
   });
 
   function createEvaluation(e) {
@@ -61,64 +69,37 @@ export default function PhysicalEvaluationNew() {
       clientId: client._id,
       personalTrainerName: loggedUser.name,
       clientName: client.name,
+      measurements: {
+        abdomenMeasure: measurements.abdomenMeasure,
+        neckMeasure: measurements.neckMeasure,
+        chestMeasure: measurements.chestMeasure,
+        hipMeasure: measurements.hipMeasure,
+        armsMeasure: measurements.armsMeasure,
+        forearmsMeasure: measurements.forearmsMeasure,
+        wristsMeasure: measurements.wristsMeasure,
+        thighMeasure: measurements.thighMeasure,
+        calfMeasure: measurements.calfMeasure},
+      fatData: {fatSubscapularis: fatData.fatSubscapularis,
+        fatTriceps: fatData.fatTriceps,
+        fatBreastplate: fatData.fatBreastplate,
+        fatMidAxillary: fatData.fatMidAxillary,
+        fatSuprailiac: fatData.fatSuprailiac,
+        fatAbdominal: fatData.fatAbdominal,
+        fatMidFemoral: fatData.fatMidFemoral}
     });
 
-    const {
-      createdAt,
-      personalTrainerId,
-      personalTrainerName,
-      clientId,
-      clientName,
-      weight,
-      height,
-      IMC,
-      abdomenMeasure,
-      neckMeasure,
-      chestMeasure,
-      hipMeasure,
-      armsMeasure,
-      forearmsMeasure,
-      wristsMeasure,
-      thighMeasure,
-      calfMeasure,
-      fatSubscapularis,
-      fatTriceps,
-      fatBreastplate,
-      fatMidAxillary,
-      fatSuprailiac,
-      fatAbdominal,
-      fatMidFemoral,
-      notes,
-    } = evaluation;
-
-    api
-      .post("/avaliacao/nova-avaliacao", {
-        createdAt,
-        personalTrainerId,
-        personalTrainerName,
-        clientId,
-        clientName,
-        weight,
-        height,
-        IMC,
-        abdomenMeasure,
-        neckMeasure,
-        chestMeasure,
-        hipMeasure,
-        armsMeasure,
-        forearmsMeasure,
-        wristsMeasure,
-        thighMeasure,
-        calfMeasure,
-        fatSubscapularis,
-        fatTriceps,
-        fatBreastplate,
-        fatMidAxillary,
-        fatSuprailiac,
-        fatAbdominal,
-        fatMidFemoral,
-        notes,
-      })
+    api.post("/avaliacao/nova-avaliacao", {
+      date: evaluation.date,
+      personalTrainerId: evaluation.personalTrainerId,
+      personalTrainerName: evaluation.personalTrainerName,
+      clientId: evaluation.clientId,
+      clientName: evaluation.clientName,
+      measurements: evaluation.measurements,
+      fatData: evaluation.fatData,
+      weight: evaluation.weight,
+      height: evaluation.height,
+      notes: evaluation.notes
+    })
       .then(() => {
         alert(`Avaliação física feita com sucesso!`);
         navigate(`/clientes/${clientId}`);
@@ -131,9 +112,23 @@ export default function PhysicalEvaluationNew() {
     });
   }, []);
 
-  const updateField = (e) => {
+  const updateFieldEvaluation = (e) => {
     setevaluation({
       ...evaluation,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const updateFieldMeasurements = (e) => {
+    setmeasurements({
+      ...measurements,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const updateFieldFatData = (e) => {
+    setfatData({
+      ...fatData,
       [e.target.name]: e.target.value,
     });
   };
@@ -147,12 +142,12 @@ export default function PhysicalEvaluationNew() {
         </header>
         <FormStyle onSubmit={createEvaluation}>
           <InputLabelCnt>
-            <InputLabel htmlFor="createdAt">Data da avaliação:</InputLabel>
+            <InputLabel htmlFor="date">Data da avaliação:</InputLabel>
             <InputStyle
               type="date"
-              name="createdAt"
-              id="createdAt"
-              onChange={updateField}
+              name="date"
+              id="date"
+              onChange={updateFieldEvaluation}
               required
             />
           </InputLabelCnt>
@@ -163,8 +158,9 @@ export default function PhysicalEvaluationNew() {
               step=".01"
               name="weight"
               id="weight"
-              onChange={updateField}
+              onChange={updateFieldEvaluation}
               required
+              min="0"
             />
           </InputLabelCnt>
           <InputLabelCnt>
@@ -174,8 +170,9 @@ export default function PhysicalEvaluationNew() {
               step=".01"
               name="height"
               id="height"
-              onChange={updateField}
+              onChange={updateFieldEvaluation}
               required
+              min="0"
             />
           </InputLabelCnt>
           <InputLabelCnt>
@@ -185,7 +182,6 @@ export default function PhysicalEvaluationNew() {
               step=".01"
               name="IMC"
               id="IMC"
-              onChange={updateField}
               disabled
               value={
                 evaluation.weight > 0 && evaluation.height > 0
@@ -204,8 +200,9 @@ export default function PhysicalEvaluationNew() {
               type="number"
               name="abdomenMeasure"
               id="abdomenMeasure"
-              onChange={updateField}
+              onChange={updateFieldMeasurements}
               required
+              min="0"
             />
           </InputLabelCnt>
           <InputLabelCnt>
@@ -214,8 +211,9 @@ export default function PhysicalEvaluationNew() {
               type="number"
               name="neckMeasure"
               id="neckMeasure"
-              onChange={updateField}
+              onChange={updateFieldMeasurements}
               required
+              min="0"
             />
           </InputLabelCnt>
           <InputLabelCnt>
@@ -224,8 +222,9 @@ export default function PhysicalEvaluationNew() {
               type="number"
               name="chestMeasure"
               id="chestMeasure"
-              onChange={updateField}
+              onChange={updateFieldMeasurements}
               required
+              min="0"
             />
           </InputLabelCnt>
           <InputLabelCnt>
@@ -234,8 +233,9 @@ export default function PhysicalEvaluationNew() {
               type="number"
               name="hipMeasure"
               id="hipMeasure"
-              onChange={updateField}
+              onChange={updateFieldMeasurements}
               required
+              min="0"
             />
           </InputLabelCnt>
           <InputLabelCnt>
@@ -244,8 +244,9 @@ export default function PhysicalEvaluationNew() {
               type="number"
               name="armsMeasure"
               id="armsMeasure"
-              onChange={updateField}
+              onChange={updateFieldMeasurements}
               required
+              min="0"
             />
           </InputLabelCnt>
           <InputLabelCnt>
@@ -254,8 +255,9 @@ export default function PhysicalEvaluationNew() {
               type="number"
               name="forearmsMeasure"
               id="forearmsMeasure"
-              onChange={updateField}
+              onChange={updateFieldMeasurements}
               required
+              min="0"
             />
           </InputLabelCnt>
           <InputLabelCnt>
@@ -264,8 +266,9 @@ export default function PhysicalEvaluationNew() {
               type="number"
               name="wristsMeasure"
               id="wristsMeasure"
-              onChange={updateField}
+              onChange={updateFieldMeasurements}
               required
+              min="0"
             />
           </InputLabelCnt>
           <InputLabelCnt>
@@ -274,8 +277,9 @@ export default function PhysicalEvaluationNew() {
               type="number"
               name="thighMeasure"
               id="thighMeasure"
-              onChange={updateField}
+              onChange={updateFieldMeasurements}
               required
+              min="0"
             />
           </InputLabelCnt>
           <InputLabelCnt>
@@ -284,8 +288,9 @@ export default function PhysicalEvaluationNew() {
               type="number"
               name="calfMeasure"
               id="calfMeasure"
-              onChange={updateField}
+              onChange={updateFieldMeasurements}
               required
+              min="0"
             />
           </InputLabelCnt>
           <PageSubtitle>Dobras cutâneas (7 dobras)</PageSubtitle>
@@ -297,8 +302,9 @@ export default function PhysicalEvaluationNew() {
               type="number"
               name="fatSubscapularis"
               id="fatSubscapularis"
-              onChange={updateField}
+              onChange={updateFieldFatData}
               required
+              min="0"
             />
           </InputLabelCnt>
           <InputLabelCnt>
@@ -307,8 +313,9 @@ export default function PhysicalEvaluationNew() {
               type="number"
               name="fatTriceps"
               id="fatTriceps"
-              onChange={updateField}
+              onChange={updateFieldFatData}
               required
+              min="0"
             />
           </InputLabelCnt>
           <InputLabelCnt>
@@ -317,8 +324,9 @@ export default function PhysicalEvaluationNew() {
               type="number"
               name="fatBreastplate"
               id="fatBreastplate"
-              onChange={updateField}
+              onChange={updateFieldFatData}
               required
+              min="0"
             />
           </InputLabelCnt>
           <InputLabelCnt>
@@ -329,8 +337,9 @@ export default function PhysicalEvaluationNew() {
               type="number"
               name="fatMidAxillary"
               id="fatMidAxillary"
-              onChange={updateField}
+              onChange={updateFieldFatData}
               required
+              min="0"
             />
           </InputLabelCnt>
           <InputLabelCnt>
@@ -341,30 +350,33 @@ export default function PhysicalEvaluationNew() {
               type="number"
               name="fatSuprailiac"
               id="fatSuprailiac"
-              onChange={updateField}
+              onChange={updateFieldFatData}
               required
+              min="0"
             />
           </InputLabelCnt>
           <InputLabelCnt>
-            <InputLabel htmlFor="fatAbdominal">Abdôminal (em mm)</InputLabel>
+            <InputLabel htmlFor="fatAbdominal">Abdominal (em mm)</InputLabel>
             <InputStyle
               type="number"
               name="fatAbdominal"
               id="fatAbdominal"
-              onChange={updateField}
+              onChange={updateFieldFatData}
               required
+              min="0"
             />
           </InputLabelCnt>
           <InputLabelCnt>
             <InputLabel htmlFor="fatMidFemoral">
-              Femural médio (em mm)
+              Femoral médio (em mm)
             </InputLabel>
             <InputStyle
               type="number"
               name="fatMidFemoral"
               id="fatMidFemoral"
-              onChange={updateField}
+              onChange={updateFieldFatData}
               required
+              min="0"
             />
           </InputLabelCnt>
           <InputLabelCnt>
@@ -374,7 +386,7 @@ export default function PhysicalEvaluationNew() {
               id="notes"
               cols="30"
               rows="10"
-              onChange={updateField}
+              onChange={updateFieldFatData}
             />
           </InputLabelCnt>
           <ButtonCnt1>

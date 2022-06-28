@@ -82,7 +82,7 @@ export default function ClientDetails() {
                         {evaluations.map((evaluation) => {
                             return(
                                 <tr key={evaluation._id}>
-                                    <TableCell align="center">{dateTransform(evaluation.createdAt)}</TableCell>
+                                    <TableCell align="center">{dateTransform(evaluation.date)}</TableCell>
                                     <TableCell align="center">{evaluation.notes}</TableCell>
                                     <TableCell align="center"><Link to={`/avaliacao/${evaluation._id}`}>Ver avaliação completa</Link></TableCell>
                                 </tr>

@@ -1,6 +1,6 @@
-import { FormCnt, LoginCnt, LoginForm, LoginInput, LoginLogo } from "./LoginStyle";
+import { FormCnt, GFButtonsDiv, GoogleButton, LoginCnt, LoginForm, LoginInput, LoginLogo } from "./LoginStyle";
 import { ThemeProvider } from "styled-components";
-import { InputLabel, mainThemeColor, SubmitButton, WrittenLink } from "../../assets/styles/Shared";
+import { InputLabel, mainThemeColor, Paragraph, SubmitButton, WrittenLink } from "../../assets/styles/Shared";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { api } from "../../services/api";
@@ -8,6 +8,7 @@ import Logo from "../../assets/images/logo/logo-horizontal.png"
 import VisibilityOnIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { LoginContext } from "../../contexts/LoginContext";
+import GoogleIcon from '@mui/icons-material/Google';
 
 export default function Register() {
   const [user, setUser] = useState({
@@ -16,6 +17,13 @@ export default function Register() {
     password: null,
     email: ""
   })
+
+  const googleAuth = () => {
+		window.open(
+			`${process.env.REACT_APP_API_URL}/auth/google/callback`,
+			"_self"
+		);
+	};
 
   const [passwordShown, setPasswordShown] = useState(false)
 
@@ -70,6 +78,10 @@ export default function Register() {
             </div>
             <SubmitButton type="submit" value="Cadastrar" />
           </LoginForm>
+          <Paragraph>Ou</Paragraph>
+            <GFButtonsDiv>
+              <GoogleButton onClick={googleAuth}>Faça cadastro com <GoogleIcon />oogle</GoogleButton>
+            </GFButtonsDiv>
           <WrittenLink to="/">Já tem cadastro? Clique aqui</WrittenLink>
         </FormCnt>
       </LoginCnt>

@@ -40,7 +40,8 @@ export default function ExerciseNew() {
                     </InputLabelCnt>
                     <InputLabelCnt>
                         <InputLabel htmlFor="muscleGroup">Grupo muscular: </InputLabel>
-                        <SelectStyle name="muscleGroup" id="muscleGroup" onChange={updateField} required defaultValue="Abdominal" >
+                        <SelectStyle name="muscleGroup" id="muscleGroup" onChange={updateField} required >
+                            <option value="default" disabled selected>Escolha o grupo muscular</option>
                             <option value={"Abdominal"} selected>Abdominal</option>
                             <option value={"Biceps"}>Biceps</option>
                             <option value={"Costas"}>Costas</option>
@@ -55,6 +56,7 @@ export default function ExerciseNew() {
                     <InputLabelCnt>
                         <InputLabel htmlFor="valence">Valência: </InputLabel>
                         <SelectStyle name="valence" id="valence" onChange={updateField} required defaultValue="Abdominal" >
+                            <option value="default" disabled selected>Escolha a valência</option>
                             <option value={"Equilíbrio"}>Equilíbrio</option>
                             <option value={"Flexibilidade"}>Flexibilidade</option>
                             <option value={"Força"}>Força</option>
