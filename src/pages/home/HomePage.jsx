@@ -297,7 +297,6 @@ export default function HomePage() {
     loggedUser.isAdmin ?
     await api.get(`/clientes/lista`).then((response) => {
       setClients(response.data);
-      console.log("response.data", response.data)
     })
     :
     await api.get(`/clientes/lista/${loggedUser._id}`).then((response) => {
@@ -313,9 +312,6 @@ export default function HomePage() {
 
   useEffect(() => {
     fetchUserData();
-
-    console.log("clients", clients)
-    console.log("clients typeof", typeof clients)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
