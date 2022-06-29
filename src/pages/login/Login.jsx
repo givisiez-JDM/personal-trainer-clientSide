@@ -15,7 +15,8 @@ export default function Login() {
     password: ""
   })
 
-  const { signIn, signInWithGoogle } = useContext(LoginContext)
+  const { signIn } = useContext(LoginContext)
+  // const { signIn, signInWithGoogle } = useContext(LoginContext)
 
   const [passwordShown, setPasswordShown] = useState(false)
 
@@ -55,7 +56,8 @@ export default function Login() {
             <SubmitButton type="submit" value="Login" />
             <Paragraph>Ou</Paragraph>
             <GFButtonsDiv>
-              <GoogleButton onClick={signInWithGoogle}>Faça login com <GoogleIcon />oogle</GoogleButton>
+              {/* <GoogleButton onClick={signInWithGoogle}>Faça login com <GoogleIcon />oogle</GoogleButton> */}
+              <GoogleButton>Faça login com <GoogleIcon />oogle</GoogleButton>
             </GFButtonsDiv>
             <WrittenLink to="/registrar">Ainda não tem cadastro? Registre-se aqui</WrittenLink>
           </LoginForm>

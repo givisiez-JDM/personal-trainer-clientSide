@@ -36,14 +36,14 @@ export const LoginProvider = ({ children }) => {
         }
     }
 
-    const signInWithGoogle = () => {
-        window.open(
-            // `${process.env.REACT_APP_API_URL}/auth/google/callback`,
-            `https://personalandtraining.netlify.app/auth/google/callback`,
-            "_self"
-        )
-        navigate('/')
-      }
+    // const signInWithGoogle = () => {
+    //     window.open(
+    //         // `${process.env.REACT_APP_API_URL}/auth/google/callback`,
+    //         `https://personalandtraining.netlify.app/auth/google/callback`,
+    //         "_self"
+    //     )
+    //     navigate('/')
+    //   }
 
     const signOut = () => {
         setLoggedUser(null)
@@ -52,11 +52,11 @@ export const LoginProvider = ({ children }) => {
         navigate('/login')
     }
 
-    const signOutWithGoogle = () => {
-		// window.open(`${process.env.REACT_APP_API_URL}/auth/logout`, "_self");
-		window.open(`https://personalandtraining.netlify.app/auth/logout`, "_self");
-        navigate('/login')
-	};
+    // const signOutWithGoogle = () => {
+	// 	// window.open(`${process.env.REACT_APP_API_URL}/auth/logout`, "_self");
+	// 	window.open(`https://personalandtraining.netlify.app/auth/logout`, "_self");
+    //     navigate('/login')
+	// };
 
     return (
         <LoginContext.Provider value={{
@@ -64,9 +64,9 @@ export const LoginProvider = ({ children }) => {
             signed: !!loggedUser,
             loadingLocalStorage,
             signIn,
-            signInWithGoogle,
+            // signInWithGoogle,
             signOut,
-            signOutWithGoogle
+            // signOutWithGoogle
         }}>
             {children}
         </LoginContext.Provider>
