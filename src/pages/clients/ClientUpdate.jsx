@@ -3,7 +3,7 @@ import Main from "../../layouts/main/Main";
 import { api } from '../../services/api'
 import { useState } from "react";
 import { useContext } from "react";
-import { LoginContext } from "../../contexts/LoginContext";
+import { LoginContext } from "../../services/contexts/LoginContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { dateInverted } from "../../helpers/dateHelpers";
@@ -102,7 +102,6 @@ export default function ClientUpdate() {
                             <InputLabel htmlFor="name">Nome completo</InputLabel>
                             <InputStyle type="text" name="name" id="name" onChange={updateField} required value={client.name} />
                         </InputLabelCnt>
-                        <div>
                             <InputLabelCnt>
                                 <InputLabel htmlFor="birthDate">Data de nascimento</InputLabel>
                                 <InputStyle type="date" name="birthDate" id="birthDate" onChange={updateField} required value={dateInverted(client.birthDate)} />
@@ -114,8 +113,6 @@ export default function ClientUpdate() {
                                     <option value={"Masculino"}>Masculino</option>
                                 </SelectStyle>
                             </InputLabelCnt>
-                        </div>
-                        <div>
                             <InputLabelCnt>
                                 <InputLabel htmlFor="phone">Telefone</InputLabel>
                                 <InputStyle type="tel" name="phone" id="phone" onChange={updateField} required  value={client.phone} />
@@ -124,7 +121,6 @@ export default function ClientUpdate() {
                                 <InputLabel htmlFor="email">E-mail</InputLabel>
                                 <InputStyle type="email" name="email" id="email" onChange={updateField} required  value={client.email} />
                             </InputLabelCnt>
-                        </div>
                         <InputLabelCnt>
                             <InputLabel htmlFor="profession">Profissão</InputLabel>
                             <InputStyle type="text" name="profession" id="profession" onChange={updateField} required  value={client.profession} />

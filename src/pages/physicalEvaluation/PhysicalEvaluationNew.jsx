@@ -3,7 +3,7 @@ import Main from "../../layouts/main/Main";
 import { api } from "../../services/api";
 import { useState } from "react";
 import { useContext } from "react";
-import { LoginContext } from "../../contexts/LoginContext";
+import { LoginContext } from "../../services/contexts/LoginContext";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   ButtonCnt1,

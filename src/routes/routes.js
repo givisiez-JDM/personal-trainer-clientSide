@@ -16,7 +16,7 @@ import PhysicalEvaluationNew from "../pages/physicalEvaluation/PhysicalEvaluatio
 import PhysicalEvaluationDetails from "../pages/physicalEvaluation/PhysicalEvaluationDetails"
 import PhysicalEvaluationUpdate from "../pages/physicalEvaluation/PhysicalEvaluationUpdate"
 import TrainingList from '../pages/training/TrainingList'
-import { LoginContext } from "../contexts/LoginContext"
+import { LoginContext } from "../services/contexts/LoginContext"
 import ErrorPage from "../pages/ErrorPage"
 import ExerciseNew from "../pages/exercise/ExerciseNew"
 import ExerciseDetails from "../pages/exercise/ExerciseDetails"

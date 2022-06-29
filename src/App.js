@@ -1,5 +1,5 @@
 import RoutesApp from './routes/routes'
-import { LoginProvider } from "./contexts/LoginContext";
+import { LoginProvider } from "./services/contexts/LoginContext";
 
 function App() {
 

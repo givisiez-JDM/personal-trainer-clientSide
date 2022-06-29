@@ -30,10 +30,10 @@ export class ComponentToPrint extends Component {
               <Paragraph>Tórax (em cm): {this.props.evaluation.measurements.chestMeasure}</Paragraph>
               <Paragraph>Quadril (em cm): {this.props.evaluation.measurements.hipMeasure}</Paragraph>
               <Paragraph>Braço (em cm): {this.props.evaluation.measurements.armsMeasure}</Paragraph>
-              <Paragraph>Antebraço (em cm): {this.props.evaluation.measurements.abdomenMeasure !== 0}</Paragraph>
-              <Paragraph>Punho (em cm): {this.props.evaluation.measurements.wristsMeasure !== 0}</Paragraph>
-              <Paragraph>Coxa (em cm): {this.props.evaluation.measurements.thighMeasure !== 0}</Paragraph>
-              <Paragraph>Panturrilha (em cm): {this.props.evaluation.measurements.calfMeasure !== 0}</Paragraph>
+              <Paragraph>Antebraço (em cm): {this.props.evaluation.measurements.abdomenMeasure}</Paragraph>
+              <Paragraph>Punho (em cm): {this.props.evaluation.measurements.wristsMeasure}</Paragraph>
+              <Paragraph>Coxa (em cm): {this.props.evaluation.measurements.thighMeasure}</Paragraph>
+              <Paragraph>Panturrilha (em cm): {this.props.evaluation.measurements.calfMeasure}</Paragraph>
             </>
             : <Paragraph>Carregando...</Paragraph>
             }

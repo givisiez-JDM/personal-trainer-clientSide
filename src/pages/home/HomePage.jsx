@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { PageTitle, Paragraph, PrimaryButton } from "../../assets/styles/Shared";
 import BarCharts from "../../components/BarCharts";
 import PieCharts from "../../components/PieCharts";
-import { LoginContext } from "../../contexts/LoginContext";
+import { LoginContext } from "../../services/contexts/LoginContext";
 import { getAgeFrom } from "../../helpers/dateHelpers";
 import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";

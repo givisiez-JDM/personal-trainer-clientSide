@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react'
-import { api } from '../services/api'
+import { api } from '../api'
 import { useNavigate } from 'react-router-dom'
 
 export const LoginContext = createContext()
@@ -36,11 +36,27 @@ export const LoginProvider = ({ children }) => {
         }
     }
 
+    const signInWithGoogle = () => {
+        window.open(
+            // `${process.env.REACT_APP_API_URL}/auth/google/callback`,
+            `https://personalandtraining.netlify.app/auth/google/callback`,
+            "_self"
+        )
+        navigate('/')
+      }
+
     const signOut = () => {
         setLoggedUser(null)
-        navigate('/login')
         localStorage.removeItem('user')
+        window.open(`https://personalandtraining.netlify.app/auth/logout`, "_self");
+        navigate('/login')
     }
+
+    const signOutWithGoogle = () => {
+		// window.open(`${process.env.REACT_APP_API_URL}/auth/logout`, "_self");
+		window.open(`https://personalandtraining.netlify.app/auth/logout`, "_self");
+        navigate('/login')
+	};
 
     return (
         <LoginContext.Provider value={{
@@ -48,7 +64,9 @@ export const LoginProvider = ({ children }) => {
             signed: !!loggedUser,
             loadingLocalStorage,
             signIn,
-            signOut
+            signInWithGoogle,
+            signOut,
+            signOutWithGoogle
         }}>
             {children}
         </LoginContext.Provider>

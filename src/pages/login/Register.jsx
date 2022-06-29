@@ -7,7 +7,7 @@ import { api } from "../../services/api";
 import Logo from "../../assets/images/logo/logo-horizontal.png"
 import VisibilityOnIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { LoginContext } from "../../contexts/LoginContext";
+import { LoginContext } from "../../services/contexts/LoginContext";
 import GoogleIcon from '@mui/icons-material/Google';
 
 export default function Register() {

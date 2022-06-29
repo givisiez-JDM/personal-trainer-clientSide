@@ -1,7 +1,7 @@
 import { Hidden, Table, TableBody, TableHead, TableCell, TableContainer } from '@mui/material'
 import { useContext, useEffect, useState } from 'react'
 import { ButtonCnt1, LinkButton, PageSubtitle, PageTitle, Paragraph, WrittenLink } from '../../assets/styles/Shared'
-import { LoginContext } from '../../contexts/LoginContext'
+import { LoginContext } from "../../services/contexts/LoginContext";
 import { dateTransform } from '../../helpers/dateHelpers'
 import Header from '../../layouts/header/Header'
 import Main from '../../layouts/main/Main'

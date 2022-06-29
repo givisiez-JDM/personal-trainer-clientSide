@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { dateTransform, getAgeFrom } from "../../helpers/dateHelpers";
-import { LoginContext } from "../../contexts/LoginContext";
+import { LoginContext } from "../../services/contexts/LoginContext";
 import { ButtonCnt3, LinkButton, MarginCnt, PageSubtitle, PageTitle, Paragraph, PrimaryButton, SecondaryButton } from "../../assets/styles/Shared";
 import { Table, TableBody, TableCell, TableContainer, TableHead } from "@mui/material";
 
@@ -44,6 +44,8 @@ export default function ClientDetails() {
         })
     }
 
+    console.log(evaluations)
+
     return (
         <>
         <Header />
@@ -51,8 +53,8 @@ export default function ClientDetails() {
             <PageTitle>Detalhes do cliente</PageTitle>
             <ButtonCnt3>
                 <LinkButton to={`/avaliacao/nova-avaliacao/${client._id}`}>Adicionar Avaliação física</LinkButton>
-                <PrimaryButton onClick={updateClient}>Alterar dados do usuário</PrimaryButton>
-                <SecondaryButton onClick={deleteClient}>Deletar usuário</SecondaryButton>
+                <PrimaryButton onClick={updateClient}>Alterar dados do cliente</PrimaryButton>
+                <SecondaryButton onClick={deleteClient}>Deletar cliente</SecondaryButton>
             </ButtonCnt3>
             <MarginCnt>
                 {loggedUser.isAdmin && 

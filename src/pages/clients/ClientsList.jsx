@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ButtonCnt1, LinkButton, PageTitle, Paragraph } from '../../assets/styles/Shared'
-import { LoginContext } from '../../contexts/LoginContext'
+import { LoginContext } from "../../services/contexts/LoginContext";
 import Header from '../../layouts/header/Header'
 import Main from '../../layouts/main/Main'
 import { api } from '../../services/api'

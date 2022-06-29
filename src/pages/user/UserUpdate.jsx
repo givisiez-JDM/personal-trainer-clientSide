@@ -5,7 +5,7 @@ import Main from "../../layouts/main/Main";
 import { api } from "../../services/api";
 import VisibilityOnIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { LoginContext } from "../../contexts/LoginContext";
+import { LoginContext } from "../../services/contexts/LoginContext";
 import { PageTitle, SubmitButton, InputStyle, InputLabel, SelectStyle, Paragraph, ButtonCnt1, FormStyle, InputLabelCnt } from "../../assets/styles/Shared";
 
 export default function UserNew() {

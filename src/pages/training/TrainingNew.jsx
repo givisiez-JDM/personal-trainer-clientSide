@@ -2,7 +2,7 @@ import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ButtonCnt2, InputLabel, InputLabelCnt, InputStyle, PageSubtitle, PageSubtitle3, PageTitle, Paragraph, PrimaryButton, SecondaryButton, SelectStyle, TextareaStyle } from "../../assets/styles/Shared";
-import { LoginContext } from "../../contexts/LoginContext";
+import { LoginContext } from "../../services/contexts/LoginContext";
 import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";
 import { api } from "../../services/api";

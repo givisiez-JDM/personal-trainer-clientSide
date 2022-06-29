@@ -2,7 +2,7 @@ import { ThemeProvider } from "styled-components";
 import { CloseMenuBtn, ExitButton, HeaderCnt, HeaderLink, HeaderNav, MobileLink, UserNameButton, UserNameP, UserOptionDiv } from "./HeaderStyle";
 import { mainThemeColor } from "../../assets/styles/Shared";
 import { useContext, useState } from "react";
-import { LoginContext } from "../../contexts/LoginContext";
+import { LoginContext } from "../../services/contexts/LoginContext";
 import { Link } from "react-router-dom";
 import { Hidden, IconButton,  SwipeableDrawer } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
