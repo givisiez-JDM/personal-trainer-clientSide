@@ -39,7 +39,7 @@ export const LoginProvider = ({ children }) => {
     // const signInWithGoogle = () => {
     //     window.open(
     //         // `${process.env.REACT_APP_API_URL}/auth/google/callback`,
-    //         `https://personalandtraining.netlify.app/auth/google/callback`,
+    //         `https://personal-and-training.herokuapp.com/auth/google/callback`,
     //         "_self"
     //     )
     //     navigate('/')
@@ -48,13 +48,12 @@ export const LoginProvider = ({ children }) => {
     const signOut = () => {
         setLoggedUser(null)
         localStorage.removeItem('user')
-        window.open(`https://personalandtraining.netlify.app/auth/logout`, "_self");
         navigate('/login')
     }
 
     // const signOutWithGoogle = () => {
 	// 	// window.open(`${process.env.REACT_APP_API_URL}/auth/logout`, "_self");
-	// 	window.open(`https://personalandtraining.netlify.app/auth/logout`, "_self");
+	// 	window.open(`https://personal-and-training.herokuapp.com/`, "_self");
     //     navigate('/login')
 	// };
 
