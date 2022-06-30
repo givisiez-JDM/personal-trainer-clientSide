@@ -47,9 +47,11 @@ export default function Register() {
     } catch (error) {
       alert(error.response.data)
     }
+  }
 
-    
-    }
+  function googleErr() {
+    alert("Função indisponível no momento, tente novamente mais tarde.")
+  }
 
   const updateField = e => {
     setUser({
@@ -80,7 +82,7 @@ export default function Register() {
           </LoginForm>
           <Paragraph>Ou</Paragraph>
             <GFButtonsDiv>
-              <GoogleButton onClick={googleAuth}>Faça cadastro com <GoogleIcon />oogle</GoogleButton>
+              <GoogleButton onClick={googleErr}>Faça cadastro com <GoogleIcon />oogle</GoogleButton>
             </GFButtonsDiv>
           <WrittenLink to="/">Já tem cadastro? Clique aqui</WrittenLink>
         </FormCnt>

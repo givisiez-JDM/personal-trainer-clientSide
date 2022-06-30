@@ -18,6 +18,10 @@ export default function Login() {
   const { signIn } = useContext(LoginContext)
   // const { signIn, signInWithGoogle } = useContext(LoginContext)
 
+   function googleErr() {
+    alert("Função indisponível no momento, tente novamente mais tarde.")
+   }
+
   const [passwordShown, setPasswordShown] = useState(false)
 
   async function login(e) {
@@ -57,7 +61,7 @@ export default function Login() {
             <Paragraph>Ou</Paragraph>
             <GFButtonsDiv>
               {/* <GoogleButton onClick={signInWithGoogle}>Faça login com <GoogleIcon />oogle</GoogleButton> */}
-              <GoogleButton>Faça login com <GoogleIcon />oogle</GoogleButton>
+              <GoogleButton onClick={googleErr}>Faça login com <GoogleIcon />oogle</GoogleButton>
             </GFButtonsDiv>
             <WrittenLink to="/registrar">Ainda não tem cadastro? Registre-se aqui</WrittenLink>
           </LoginForm>

@@ -60,35 +60,10 @@ export default function PhysicalEvaluationNew() {
     fatMidFemoral: 0
   });
 
-  function createEvaluation(e) {
+  async function createEvaluation(e) {
     e.preventDefault();
 
-    setevaluation({
-      ...evaluation,
-      personalTrainerId: loggedUser._id,
-      clientId: client._id,
-      personalTrainerName: loggedUser.name,
-      clientName: client.name,
-      measurements: {
-        abdomenMeasure: measurements.abdomenMeasure,
-        neckMeasure: measurements.neckMeasure,
-        chestMeasure: measurements.chestMeasure,
-        hipMeasure: measurements.hipMeasure,
-        armsMeasure: measurements.armsMeasure,
-        forearmsMeasure: measurements.forearmsMeasure,
-        wristsMeasure: measurements.wristsMeasure,
-        thighMeasure: measurements.thighMeasure,
-        calfMeasure: measurements.calfMeasure},
-      fatData: {fatSubscapularis: fatData.fatSubscapularis,
-        fatTriceps: fatData.fatTriceps,
-        fatBreastplate: fatData.fatBreastplate,
-        fatMidAxillary: fatData.fatMidAxillary,
-        fatSuprailiac: fatData.fatSuprailiac,
-        fatAbdominal: fatData.fatAbdominal,
-        fatMidFemoral: fatData.fatMidFemoral}
-    });
-
-    api.post("/avaliacao/nova-avaliacao", {
+    await api.post("/avaliacao/nova-avaliacao", {
       date: evaluation.date,
       personalTrainerId: evaluation.personalTrainerId,
       personalTrainerName: evaluation.personalTrainerName,
@@ -100,16 +75,30 @@ export default function PhysicalEvaluationNew() {
       height: evaluation.height,
       notes: evaluation.notes
     })
-      .then(() => {
-        alert(`Avaliação física feita com sucesso!`);
-        navigate(`/clientes/${clientId}`);
-      });
+    .then(() => {
+      alert(`Avaliação física feita com sucesso!`);
+      navigate(`/clientes/${clientId}`);
+    });
+  }
+
+  async function getData() {
+
+    await api.get(`/clientes/${clientId}`)
+    .then((response) => {
+      setClient(response.data);
+
+      setevaluation({
+        ...evaluation,
+        personalTrainerId: loggedUser._id,
+        clientId: response.data._id,
+        personalTrainerName: loggedUser.name,
+        clientName: response.data.name
+      })
+    })
   }
 
   useEffect(() => {
-    api.get(`/clientes/${clientId}`).then((response) => {
-      setClient(response.data);
-    });
+    getData();
   }, []);
 
   const updateFieldEvaluation = (e) => {
@@ -124,12 +113,22 @@ export default function PhysicalEvaluationNew() {
       ...measurements,
       [e.target.name]: e.target.value,
     });
+
+    setevaluation({
+      ...evaluation,
+      measurements: measurements,
+    });
   };
 
   const updateFieldFatData = (e) => {
     setfatData({
       ...fatData,
       [e.target.name]: e.target.value,
+    });
+
+    setevaluation({
+      ...evaluation,
+      fatData: fatData,
     });
   };
 
@@ -386,7 +385,7 @@ export default function PhysicalEvaluationNew() {
               id="notes"
               cols="30"
               rows="10"
-              onChange={updateFieldFatData}
+              onChange={updateFieldEvaluation}
             />
           </InputLabelCnt>
           <ButtonCnt1>

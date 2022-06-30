@@ -14,6 +14,7 @@ export default function ClientUpdate() {
     const { loggedUser } = useContext(LoginContext);
     let navigate = useNavigate();
     let { clientId } = useParams();
+    const [users, setusers] = useState([]);
 
     const [client, setclient] = useState({
         name: "",
@@ -29,9 +30,9 @@ export default function ClientUpdate() {
     })
 
 
-    async function fetchUserData() {
-        const data = await api.get(`/clientes/${clientId}`)
-        const { 
+    async function fetchData() {
+        const client = await api.get(`/clientes/${clientId}`)
+        const {
             name,
             birthDate,
             gender,
@@ -39,10 +40,10 @@ export default function ClientUpdate() {
             email,
             profession,
             objective,
-            personalTrainerId, 
+            personalTrainerId,
             _id,
             personalTrainerName
-         } = data.data
+         } = client.data
         setclient({
             name,
             birthDate,
@@ -55,10 +56,14 @@ export default function ClientUpdate() {
             _id,
             personalTrainerName
         })
+
+        await api.get("/usuarios").then((response) => {
+            setusers(response.data);
+        });
     }
 
     useEffect(() => {
-        fetchUserData()
+        fetchData()
     }, [])
 
     async function updateClient(e) {
@@ -96,8 +101,30 @@ export default function ClientUpdate() {
                 </header>
                 {client.name === ''
                     ? <Paragraph>Carregando...</Paragraph>
-                    : 
+                    :
                     <FormStyle onSubmit={updateClient}>
+                        {loggedUser.isAdmin && (
+                            <InputLabelCnt>
+                            <InputLabel htmlFor="personalTrainerName">
+                                Personal Trainer:{" "}
+                            </InputLabel>
+                            <SelectStyle
+                                name="personalTrainerName"
+                                id="personalTrainerName"
+                                onChange={updateField}
+                                required
+                                value={client.personalTrainerName}
+                            >
+                                {users.map((user) => {
+                                return (
+                                    <option key={user._id} value={user.name}>
+                                    {user.name}
+                                    </option>
+                                );
+                                })}
+                            </SelectStyle>
+                            </InputLabelCnt>
+                        )}
                         <InputLabelCnt>
                             <InputLabel htmlFor="name">Nome completo</InputLabel>
                             <InputStyle type="text" name="name" id="name" onChange={updateField} required value={client.name} />

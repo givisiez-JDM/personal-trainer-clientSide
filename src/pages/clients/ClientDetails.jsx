@@ -35,7 +35,7 @@ export default function ClientDetails() {
     function updateClient() {
         navigate(`/clientes/editar-cliente/${client._id}`)
     }
-    
+
     async function deleteClient() {
         await api.delete(`/clientes/deletar-cliente/${client._id}`)
         .then(() => {
@@ -43,8 +43,6 @@ export default function ClientDetails() {
           navigate("/clientes")
         })
     }
-
-    console.log(evaluations)
 
     return (
         <>
@@ -57,7 +55,7 @@ export default function ClientDetails() {
                 <SecondaryButton onClick={deleteClient}>Deletar cliente</SecondaryButton>
             </ButtonCnt3>
             <MarginCnt>
-                {loggedUser.isAdmin && 
+                {loggedUser.isAdmin &&
                     <Paragraph>Personal trainer: {client.personalTrainerName} </Paragraph>
                 }
                 <Paragraph>Nome completo: {client.name} </Paragraph>

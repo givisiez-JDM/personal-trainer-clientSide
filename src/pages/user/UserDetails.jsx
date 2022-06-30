@@ -9,7 +9,7 @@ import { api } from "../../services/api";
 export default function UserDetails() {
   let { userId } = useParams();
   let navigate = useNavigate();
-  const { signOut } = useContext(LoginContext);
+  const { signOut, loggedUser } = useContext(LoginContext);
 
   const [user, setUser] = useState([])
 
@@ -26,7 +26,11 @@ export default function UserDetails() {
     await api.delete(`/usuarios/deletar-usuario/${user._id}`)
     .then(() => {
       alert('Usuário deletado com sucesso')
-      signOut()
+      if (user._id === loggedUser) {
+        signOut()
+      } else {
+        navigate("/usuarios")
+      }
     })
   }
 

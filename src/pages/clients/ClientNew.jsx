@@ -95,6 +95,7 @@ export default function NewClient() {
                 required
                 defaultValue="Admin"
               >
+                <option value="default" disabled selected>Escolha o personal</option>
                 {users.map((user) => {
                   return (
                     <option key={user._id} value={user.name}>
@@ -134,6 +135,7 @@ export default function NewClient() {
               required
               defaultValue="female"
             >
+              <option value="default" disabled selected>Escolha o sexo</option>
               <option value={"Feminino"}>Feminino</option>
               <option value={"Masculino"}>Masculino</option>
             </SelectStyle>
@@ -177,6 +179,7 @@ export default function NewClient() {
               required
               defaultValue="condicionamento"
             >
+              <option value="default" disabled selected>Escolha o objetivo</option>
               <option value={"Condicionamento físico"}>
                 Condicionamento físico
               </option>
