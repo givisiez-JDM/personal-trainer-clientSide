@@ -29,7 +29,7 @@ export default function PhysicalEvaluationList() {
           <ul>
             {evaluations.map((evaluation) => {
               return(
-                  <li key={evaluation._id}><Link to={`/avaliacao/${evaluation._id}`}>{dateTransform(evaluation.createdAt)} - Personal: {evaluation.personalTrainerName}, Cliente: {evaluation.clientName}</Link></li>
+                  <li key={evaluation._id}><Link to={`/avaliacao/${evaluation._id}`}>{dateTransform(evaluation.date)} - Personal: {evaluation.personalTrainerName}, Cliente: {evaluation.clientName}</Link></li>
                 )})
               }
           </ul>

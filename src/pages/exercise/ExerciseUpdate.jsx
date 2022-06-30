@@ -43,7 +43,7 @@ export default function ExerciseUpdate() {
             <Header />
             <Main>
                 <header>
-                    <PageTitle>Cadastro de Exercício</PageTitle>
+                    <PageTitle>Editar Exercício</PageTitle>
                 </header>
                 <FormStyle onSubmit={updateExercise}>
                     <InputLabelCnt>

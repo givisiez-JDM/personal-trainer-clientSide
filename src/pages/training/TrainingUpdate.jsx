@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ButtonCnt1, ButtonCnt2, InputLabel, InputLabelCnt, InputStyle, PageSubtitle, PageSubtitle3, PageTitle, Paragraph, PrimaryButton, SecondaryButton, SelectStyle, TextareaStyle } from "../../assets/styles/Shared";
+import { ButtonCnt1, ButtonCnt2, InputLabel, InputLabelCnt, InputStyle, MarginCnt, PageSubtitle, PageSubtitle3, PageTitle, Paragraph, PrimaryButton, SecondaryButton, SelectStyle, TextareaStyle } from "../../assets/styles/Shared";
 import { LoginContext } from "../../services/contexts/LoginContext";
 import { dateInverted } from "../../helpers/dateHelpers";
 import Header from "../../layouts/header/Header";
@@ -139,6 +139,7 @@ export default function TrainingUpdate() {
         <header>
             <PageTitle>Atualizar Treino</PageTitle>
         </header>
+        <MarginCnt>
           <InputLabelCnt>
               <InputLabel htmlFor="date">Data do treino: </InputLabel>
               <InputStyle type="date" name="date" id="date" onChange={updateFieldTraining} required value={dateInverted(training.date)} />
@@ -155,6 +156,7 @@ export default function TrainingUpdate() {
               <InputLabel htmlFor="notes">Observações: </InputLabel>
               <TextareaStyle name="notes" id="notes" onChange={updateFieldTraining} value={training.notes} />
           </InputLabelCnt>
+        </MarginCnt>
           <>
             <PageSubtitle>Lista de exercícios</PageSubtitle>
             <ButtonCnt2>

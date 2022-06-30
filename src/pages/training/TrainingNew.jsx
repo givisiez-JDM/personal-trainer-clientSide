@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ButtonCnt2, InputLabel, InputLabelCnt, InputStyle, PageSubtitle, PageSubtitle3, PageTitle, Paragraph, PrimaryButton, SecondaryButton, SelectStyle, TextareaStyle } from "../../assets/styles/Shared";
+import { ButtonCnt2, InputLabel, InputLabelCnt, InputStyle, MarginCnt, PageSubtitle, PageSubtitle3, PageTitle, Paragraph, PrimaryButton, SecondaryButton, SelectStyle, TextareaStyle } from "../../assets/styles/Shared";
 import { LoginContext } from "../../services/contexts/LoginContext";
 import Header from "../../layouts/header/Header";
 import Main from "../../layouts/main/Main";
@@ -133,7 +133,7 @@ export default function TrainingNew() {
         <header>
             <PageTitle>Cadastro de Treino</PageTitle>
         </header>
-        <div>
+        <MarginCnt>
           <InputLabelCnt>
               <InputLabel htmlFor="date">Data do treino: </InputLabel>
               <InputStyle type="date" name="date" id="date" onChange={updateFieldTraining} required />
@@ -219,7 +219,7 @@ export default function TrainingNew() {
             }
           </div>
           <PrimaryButton onClick={createTraining}>Cadastrar treino</PrimaryButton>
-        </div>
+        </MarginCnt>
       </Main>
     </>
   )
