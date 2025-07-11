@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+# 🏋️‍♀️ Personal Trainer – Client Side
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Frontend application for managing clients, training plans, exercise logs, and progress—designed to work seamlessly with the **personal-trainer-serverSide** API.
 
-## Available Scripts
+## 🌟 Features
 
-In the project directory, you can run:
+* User authentication (login, logout)
+* Dashboard showing clients, training plans, progress
+* Create, view, edit, delete clients and plans
+* Responsive UI for desktop and mobile
+* API integration using REST (or GraphQL, as applicable)
+* Form validations and user-friendly messaging
 
-### `npm start`
+## 🧱 Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* **Framework / Library**: React 
+* **Styling**: Styled-component
+* **HTTP Client**: Axios
+* **State Management**: Context API
+* **Routing**: React Router
+* **Linting / Formatting**: ESLint, Prettier
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+*(Customize based on your stack.)*
 
-### `npm test`
+## 🔧 Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `npm run build`
+* Node.js v20+
+* npm
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Setup
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Clone the repo**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   git clone https://github.com/givisiez-JDM/personal-trainer-clientSide.git
+   cd personal-trainer-clientSide
+   ```
 
-### `npm run eject`
+2. **Install dependencies**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   npm install
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **Run the development server**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```bash
+   npm start
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   The app should be available at `http://localhost:3000` (or the configured port).
 
-## Learn More
+## 📱 Application Overview
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Core Pages / Components
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* **Login / Authentication**: Secure access with form validation
+* **Dashboard**: Summary of clients, plans, recent activity
+* **Clients List**: View all clients, search, select
+* **Client Detail**: View/edit individual client info and training plans
+* **Training Plans**: Create and manage workout routines
+* **Progress Tracking**: Log sessions and view historical performance
 
-### Code Splitting
+### API Integration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Example of API usage in React (adjust for your stack):
 
-### Analyzing the Bundle Size
+```js
+// Example with Axios
+axios.get(`${process.env.REACT_APP_API_URL}/clients`, {
+  headers: { Authorization: `Bearer ${token}` }
+});
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🎨 Styling & Assets
 
-### Making a Progressive Web App
+* Custom components for forms, modals, navigation, and cards
+* Responsive design via CSS grid/flexbox
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🛡️ Testing & Quality
 
-### Advanced Configuration
+* **Linting** with ESLint:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  ```bash
+  npm run lint
+  ```
+* **Formatting** with Prettier:
 
-### Deployment
+  ```bash
+  npm run format
+  ```
+* **UI / Integration Tests** using Jest + React Testing Library:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  ```bash
+  npm test
+  ```
